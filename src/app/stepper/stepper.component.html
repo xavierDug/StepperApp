@@ -60,7 +60,28 @@
           <div *ngIf="currentStep === i + 1">
             <h2 class="text-xl font-bold mb-4">Step {{i + 1}} Content</h2>
             <div class="grid grid-cols-2 gap-2">
-              <form class="" [formGroup]="formGroup" *ngIf="currentStep == 1">
+              <form class="" *ngIf="currentStep == 1">
+                <div class="mb-5">
+                  <label
+                    for="countries"
+                    class="block mb-2 text-sm font-medium"
+                    >Select an option</label
+                  >
+                  <select
+                    id="countries"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                  >
+                    <option disabled selected>Choose a sticker template</option>
+                    <option value="US">White</option>
+                    <option value="CA">Generic</option>
+                    <option value="FR">April</option>
+                    <option value="DE">Castrol</option>
+                  </select>
+                </div>
+                
+                
+              </form>
+              <form class=""  [formGroup]="formGroup" *ngIf="currentStep == 2">
                 <div class="mb-5">
                   <label
                     for="countries"
@@ -80,60 +101,26 @@
                 </div>
                 <div class="mb-5">
                   <label
-                    for="password"
+                    for="name"
                     class="block mb-2 text-sm font-medium"
-                    >Your password</label
+                    >Name</label
                   >
                   <input
                     type="text"
-                    id="password"
+                    id="name"
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                     required
                     formControlName="inputText"
                     (input)="updateText()" 
+                    maxlength="15"
                   />
-                </div>
-                <div class="flex items-start mb-5">
-                  <div class="flex items-center h-5">
-                    <input
-                      id="remember"
-                      type="checkbox"
-                      value=""
-                      class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800"
-                      required
-                    />
-                  </div>
-                  <label
-                    for="remember"
-                    class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-                    >Remember me</label
-                  >
-                </div>
-              </form>
-              <form class="" *ngIf="currentStep == 2">
-                <div class="mb-5">
-                  <label
-                    for="countries"
-                    class="block mb-2 text-sm font-medium"
-                    >Select an option</label
-                  >
-                  <select
-                    id="countries"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                  >
-                    <option selected>Choose a country</option>
-                    <option value="US">United States</option>
-                    <option value="CA">Canada</option>
-                    <option value="FR">France</option>
-                    <option value="DE">Germany</option>
-                  </select>
                 </div>
 
               </form>
               <div class="flex justify-end">
                 <div class="relative">
                   <img class="h-96 rounded-[30px]" src="/assets/images/Autopro.jpg" alt="test" />
-                  <div class="absolute top-[25%] left-1/2 -translate-x-1/2 text-black text-center max-w-40 break-words">{{ inputText }}</div>
+                  <div class="font-bold text-2xl absolute top-[25%] left-1/2 -translate-x-1/2 text-black text-center max-w-56 whitespace-nowrap">{{ inputText }}</div>
                 </div>
               </div>
             </div>

@@ -16,7 +16,8 @@
             [ngClass]="{
               'after:border-blue-900': currentStep > i + 1,
               'after:border-gray-200': currentStep <= i + 1,
-              'after:content-[\'\'] after:w-full after:h-1 after:border-b after:border-4 after:inline-block': i !== steps.length - 1
+              'after:content-[\'\'] after:w-full after:h-1 after:border-b after:border-4 after:inline-block':
+                i !== steps.length - 1
             }"
           >
             <span
@@ -24,20 +25,63 @@
               class="text-white flex items-center justify-center w-10 h-10 rounded-full lg:h-12 lg:w-12 bg-blue-900 shrink-0"
             >
               <!-- Current Step SVG -->
-              <svg *ngIf="steps[i] == 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
-                <path fill-rule="evenodd" d="M1.5 7.125c0-1.036.84-1.875 1.875-1.875h6c1.036 0 1.875.84 1.875 1.875v3.75c0 1.036-.84 1.875-1.875 1.875h-6A1.875 1.875 0 0 1 1.5 10.875v-3.75Zm12 1.5c0-1.036.84-1.875 1.875-1.875h5.25c1.035 0 1.875.84 1.875 1.875v8.25c0 1.035-.84 1.875-1.875 1.875h-5.25a1.875 1.875 0 0 1-1.875-1.875v-8.25ZM3 16.125c0-1.036.84-1.875 1.875-1.875h5.25c1.036 0 1.875.84 1.875 1.875v2.25c0 1.035-.84 1.875-1.875 1.875h-5.25A1.875 1.875 0 0 1 3 18.375v-2.25Z" clip-rule="evenodd" />
+              <svg
+                *ngIf="steps[i] == 1"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                class="size-6"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M1.5 7.125c0-1.036.84-1.875 1.875-1.875h6c1.036 0 1.875.84 1.875 1.875v3.75c0 1.036-.84 1.875-1.875 1.875h-6A1.875 1.875 0 0 1 1.5 10.875v-3.75Zm12 1.5c0-1.036.84-1.875 1.875-1.875h5.25c1.035 0 1.875.84 1.875 1.875v8.25c0 1.035-.84 1.875-1.875 1.875h-5.25a1.875 1.875 0 0 1-1.875-1.875v-8.25ZM3 16.125c0-1.036.84-1.875 1.875-1.875h5.25c1.036 0 1.875.84 1.875 1.875v2.25c0 1.035-.84 1.875-1.875 1.875h-5.25A1.875 1.875 0 0 1 3 18.375v-2.25Z"
+                  clip-rule="evenodd"
+                />
               </svg>
-              <svg *ngIf="steps[i] == 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
-                <path fill-rule="evenodd" d="M2.25 2.25a.75.75 0 0 0 0 1.5H3v10.5a3 3 0 0 0 3 3h1.21l-1.172 3.513a.75.75 0 0 0 1.424.474l.329-.987h8.418l.33.987a.75.75 0 0 0 1.422-.474l-1.17-3.513H18a3 3 0 0 0 3-3V3.75h.75a.75.75 0 0 0 0-1.5H2.25Zm6.04 16.5.5-1.5h6.42l.5 1.5H8.29Zm7.46-12a.75.75 0 0 0-1.5 0v6a.75.75 0 0 0 1.5 0v-6Zm-3 2.25a.75.75 0 0 0-1.5 0v3.75a.75.75 0 0 0 1.5 0V9Zm-3 2.25a.75.75 0 0 0-1.5 0v1.5a.75.75 0 0 0 1.5 0v-1.5Z" clip-rule="evenodd" />
-              </svg> 
+              <svg
+                *ngIf="steps[i] == 2"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                class="size-6"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M5.625 1.5c-1.036 0-1.875.84-1.875 1.875v17.25c0 1.035.84 1.875 1.875 1.875h12.75c1.035 0 1.875-.84 1.875-1.875V12.75A3.75 3.75 0 0 0 16.5 9h-1.875a1.875 1.875 0 0 1-1.875-1.875V5.25A3.75 3.75 0 0 0 9 1.5H5.625ZM7.5 15a.75.75 0 0 1 .75-.75h7.5a.75.75 0 0 1 0 1.5h-7.5A.75.75 0 0 1 7.5 15Zm.75 2.25a.75.75 0 0 0 0 1.5H12a.75.75 0 0 0 0-1.5H8.25Z"
+                  clip-rule="evenodd"
+                />
+                <path
+                  d="M12.971 1.816A5.23 5.23 0 0 1 14.25 5.25v1.875c0 .207.168.375.375.375H16.5a5.23 5.23 0 0 1 3.434 1.279 9.768 9.768 0 0 0-6.963-6.963Z"
+                />
+              </svg>
+              <i *ngIf="steps[i] == 3" class="fa-solid fa-oil-can text-xl"></i>
+              <svg *ngIf="steps[i] == 4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+                <path d="M12.75 12.75a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM7.5 15.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM8.25 17.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM9.75 15.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM10.5 17.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM12 15.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM12.75 17.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM14.25 15.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM15 17.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM16.5 15.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM15 12.75a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM16.5 13.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Z" />
+                <path fill-rule="evenodd" d="M6.75 2.25A.75.75 0 0 1 7.5 3v1.5h9V3A.75.75 0 0 1 18 3v1.5h.75a3 3 0 0 1 3 3v11.25a3 3 0 0 1-3 3H5.25a3 3 0 0 1-3-3V7.5a3 3 0 0 1 3-3H6V3a.75.75 0 0 1 .75-.75Zm13.5 9a1.5 1.5 0 0 0-1.5-1.5H5.25a1.5 1.5 0 0 0-1.5 1.5v7.5a1.5 1.5 0 0 0 1.5 1.5h13.5a1.5 1.5 0 0 0 1.5-1.5v-7.5Z" clip-rule="evenodd" />
+              </svg>
+              <i *ngIf="steps[i] == 5" class="fa-solid fa-gauge-high text-xl"></i>
+              <i *ngIf="steps[i] == 6" class="fa-solid fa-lightbulb text-xl"></i>
+              <i *ngIf="steps[i] == 7" class="fa-solid fa-truck-monster text-xl"></i>
+              <i *ngIf="steps[i] == 8" class="fa-solid fa-pen-to-square text=xl"></i>
+              <i *ngIf="steps[i] == 9" class="fa-solid fa-wrench text-xl"></i>
+              <i *ngIf="steps[i] == 10" class="fa-solid fa-fill-drip text-xl"></i>
             </span>
             <span
               *ngIf="currentStep > i + 1"
               class="flex text-white items-center justify-center w-10 h-10 rounded-full lg:h-12 lg:w-12 bg-blue-900 shrink-0"
             >
               <!-- Completed Step SVG -->
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
-                <path fill-rule="evenodd" d="M19.916 4.626a.75.75 0 0 1 .208 1.04l-9 13.5a.75.75 0 0 1-1.154.114l-6-6a.75.75 0 0 1 1.06-1.06l5.353 5.353 8.493-12.74a.75.75 0 0 1 1.04-.207Z" clip-rule="evenodd" />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                class="size-6"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M19.916 4.626a.75.75 0 0 1 .208 1.04l-9 13.5a.75.75 0 0 1-1.154.114l-6-6a.75.75 0 0 1 1.06-1.06l5.353 5.353 8.493-12.74a.75.75 0 0 1 1.04-.207Z"
+                  clip-rule="evenodd"
+                />
               </svg>
             </span>
             <span
@@ -45,64 +89,128 @@
               class="flex items-center justify-center w-10 h-10 rounded-full lg:h-12 lg:w-12 bg-gray-200 shrink-0"
             >
               <!-- Future Step SVG (can be the same as Completed Step SVG or different) -->
-              <svg *ngIf="steps[i] == 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
-                <path fill-rule="evenodd" d="M1.5 7.125c0-1.036.84-1.875 1.875-1.875h6c1.036 0 1.875.84 1.875 1.875v3.75c0 1.036-.84 1.875-1.875 1.875h-6A1.875 1.875 0 0 1 1.5 10.875v-3.75Zm12 1.5c0-1.036.84-1.875 1.875-1.875h5.25c1.035 0 1.875.84 1.875 1.875v8.25c0 1.035-.84 1.875-1.875 1.875h-5.25a1.875 1.875 0 0 1-1.875-1.875v-8.25ZM3 16.125c0-1.036.84-1.875 1.875-1.875h5.25c1.036 0 1.875.84 1.875 1.875v2.25c0 1.035-.84 1.875-1.875 1.875h-5.25A1.875 1.875 0 0 1 3 18.375v-2.25Z" clip-rule="evenodd" />
+              <svg
+                *ngIf="steps[i] == 1"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                class="size-6"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M1.5 7.125c0-1.036.84-1.875 1.875-1.875h6c1.036 0 1.875.84 1.875 1.875v3.75c0 1.036-.84 1.875-1.875 1.875h-6A1.875 1.875 0 0 1 1.5 10.875v-3.75Zm12 1.5c0-1.036.84-1.875 1.875-1.875h5.25c1.035 0 1.875.84 1.875 1.875v8.25c0 1.035-.84 1.875-1.875 1.875h-5.25a1.875 1.875 0 0 1-1.875-1.875v-8.25ZM3 16.125c0-1.036.84-1.875 1.875-1.875h5.25c1.036 0 1.875.84 1.875 1.875v2.25c0 1.035-.84 1.875-1.875 1.875h-5.25A1.875 1.875 0 0 1 3 18.375v-2.25Z"
+                  clip-rule="evenodd"
+                />
               </svg>
-              <svg *ngIf="steps[i] == 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
-                <path fill-rule="evenodd" d="M2.25 2.25a.75.75 0 0 0 0 1.5H3v10.5a3 3 0 0 0 3 3h1.21l-1.172 3.513a.75.75 0 0 0 1.424.474l.329-.987h8.418l.33.987a.75.75 0 0 0 1.422-.474l-1.17-3.513H18a3 3 0 0 0 3-3V3.75h.75a.75.75 0 0 0 0-1.5H2.25Zm6.04 16.5.5-1.5h6.42l.5 1.5H8.29Zm7.46-12a.75.75 0 0 0-1.5 0v6a.75.75 0 0 0 1.5 0v-6Zm-3 2.25a.75.75 0 0 0-1.5 0v3.75a.75.75 0 0 0 1.5 0V9Zm-3 2.25a.75.75 0 0 0-1.5 0v1.5a.75.75 0 0 0 1.5 0v-1.5Z" clip-rule="evenodd" />
+              <svg
+                *ngIf="steps[i] == 2"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                class="size-6"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M5.625 1.5c-1.036 0-1.875.84-1.875 1.875v17.25c0 1.035.84 1.875 1.875 1.875h12.75c1.035 0 1.875-.84 1.875-1.875V12.75A3.75 3.75 0 0 0 16.5 9h-1.875a1.875 1.875 0 0 1-1.875-1.875V5.25A3.75 3.75 0 0 0 9 1.5H5.625ZM7.5 15a.75.75 0 0 1 .75-.75h7.5a.75.75 0 0 1 0 1.5h-7.5A.75.75 0 0 1 7.5 15Zm.75 2.25a.75.75 0 0 0 0 1.5H12a.75.75 0 0 0 0-1.5H8.25Z"
+                  clip-rule="evenodd"
+                />
+                <path
+                  d="M12.971 1.816A5.23 5.23 0 0 1 14.25 5.25v1.875c0 .207.168.375.375.375H16.5a5.23 5.23 0 0 1 3.434 1.279 9.768 9.768 0 0 0-6.963-6.963Z"
+                />
               </svg>
-              
+              <i *ngIf="steps[i] == 3" class="fa-solid fa-oil-can text-xl"></i>
+              <svg *ngIf="steps[i] == 4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+                <path d="M12.75 12.75a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM7.5 15.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM8.25 17.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM9.75 15.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM10.5 17.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM12 15.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM12.75 17.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM14.25 15.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM15 17.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM16.5 15.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM15 12.75a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM16.5 13.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Z" />
+                <path fill-rule="evenodd" d="M6.75 2.25A.75.75 0 0 1 7.5 3v1.5h9V3A.75.75 0 0 1 18 3v1.5h.75a3 3 0 0 1 3 3v11.25a3 3 0 0 1-3 3H5.25a3 3 0 0 1-3-3V7.5a3 3 0 0 1 3-3H6V3a.75.75 0 0 1 .75-.75Zm13.5 9a1.5 1.5 0 0 0-1.5-1.5H5.25a1.5 1.5 0 0 0-1.5 1.5v7.5a1.5 1.5 0 0 0 1.5 1.5h13.5a1.5 1.5 0 0 0 1.5-1.5v-7.5Z" clip-rule="evenodd" />
+              </svg>
+              <i *ngIf="steps[i] == 5" class="fa-solid fa-gauge-high text-xl"></i>
+              <i *ngIf="steps[i] == 6" class="fa-solid fa-lightbulb text-xl"></i>
+              <i *ngIf="steps[i] == 7" class="fa-solid fa-truck-monster text-xl"></i>
+              <i *ngIf="steps[i] == 8" class="fa-solid fa-pen-to-square text=xl"></i>
+              <i *ngIf="steps[i] == 9" class="fa-solid fa-wrench text-xl"></i>
+              <i *ngIf="steps[i] == 10" class="fa-solid fa-fill-drip text-xl"></i>
             </span>
           </li>
         </ol>
 
         <div class="" *ngFor="let step of steps; let i = index">
           <div *ngIf="currentStep === i + 1">
-            <h2 class="text-xl font-bold mb-4">Step {{i + 1}} Content</h2>
+            <h2 class="text-xl font-semibold mb-4 text-gray-300">Step {{ i + 1 }}</h2>
             <div class="grid grid-cols-2 gap-2">
-              <form class="" *ngIf="currentStep == 1">
+              <form class="" [formGroup]="formGroup1" *ngIf="currentStep == 1">
+                <div>
+                  <h1 class="text-3xl mb-5 font-bold">Choix du modèle d'étiquette</h1>
+                </div>
                 <div class="mb-5">
-                  <label
-                    for="countries"
-                    class="block mb-2 text-sm font-medium"
+                  <label for="countries" class="block mb-2 text-sm font-medium"
                     >Select an option</label
                   >
                   <select
                     id="countries"
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                    formControlName="inputSelect"
+                    (change)="updateSelectTemplate()"
                   >
-                    <option disabled selected>Choose a sticker template</option>
-                    <option value="US">White</option>
-                    <option value="CA">Generic</option>
-                    <option value="FR">April</option>
-                    <option value="DE">Castrol</option>
+                    <option disabled [selected]="!formGroup2.get('inputSelect')?.value">Choose a sticker template</option>
+                    <option value="White">White</option>
+                    <option value="generique">Generic</option>
+                    <option value="april-324x324">April</option>
+                    <option value="castrol">Castrol</option>
                   </select>
                 </div>
-                
-                
+                <div>
+                  <div>
+                    <p class="text-sm font-bold mb-2">Logo (optional)</p>
+                  </div>
+                  <div class="flex items-center justify-center w-full">
+                    <label
+                      for="dropzone-file"
+                      class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 hover:bg-gray-100"
+                    >
+                      <div
+                        class="flex flex-col items-center justify-center pt-5 pb-6"
+                      >
+                        <svg
+                          *ngIf="!selectedImageUrl"
+                          class="w-8 h-8 mb-4 text-gray-500"
+                          aria-hidden="true"
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 20 16"
+                        >
+                          <path
+                            stroke="currentColor"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
+                          />
+                        </svg>
+                        <i *ngIf="selectedImageUrl" class="mb-4 fa-solid fa-circle-check text-green-600 text-3xl"></i>
+                        <p
+                          *ngIf="!selectedImageUrl"
+                          class="mb-2 text-sm text-gray-500"
+                        >
+                          <span class="font-semibold"
+                            >Click to upload your logo</span
+                          >
+                          or drag and drop
+                        </p>
+                        <p *ngIf="selectedImageUrl" class="mb-2 text-sm text-gray-500 font-semibold">
+                          Logo uploaded successfully
+                        </p>
+                        <p *ngIf="!selectedImageUrl" class="text-xs text-gray-500">
+                          SVG, PNG, JPG or GIF (MAX. 800x400px)
+                        </p>
+                      </div>
+                      <input id="dropzone-file" type="file" class="hidden" accept="image/*" (change)="onFileSelected($event)" />
+                    </label>
+                  </div>
+                </div>
               </form>
-              <form class=""  [formGroup]="formGroup" *ngIf="currentStep == 2">
+              <form class="" [formGroup]="formGroup2" *ngIf="currentStep == 2">
                 <div class="mb-5">
-                  <label
-                    for="countries"
-                    class="block mb-2 text-sm font-medium"
-                    >Select an option</label
-                  >
-                  <select
-                    id="countries"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                  >
-                    <option selected>Choose a country</option>
-                    <option value="US">United States</option>
-                    <option value="CA">Canada</option>
-                    <option value="FR">France</option>
-                    <option value="DE">Germany</option>
-                  </select>
-                </div>
-                <div class="mb-5">
-                  <label
-                    for="name"
-                    class="block mb-2 text-sm font-medium"
+                  <label for="name" class="block mb-2 text-sm font-medium"
                     >Name</label
                   >
                   <input
@@ -111,16 +219,37 @@
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                     required
                     formControlName="inputText"
-                    (input)="updateText()" 
+                    (input)="updateText()"
                     maxlength="15"
                   />
                 </div>
-
+                <div class="mb-5">
+                  <label for="tel" class="block mb-2 text-sm font-medium"
+                    >Tel</label
+                  >
+                  <input
+                    type="text"
+                    id="tel"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                    required
+                    placeholder="123-456-7890"
+                  />
+                </div>
               </form>
               <div class="flex justify-end">
                 <div class="relative">
-                  <img class="h-96 rounded-[30px]" src="/assets/images/Autopro.jpg" alt="test" />
-                  <div class="font-bold text-2xl absolute top-[25%] left-1/2 -translate-x-1/2 text-black text-center max-w-56 whitespace-nowrap">{{ inputText }}</div>
+                  <img
+                    *ngIf="inputSelect"
+                    class="h-96 rounded-[30px]"
+                    src="/assets/images/{{inputSelect}}.png"
+                    alt="test"
+                  />
+                  <div
+                    class="font-bold text-2xl absolute top-[100px] left-1/2 -translate-x-1/2 text-black text-center max-w-56 whitespace-nowrap"
+                  >
+                    <img [src]="selectedImageUrl" *ngIf="selectedImageUrl && inputSelect" class="max-w-56 max-h-10 mx-auto" />
+                    <p>{{ inputText }}</p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -128,7 +257,7 @@
             <div class="flex justify-between mt-12">
               <div *ngIf="currentStep === 1"></div>
               <button
-              *ngIf="currentStep > 1"
+                *ngIf="currentStep > 1"
                 class="px-4 py-2 text-black bg-gray-300 rounded"
                 (click)="prevStep()"
               >
@@ -145,8 +274,8 @@
                 *ngIf="currentStep === steps.length"
                 class="px-4 py-2 text-white bg-green-900 rounded"
               >
-              Submit
-            </button>
+                Submit
+              </button>
             </div>
           </div>
         </div>

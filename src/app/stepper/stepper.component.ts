@@ -16,6 +16,8 @@ export class StepperComponent implements OnInit {
 
   // this is the garage name
   inputText: string = '';
+  nbrLines: string = '';
+  telText: string = '';
 
   // this is the sticker template
   inputSelect: string = '';
@@ -27,7 +29,9 @@ export class StepperComponent implements OnInit {
 
   ngOnInit() {
     this.formGroup2 = this.formBuilder.group({
-      inputText: ['']
+      inputText: [''],
+      nbrLines: [''],
+      telText: ['']
     });
     this.formGroup1 = this.formBuilder.group({
       inputSelect: ['']
@@ -45,8 +49,18 @@ export class StepperComponent implements OnInit {
     }
   }
 
+  updateNbrLines(event: Event) {
+    // Cast the event target to an HTMLInputElement
+    const target = event.target as HTMLInputElement;
+    // Now you can safely access the value property
+    if (target && target.value) {
+      this.nbrLines = target.value;
+    }
+  }
+
   updateText(): void {
     this.inputText = this.formGroup2.get('inputText')?.value;
+    this.telText = this.formGroup2.get('telText')?.value;
   }
 
   updateSelectTemplate(): void {

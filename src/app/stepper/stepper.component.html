@@ -209,12 +209,7 @@
                     formControlName="inputSelect"
                     (change)="updateSelectTemplate()"
                   >
-                    <option
-                      disabled
-                      value=""
-                    >
-                      Choose a sticker template
-                    </option>
+                    <option disabled value="">Choose a sticker template</option>
                     <option value="White">White</option>
                     <option value="generique">Generic</option>
                     <option value="april-324x324">April</option>
@@ -296,11 +291,12 @@
                     <li>
                       <input
                         type="radio"
+                        [checked]="nbrLines === 'lines-2' ? true : false"
                         id="hosting-small"
                         name="hosting"
                         value="lines-2"
                         class="hidden peer"
-                        (change)="updateNbrLines( $event )"
+                        (change)="updateNbrLines($event)"
                         required
                       />
                       <label
@@ -313,31 +309,18 @@
                           </div>
                           <div class="w-full">Nom et telephone seulement</div>
                         </div>
-                        <svg
-                          class="w-5 h-5 ms-3 rtl:rotate-180"
-                          aria-hidden="true"
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="none"
-                          viewBox="0 0 14 10"
-                        >
-                          <path
-                            stroke="currentColor"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M1 5h12m0 0L9 1m4 4L9 9"
-                          />
-                        </svg>
+                        <i class="fa-solid fa-grip-lines text-xl"></i>
                       </label>
                     </li>
                     <li>
                       <input
                         type="radio"
+                        [checked]="nbrLines === 'lines-3' ? true : false"
                         id="hosting-big"
                         name="hosting"
                         value="lines-3"
                         class="hidden peer"
-                        (change)="updateNbrLines( $event )"
+                        (change)="updateNbrLines($event)"
                       />
                       <label
                         for="hosting-big"
@@ -349,26 +332,12 @@
                           </div>
                           <div class="w-full">Nom, adresse et telephone</div>
                         </div>
-                        <svg
-                          class="w-5 h-5 ms-3 rtl:rotate-180"
-                          aria-hidden="true"
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="none"
-                          viewBox="0 0 14 10"
-                        >
-                          <path
-                            stroke="currentColor"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M1 5h12m0 0L9 1m4 4L9 9"
-                          />
-                        </svg>
+                        <i class="fa-solid fa-bars text-xl"></i>
                       </label>
                     </li>
                   </ul>
                 </div>
-                <div class="mb-5">
+                <div class="mb-5" *ngIf="nbrLines">
                   <label for="name" class="block mb-2 text-sm font-medium"
                     >Name</label
                   >
@@ -384,10 +353,21 @@
                 </div>
                 <!-- Text input to show/hide based on selection -->
                 <!-- Conditionally displayed text input -->
-                <div *ngIf="nbrLines === 'lines-3'">
-                  <input type="text" placeholder="Additional information" />
+                <div class="mb-5" *ngIf="nbrLines === 'lines-3'">
+                  <label for="adi" class="block mb-2 text-sm font-medium"
+                    >Adresse</label
+                  >
+                  <input
+                    type="text"
+                    id="adi"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                    required
+                    formControlName="addressText"
+                    (input)="updateText()"
+                    placeholder="123 main st"
+                  />
                 </div>
-                <div class="mb-5">
+                <div class="mb-5" *ngIf="nbrLines">
                   <label for="tel" class="block mb-2 text-sm font-medium"
                     >Tel</label
                   >
@@ -402,6 +382,76 @@
                   />
                 </div>
               </form>
+              <form action="" [formGroup]="formGroup3" *ngIf="currentStep == 3">
+                <div>
+                  <h1 class="text-3xl mb-5 font-bold">Grade/type d'huile</h1>
+                  <p class="text-xl mb-5">
+                    Voulez vous inscrire dans le haut de l'étiquette le
+                    grade/type d'huile utilisé?
+                  </p>
+                </div>
+                <div class="mb-5">
+                  <ul class="grid w-full gap-6 md:grid-cols-2">
+                    <li>
+                      <input
+                        type="radio"
+                        [checked]="isOil === 'true' ? true : false"
+                        id="oil"
+                        name="oilcheck"
+                        value="true"
+                        class="hidden peer"
+                        (change)="updateIsOil($event)"
+                        required
+                      />
+                      <label
+                        for="oil"
+                        class="inline-flex items-center justify-between w-full h-full p-5 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100"
+                      >
+                        <div class="block">
+                          <div class="w-full text-lg font-semibold">
+                            Oui
+                          </div>
+                          <div class="w-full">Je souhaite inscrire le type/grade d'huile</div>
+                        </div>
+                        <i class="fa-solid fa-grip-lines text-xl"></i>
+                      </label>
+                    </li>
+                    <li>
+                      <input
+                        type="radio"
+                        [checked]="isOil === 'false' ? true : false"
+                        id="nooil"
+                        name="oilcheck"
+                        value="false"
+                        class="hidden peer"
+                        (change)="updateIsOil($event)"
+                      />
+                      <label
+                        for="nooil"
+                        class="inline-flex items-center justify-between w-full p-5 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100"
+                      >
+                        <div class="block">
+                          <div class="w-full text-lg font-semibold">
+                            Non
+                          </div>
+                          <div class="w-full">Je ne souhaite pas inscrire le type/grade d'huilee</div>
+                        </div>
+                        <i class="fa-solid fa-bars text-xl"></i>
+                      </label>
+                    </li>
+                  </ul>
+                </div>
+                <div class="mb-5">
+                  <p class="text-sm text-gray-200">*Les textes générés sont des exemples</p>
+                </div>
+                <!--<div>
+                  <p class="text-xl">Si vous
+                    dites oui a cette option, quand vous allez faire une étiquettes avec l’imprimante, vous
+                    aurai une question ou il vous sera possible d’inscrire le grade voule sur l’étiquette. CLIQUEZ ICI
+                    pour montrer sequence video qui montre comment?</p>
+                    <p>[video]</p>
+                </div>-->
+              </form>
               <div class="flex justify-end">
                 <div class="relative">
                   <img
@@ -412,15 +462,30 @@
                   />
                   <div
                     [ngClass]="{ 'top-[10px]': inputSelect === 'White' }"
-                    class="font-bold text-2xl absolute top-[100px] left-1/2 -translate-x-1/2 text-black text-center max-w-56 whitespace-nowrap"
+                    class="font-bold absolute top-[100px] left-1/2 -translate-x-1/2 text-black text-center whitespace-nowrap"
                   >
+                    <div class="max-w-56">
+                      <img
+                        [src]="selectedImageUrl"
+                        *ngIf="selectedImageUrl && inputSelect"
+                        class="max-w-56 max-h-10 mx-auto"
+                      />
+                      <p *ngIf="inputSelect" class="text-2xl">
+                        {{ inputText }}
+                      </p>
+                      <p *ngIf="inputSelect && nbrLines === 'lines-3'" class="font-normal text-sm">
+                        {{ addressText }}
+                      </p>
+                      <p *ngIf="inputSelect" class="font-normal">
+                        {{ telText }}
+                      </p>
+                    </div>
                     <img
-                      [src]="selectedImageUrl"
-                      *ngIf="selectedImageUrl && inputSelect"
-                      class="max-w-56 max-h-10 mx-auto"
+                      class="max-w-56 mx-auto"
+                      *ngIf="isOil === 'true' && inputSelect"
+                      src="/assets/images/next_date_grade.png"
+                      alt="nxtDateOil"
                     />
-                    <p>{{ inputText }}</p>
-                    <p>{{telText}}</p>
                   </div>
                 </div>
               </div>

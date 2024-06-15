@@ -13,11 +13,14 @@ export class StepperComponent implements OnInit {
 
   formGroup1!: FormGroup;
   formGroup2!: FormGroup;
+  formGroup3!: FormGroup;
 
   // this is the garage name
   inputText: string = '';
   nbrLines: string = '';
   telText: string = '';
+  addressText: string = '';
+  isOil: string = '';
 
   // this is the sticker template
   inputSelect: string = '';
@@ -31,10 +34,14 @@ export class StepperComponent implements OnInit {
     this.formGroup2 = this.formBuilder.group({
       inputText: [''],
       nbrLines: [''],
-      telText: ['']
+      telText: [''],
+      addressText: ['']
     });
     this.formGroup1 = this.formBuilder.group({
       inputSelect: ['']
+    });
+    this.formGroup3 = this.formBuilder.group({
+      isOil: ['']
     });
   }
 
@@ -58,9 +65,19 @@ export class StepperComponent implements OnInit {
     }
   }
 
+  updateIsOil(event: Event) {
+    // Cast the event target to an HTMLInputElement
+    const target = event.target as HTMLInputElement;
+    // Now you can safely access the value property
+    if (target && target.value) {
+      this.isOil = target.value;
+    }
+  }
+
   updateText(): void {
     this.inputText = this.formGroup2.get('inputText')?.value;
     this.telText = this.formGroup2.get('telText')?.value;
+    this.addressText = this.formGroup2.get('addressText')?.value;
   }
 
   updateSelectTemplate(): void {

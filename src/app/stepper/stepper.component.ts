@@ -14,6 +14,7 @@ export class StepperComponent implements OnInit {
   formGroup1!: FormGroup;
   formGroup2!: FormGroup;
   formGroup3!: FormGroup;
+  formGroup4!: FormGroup;
 
   // this is the garage name
   inputText: string = '';
@@ -21,6 +22,8 @@ export class StepperComponent implements OnInit {
   telText: string = '';
   addressText: string = '';
   isOil: string = '';
+  inputDateRadio: string = '';
+  inputNextDate: string = '';
 
   // this is the sticker template
   inputSelect: string = '';
@@ -42,6 +45,10 @@ export class StepperComponent implements OnInit {
     });
     this.formGroup3 = this.formBuilder.group({
       isOil: ['']
+    });
+    this.formGroup4 = this.formBuilder.group({
+      inputDateRadio: [''],
+      inputNextDate: ['']
     });
   }
 
@@ -71,6 +78,28 @@ export class StepperComponent implements OnInit {
     // Now you can safely access the value property
     if (target && target.value) {
       this.isOil = target.value;
+    }
+  }
+
+  updateDateRadio(event: Event) {
+    // Cast the event target to an HTMLInputElement
+    const target = event.target as HTMLInputElement;
+    // Now you can safely access the value property
+    if (target && target.value) {
+      this.inputDateRadio = target.value;
+
+      if(this.inputDateRadio !== 'isDateNext'){
+        this.inputNextDate = '';
+      }
+    }
+  }
+
+  updateNextDate(event: Event) {
+    // Cast the event target to an HTMLInputElement
+    const target = event.target as HTMLInputElement;
+    // Now you can safely access the value property
+    if (target && target.value) {
+      this.inputNextDate = target.value;
     }
   }
 

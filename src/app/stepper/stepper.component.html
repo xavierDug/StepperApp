@@ -195,459 +195,25 @@
             <div class="grid grid-cols-2 gap-2">
               <!-- Forms -->
               <!-- Form 1 -->
-              <form class="" [formGroup]="formGroup1" *ngIf="currentStep == 1">
-                <div>
-                  <h1 class="text-3xl mb-5 font-bold">
-                    Choix du modèle d'étiquette
-                  </h1>
-                </div>
-                <div class="mb-5">
-                  <label for="countries" class="block mb-2 text-sm font-medium"
-                    >Select an option</label
-                  >
-                  <select
-                    id="countries"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                    formControlName="inputSelect"
-                    (change)="updateSelectTemplate()"
-                  >
-                    <option disabled value="">Choose a sticker template</option>
-                    <option value="White">White</option>
-                    <option value="generique">Generic</option>
-                    <option value="april-324x324">April</option>
-                    <option value="castrol">Castrol</option>
-                  </select>
-                </div>
-                <div>
-                  <div>
-                    <p class="text-sm font-bold mb-2">Logo (optional)</p>
-                  </div>
-                  <div class="flex items-center justify-center w-full">
-                    <label
-                      for="dropzone-file"
-                      class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 hover:bg-gray-100"
-                    >
-                      <div
-                        class="flex flex-col items-center justify-center pt-5 pb-6"
-                      >
-                        <svg
-                          *ngIf="!selectedImageUrl"
-                          class="w-8 h-8 mb-4 text-gray-500"
-                          aria-hidden="true"
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="none"
-                          viewBox="0 0 20 16"
-                        >
-                          <path
-                            stroke="currentColor"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
-                          />
-                        </svg>
-                        <i
-                          *ngIf="selectedImageUrl"
-                          class="mb-4 fa-solid fa-circle-check text-green-600 text-3xl"
-                        ></i>
-                        <p
-                          *ngIf="!selectedImageUrl"
-                          class="mb-2 text-sm text-gray-500"
-                        >
-                          <span class="font-semibold"
-                            >Click to upload your logo</span
-                          >
-                          or drag and drop
-                        </p>
-                        <p
-                          *ngIf="selectedImageUrl"
-                          class="mb-2 text-sm text-gray-500 font-semibold"
-                        >
-                          Logo uploaded successfully
-                        </p>
-                        <p
-                          *ngIf="!selectedImageUrl"
-                          class="text-xs text-gray-500"
-                        >
-                          SVG, PNG, JPG
-                        </p>
-                      </div>
-                      <input
-                        id="dropzone-file"
-                        type="file"
-                        class="hidden"
-                        accept="image/*"
-                        (change)="onFileSelected($event)"
-                      />
-                    </label>
-                  </div>
-                </div>
-              </form>
+              <div *ngIf="currentStep == 1">
+                <app-step1></app-step1>
+              </div>
               <!-- Form 2 -->
-              <form class="" [formGroup]="formGroup2" *ngIf="currentStep == 2">
-                <div>
-                  <h1 class="text-3xl mb-5 font-bold">Nombre de lignes</h1>
-                </div>
-                <!--Check box lines-->
-                <div class="mb-5">
-                  <ul class="grid w-full gap-6 md:grid-cols-2">
-                    <li>
-                      <input
-                        type="radio"
-                        [checked]="nbrLines === 'lines-2' ? true : false"
-                        id="hosting-small"
-                        name="hosting"
-                        value="lines-2"
-                        class="hidden peer"
-                        (change)="updateNbrLines($event)"
-                        required
-                      />
-                      <label
-                        for="hosting-small"
-                        class="inline-flex h-full items-center justify-between w-full p-5 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100"
-                      >
-                        <div class="block">
-                          <div class="w-full text-lg font-semibold">
-                            2 lignes
-                          </div>
-                          <div class="w-full">Nom et telephone seulement</div>
-                        </div>
-                        <i class="fa-solid fa-grip-lines text-xl"></i>
-                      </label>
-                    </li>
-                    <li>
-                      <input
-                        type="radio"
-                        [checked]="nbrLines === 'lines-3' ? true : false"
-                        id="hosting-big"
-                        name="hosting"
-                        value="lines-3"
-                        class="hidden peer"
-                        (change)="updateNbrLines($event)"
-                      />
-                      <label
-                        for="hosting-big"
-                        class="inline-flex h-full items-center justify-between w-full p-5 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100"
-                      >
-                        <div class="block">
-                          <div class="w-full text-lg font-semibold">
-                            3 lignes
-                          </div>
-                          <div class="w-full">Nom, adresse et telephone</div>
-                        </div>
-                        <i class="fa-solid fa-bars text-xl"></i>
-                      </label>
-                    </li>
-                  </ul>
-                </div>
-                <div class="mb-5" *ngIf="nbrLines">
-                  <label for="name" class="block mb-2 text-sm font-medium"
-                    >Name</label
-                  >
-                  <input
-                    type="text"
-                    id="name"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                    required
-                    formControlName="inputText"
-                    (input)="updateText()"
-                    maxlength="15"
-                  />
-                </div>
-                <!-- Text input to show/hide based on selection -->
-                <!-- Conditionally displayed text input -->
-                <div class="mb-5" *ngIf="nbrLines === 'lines-3'">
-                  <label for="adi" class="block mb-2 text-sm font-medium"
-                    >Adresse</label
-                  >
-                  <input
-                    type="text"
-                    id="adi"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                    required
-                    formControlName="addressText"
-                    (input)="updateText()"
-                    placeholder="123 main st"
-                  />
-                </div>
-                <div class="mb-5" *ngIf="nbrLines">
-                  <label for="tel" class="block mb-2 text-sm font-medium"
-                    >Tel</label
-                  >
-                  <input
-                    type="text"
-                    id="tel"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                    required
-                    formControlName="telText"
-                    (input)="updateText()"
-                    placeholder="123-456-7890"
-                  />
-                </div>
-              </form>
+              <div *ngIf="currentStep == 2">
+                <app-step2></app-step2>
+              </div>
               <!-- Form 3 -->
-              <form action="" [formGroup]="formGroup3" *ngIf="currentStep == 3">
-                <div>
-                  <h1 class="text-3xl mb-5 font-bold">Grade/type d'huile</h1>
-                  <p class="text-xl mb-5">
-                    Voulez vous inscrire dans le haut de l'étiquette le
-                    grade/type d'huile utilisé?
-                  </p>
-                </div>
-                <div class="mb-5">
-                  <ul class="grid w-full gap-6 md:grid-cols-2">
-                    <li>
-                      <input
-                        type="radio"
-                        [checked]="isOil === 'true' ? true : false"
-                        id="oil"
-                        name="oilcheck"
-                        value="true"
-                        class="hidden peer"
-                        (change)="updateIsOil($event)"
-                        required
-                      />
-                      <label
-                        for="oil"
-                        class="inline-flex items-center justify-between w-full h-full p-5 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100"
-                      >
-                        <div class="block">
-                          <div class="w-full text-lg font-semibold">Oui</div>
-                          <div class="w-full">
-                            Je souhaite inscrire le type/grade d'huile
-                          </div>
-                        </div>
-                        <i
-                          class="fa-solid fa-oil-can text-xl text-green-600"
-                        ></i>
-                      </label>
-                    </li>
-                    <li>
-                      <input
-                        type="radio"
-                        [checked]="isOil === 'false' ? true : false"
-                        id="nooil"
-                        name="oilcheck"
-                        value="false"
-                        class="hidden peer"
-                        (change)="updateIsOil($event)"
-                      />
-                      <label
-                        for="nooil"
-                        class="inline-flex items-center justify-between w-full p-5 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100"
-                      >
-                        <div class="block">
-                          <div class="w-full text-lg font-semibold">Non</div>
-                          <div class="w-full">
-                            Je ne souhaite pas inscrire le type/grade d'huilee
-                          </div>
-                        </div>
-                        <i class="fa-solid fa-ban text-red-600 text-xl"></i>
-                      </label>
-                    </li>
-                  </ul>
-                </div>
-                <div class="mb-5">
-                  <p class="text-sm text-gray-200">
-                    *Les textes générés sont des exemples
-                  </p>
-                </div>
-                <!--<div>
-                  <p class="text-xl">Si vous
-                    dites oui a cette option, quand vous allez faire une étiquettes avec l’imprimante, vous
-                    aurai une question ou il vous sera possible d’inscrire le grade voule sur l’étiquette. CLIQUEZ ICI
-                    pour montrer sequence video qui montre comment?</p>
-                    <p>[video]</p>
-                </div>-->
-              </form>
+              <div *ngIf="currentStep == 3">
+                <app-step3></app-step3>
+              </div>
               <!-- Form 4 -->
-              <form action="" [formGroup]="formGroup4" *ngIf="currentStep == 4">
-                <div>
-                  <h1 class="text-3xl mb-5 font-bold">Date</h1>
-                  <p class="text-xl mb-5">
-                    Voulez-vous inscrire DATE de L’ENTRETIEN ou PROCHAIN DATE ou
-                    PAS DE DATE.
-                  </p>
-                </div>
-                <!--Check box date-->
-                <div class="mb-5">
-                  <ul class="grid w-full gap-2 md:grid-cols-3">
-                    <li>
-                      <input
-                        type="radio"
-                        [checked]="
-                          inputDateRadio === 'isDateNow' ? true : false
-                        "
-                        id="datenow"
-                        name="date"
-                        value="isDateNow"
-                        class="hidden peer"
-                        (change)="updateDateRadio($event)"
-                        required
-                      />
-                      <label
-                        for="datenow"
-                        class="flex flex-col items-center w-full h-full p-5 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100"
-                      >
-                        <i class="fa-solid fa-calendar-check text-xl m-2"></i>
-                        <div class="block">
-                          <div class="w-full text-lg font-semibold">
-                            DATE de L’ENTRETIEN
-                          </div>
-                        </div>
-                      </label>
-                    </li>
-                    <li>
-                      <input
-                        type="radio"
-                        [checked]="
-                          inputDateRadio === 'isDateNext' ? true : false
-                        "
-                        id="datenext"
-                        name="date"
-                        value="isDateNext"
-                        class="hidden peer"
-                        (change)="updateDateRadio($event)"
-                      />
-                      <label
-                        for="datenext"
-                        class="flex flex-col items-center w-full h-full p-5 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100"
-                      >
-                        <i class="fa-solid fa-calendar-plus text-xl m-2"></i>
-                        <div class="block">
-                          <div class="w-full text-lg font-semibold">
-                            PROCHAINE DATE
-                          </div>
-                        </div>
-                      </label>
-                    </li>
-                    <li>
-                      <input
-                        type="radio"
-                        [checked]="inputDateRadio === 'isNoDate' ? true : false"
-                        id="nodate"
-                        name="date"
-                        value="isNoDate"
-                        class="hidden peer"
-                        (change)="updateDateRadio($event)"
-                      />
-                      <label
-                        for="nodate"
-                        class="flex flex-col items-center w-full h-full p-5 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100"
-                      >
-                        <i class="fa-solid fa-calendar-xmark text-xl m-2"></i>
-                        <div class="block">
-                          <div class="w-full text-lg font-semibold">
-                            PAS DE DATE
-                          </div>
-                        </div>
-                      </label>
-                    </li>
-                  </ul>
-                </div>
-                <!--Checkbox date separator-->
-                <div *ngIf="inputDateRadio === 'isDateNext'" class="inline-flex items-center justify-center w-full mb-5">
-                  <hr
-                    class="w-64 h-1 my-8 bg-gray-200 border-0 rounded"
-                  />
-                  <div
-                    class="mx-8"
-                  >
-                  <i class="fa-solid fa-circle-arrow-down text-2xl"></i>
-                  </div>
-                  <hr
-                    class="w-64 h-1 my-8 bg-gray-200 border-0 rounded "
-                  />
-                </div>
-                <!--Checkbox date manual or auto-->
-                <div class="mb-5" *ngIf="inputDateRadio === 'isDateNext'">
-                  <div>
-                    <p class="text-xl mb-5">
-                      voulez-vous inscrire cette date manuellement? Ou bien, voulez vous que l’imprimante calcule automatiquement la date du jour + XX mois?
-                    </p>
-                  </div>
-                  <ul class="grid w-full gap-2 md:grid-cols-2">
-                    <li>
-                      <input
-                        type="radio"
-                        [checked]="inputNextDate === 'manual' ? true : false"
-                        id="manualdate"
-                        name="nextDate"
-                        value="manual"
-                        class="hidden peer"
-                        (change)="updateNextDate($event)"
-                        required
-                      />
-                      <label
-                        for="manualdate"
-                        class="flex flex-col items-center w-full h-full p-5 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100"
-                      >
-                        <i class="fa-solid fa-calendar-check text-xl m-2"></i>
-                        <div class="block">
-                          <div class="w-full text-lg font-semibold">
-                            Date manuelle
-                          </div>
-                        </div>
-                      </label>
-                    </li>
-                    <li>
-                      <input
-                        type="radio"
-                        [checked]="inputNextDate === 'auto' ? true : false"
-                        id="autodate"
-                        name="nextDate"
-                        value="auto"
-                        class="hidden peer"
-                        (change)="updateNextDate($event)"
-                      />
-                      <label
-                        for="autodate"
-                        class="flex flex-col items-center w-full h-full p-5 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100"
-                      >
-                        <i class="fa-solid fa-calendar-plus text-xl m-2"></i>
-                        <div class="block">
-                          <div class="w-full text-lg font-semibold">
-                            Date du jour + XX mois
-                          </div>
-                        </div>
-                      </label>
-                    </li>
-                  </ul>
-                </div>
-                <!--Checkbox date separator-->
-                <div *ngIf="inputNextDate === 'auto'" class="inline-flex items-center justify-center w-full mb-5">
-                  <hr
-                    class="w-64 h-1 my-8 bg-gray-200 border-0 rounded"
-                  />
-                  <div
-                    class="mx-8"
-                  >
-                  <i class="fa-solid fa-circle-arrow-down text-2xl"></i>
-                  </div>
-                  <hr
-                    class="w-64 h-1 my-8 bg-gray-200 border-0 rounded "
-                  />
-                </div>
-                <!--Text inpput auto-->
-                <div class="mb-5" *ngIf="inputNextDate === 'auto'">
-                  <label for="inputAutoDate" class="block mb-2 text-sm font-medium"
-                    >Veuillez inscrire le nombre de mois</label
-                  >
-                  <input
-                    type="text"
-                    id="inputAutoDate"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                    required
-                    placeholder="60"
-                  />
-                </div>
-                <div class="mb-5">
-                  <p class="text-sm text-gray-200">
-                    *Les textes générés sont des exemples
-                  </p>
-                </div>
-              </form>
-
+              <div *ngIf="currentStep == 4">
+                <app-step4></app-step4>
+              </div>
+              <!-- Form 5 -->
+              <div *ngIf="currentStep == 5">
+                <app-step5></app-step5>
+              </div>
               <div class="flex justify-end">
                 <div class="relative">
                   <img
@@ -676,21 +242,40 @@
                       >
                         {{ addressText }}
                       </p>
-                      <p *ngIf="inputSelect" class="font-normal">
+                      <p *ngIf="inputSelect" class="font-bold text-xl">
                         {{ telText }}
                       </p>
                     </div>
-                    <img
-                      class="max-w-56 mx-auto"
-                      *ngIf="isOil === 'true' && inputSelect"
-                      src="/assets/images/next_date_grade.png"
-                      alt="nxtDateOil"
-                    />
                   </div>
+                  <img
+                    class="max-w-52 mx-auto absolute top-[65px] left-[46%] -translate-x-1/2"
+                    *ngIf="isOil === 'true' && inputSelect"
+                    src="/assets/images/GRADE_HUILE.png"
+                    alt="nxtDateOil"
+                  />
+                  <img
+                    class="max-w-52 mx-auto absolute top-[65px] left-[46%] -translate-x-1/2"
+                    *ngIf="inputDateRadio === 'isDateNow' && inputSelect"
+                    src="/assets/images/DATE_DE_L'ENTRETIEN.png"
+                    alt="nxtDateOil"
+                  />
+                  <img
+                    class="max-w-52 mx-auto absolute top-[65px] left-[46%] -translate-x-1/2"
+                    *ngIf="inputNextDate === 'manual' && inputSelect"
+                    src="/assets/images/PROCHAINE_DATE_MANUELLE.png"
+                    alt="nxtDateOil"
+                  />
+                  <img
+                    class="max-w-52 mx-auto absolute top-[65px] left-[46%] -translate-x-1/2"
+                    *ngIf="inputNextDate === 'auto' && inputSelect"
+                    src="/assets/images/PROCHAINE_DATE_AUTO.png"
+                    alt="nxtDateOil"
+                  />
                 </div>
               </div>
             </div>
 
+            <!-- Navigation Buttons -->
             <div class="flex justify-between mt-12">
               <div *ngIf="currentStep === 1"></div>
               <button

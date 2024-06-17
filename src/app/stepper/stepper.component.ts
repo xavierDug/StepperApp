@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { SharedService } from '../services/shared.service';
 
 @Component({
   selector: 'app-stepper',
@@ -9,119 +10,61 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 export class StepperComponent implements OnInit {
   // In your component.ts
   steps = new Array(10).fill(null).map((_, index) => index + 1);
-  currentStep = 1; // This can be dynamically updated based on user interaction
 
-  formGroup1!: FormGroup;
-  formGroup2!: FormGroup;
-  formGroup3!: FormGroup;
-  formGroup4!: FormGroup;
+  constructor(private formBuilder: FormBuilder, private shared: SharedService) {}
 
-  // this is the garage name
-  inputText: string = '';
-  nbrLines: string = '';
-  telText: string = '';
-  addressText: string = '';
-  isOil: string = '';
-  inputDateRadio: string = '';
-  inputNextDate: string = '';
+  get currentStep() {
+    return this.shared.currentStep;
+  }
 
-  // this is the sticker template
-  inputSelect: string = '';
+  get selectedImageUrl() {
+    return this.shared.selectedImageUrl;
+  }
 
-  // this is the image url
-  selectedImageUrl: string | ArrayBuffer | null | undefined = null;
+  get inputSelect() {
+    return this.shared.inputSelect;
+  }
 
-  constructor(private formBuilder: FormBuilder) {}
+  get inputText() {
+    return this.shared.inputText;
+  }
+
+  get nbrLines() {
+    return this.shared.nbrLines;
+  }
+
+  get telText() {
+    return this.shared.telText;
+  }
+
+  get addressText() {
+    return this.shared.addressText;
+  }
+
+  get isOil() {
+    return this.shared.isOil;
+  }
+
+  get inputDateRadio() {
+    return this.shared.inputDateRadio;
+  }
+
+  get inputNextDate() {
+    return this.shared.inputNextDate;
+  }
 
   ngOnInit() {
-    this.formGroup2 = this.formBuilder.group({
-      inputText: [''],
-      nbrLines: [''],
-      telText: [''],
-      addressText: ['']
-    });
-    this.formGroup1 = this.formBuilder.group({
-      inputSelect: ['']
-    });
-    this.formGroup3 = this.formBuilder.group({
-      isOil: ['']
-    });
-    this.formGroup4 = this.formBuilder.group({
-      inputDateRadio: [''],
-      inputNextDate: ['']
-    });
-  }
-
-  onFileSelected(event: Event): void {
-    const file = (event.target as HTMLInputElement).files?.[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        this.selectedImageUrl = e.target?.result;
-      };
-      reader.readAsDataURL(file);
-    }
-  }
-
-  updateNbrLines(event: Event) {
-    // Cast the event target to an HTMLInputElement
-    const target = event.target as HTMLInputElement;
-    // Now you can safely access the value property
-    if (target && target.value) {
-      this.nbrLines = target.value;
-    }
-  }
-
-  updateIsOil(event: Event) {
-    // Cast the event target to an HTMLInputElement
-    const target = event.target as HTMLInputElement;
-    // Now you can safely access the value property
-    if (target && target.value) {
-      this.isOil = target.value;
-    }
-  }
-
-  updateDateRadio(event: Event) {
-    // Cast the event target to an HTMLInputElement
-    const target = event.target as HTMLInputElement;
-    // Now you can safely access the value property
-    if (target && target.value) {
-      this.inputDateRadio = target.value;
-
-      if(this.inputDateRadio !== 'isDateNext'){
-        this.inputNextDate = '';
-      }
-    }
-  }
-
-  updateNextDate(event: Event) {
-    // Cast the event target to an HTMLInputElement
-    const target = event.target as HTMLInputElement;
-    // Now you can safely access the value property
-    if (target && target.value) {
-      this.inputNextDate = target.value;
-    }
-  }
-
-  updateText(): void {
-    this.inputText = this.formGroup2.get('inputText')?.value;
-    this.telText = this.formGroup2.get('telText')?.value;
-    this.addressText = this.formGroup2.get('addressText')?.value;
-  }
-
-  updateSelectTemplate(): void {
-    this.inputSelect = this.formGroup1.get('inputSelect')?.value;
   }
 
   nextStep() {
     if (this.currentStep < this.steps.length) {
-      this.currentStep++;
+      this.shared.currentStep++;
     }
   }
 
   prevStep() {
     if (this.currentStep > 1) {
-      this.currentStep--;
+      this.shared.currentStep--;
     }
   }
 }

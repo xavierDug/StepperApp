@@ -1,0 +1,74 @@
+<form action="" [formGroup]="formGroup3">
+  <div>
+    <h1 class="text-3xl mb-5 font-bold">Grade/type d'huile</h1>
+    <p class="text-xl mb-5">
+      Voulez vous inscrire dans le haut de l'étiquette le
+      grade/type d'huile utilisé?
+    </p>
+  </div>
+  <div class="mb-5">
+    <ul class="grid w-full gap-6 md:grid-cols-2">
+      <li>
+        <input
+          type="radio"
+          [checked]="isOil === 'true' ? true : false"
+          id="oil"
+          name="oilcheck"
+          value="true"
+          class="hidden peer"
+          (change)="updateIsOil($event)"
+          required
+        />
+        <label
+          for="oil"
+          class="inline-flex items-center justify-between w-full h-full p-5 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100"
+        >
+          <div class="block">
+            <div class="w-full text-lg font-semibold">Oui</div>
+            <div class="w-full">
+              Je souhaite inscrire le type/grade d'huile
+            </div>
+          </div>
+          <i
+            class="fa-solid fa-oil-can text-xl text-green-600"
+          ></i>
+        </label>
+      </li>
+      <li>
+        <input
+          type="radio"
+          [checked]="isOil === 'false' ? true : false"
+          id="nooil"
+          name="oilcheck"
+          value="false"
+          class="hidden peer"
+          (change)="updateIsOil($event)"
+        />
+        <label
+          for="nooil"
+          class="inline-flex items-center justify-between w-full p-5 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100"
+        >
+          <div class="block">
+            <div class="w-full text-lg font-semibold">Non</div>
+            <div class="w-full">
+              Je ne souhaite pas inscrire le type/grade d'huilee
+            </div>
+          </div>
+          <i class="fa-solid fa-ban text-red-600 text-xl"></i>
+        </label>
+      </li>
+    </ul>
+  </div>
+  <div class="mb-5">
+    <p class="text-sm text-gray-200">
+      *Les textes générés sont des exemples
+    </p>
+  </div>
+  <!--<div>
+    <p class="text-xl">Si vous
+      dites oui a cette option, quand vous allez faire une étiquettes avec l’imprimante, vous
+      aurai une question ou il vous sera possible d’inscrire le grade voule sur l’étiquette. CLIQUEZ ICI
+      pour montrer sequence video qui montre comment?</p>
+      <p>[video]</p>
+  </div>-->
+</form>

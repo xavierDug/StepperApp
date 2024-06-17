@@ -1,0 +1,101 @@
+<form class="" [formGroup]="formGroup2">
+  <div>
+    <h1 class="text-3xl mb-5 font-bold">Nombre de lignes</h1>
+  </div>
+  <!--Check box lines-->
+  <div class="mb-5">
+    <ul class="grid w-full gap-6 md:grid-cols-2">
+      <li>
+        <input
+          type="radio"
+          [checked]="nbrLines === 'lines-2' ? true : false"
+          id="hosting-small"
+          name="hosting"
+          value="lines-2"
+          class="hidden peer"
+          (change)="updateNbrLines($event)"
+          required
+        />
+        <label
+          for="hosting-small"
+          class="inline-flex h-full items-center justify-between w-full p-5 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100"
+        >
+          <div class="block">
+            <div class="w-full text-lg font-semibold">
+              2 lignes
+            </div>
+            <div class="w-full">Nom et telephone seulement</div>
+          </div>
+          <i class="fa-solid fa-grip-lines text-xl"></i>
+        </label>
+      </li>
+      <li>
+        <input
+          type="radio"
+          [checked]="nbrLines === 'lines-3' ? true : false"
+          id="hosting-big"
+          name="hosting"
+          value="lines-3"
+          class="hidden peer"
+          (change)="updateNbrLines($event)"
+        />
+        <label
+          for="hosting-big"
+          class="inline-flex h-full items-center justify-between w-full p-5 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100"
+        >
+          <div class="block">
+            <div class="w-full text-lg font-semibold">
+              3 lignes
+            </div>
+            <div class="w-full">Nom, adresse et telephone</div>
+          </div>
+          <i class="fa-solid fa-bars text-xl"></i>
+        </label>
+      </li>
+    </ul>
+  </div>
+  <div class="mb-5" *ngIf="nbrLines">
+    <label for="name" class="block mb-2 text-sm font-medium"
+      >Name</label
+    >
+    <input
+      type="text"
+      id="name"
+      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+      required
+      formControlName="inputText"
+      (input)="updateText()"
+      maxlength="15"
+    />
+  </div>
+  <!-- Text input to show/hide based on selection -->
+  <!-- Conditionally displayed text input -->
+  <div class="mb-5" *ngIf="nbrLines === 'lines-3'">
+    <label for="adi" class="block mb-2 text-sm font-medium"
+      >Adresse</label
+    >
+    <input
+      type="text"
+      id="adi"
+      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+      required
+      formControlName="addressText"
+      (input)="updateText()"
+      placeholder="123 main st"
+    />
+  </div>
+  <div class="mb-5" *ngIf="nbrLines">
+    <label for="tel" class="block mb-2 text-sm font-medium"
+      >Tel</label
+    >
+    <input
+      type="text"
+      id="tel"
+      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+      required
+      formControlName="telText"
+      (input)="updateText()"
+      placeholder="123-456-7890"
+    />
+  </div>
+</form>

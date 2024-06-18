@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { SharedService } from '../services/shared.service';
 
+
 @Component({
   selector: 'app-step4',
   templateUrl: './step4.component.html',
@@ -34,6 +35,14 @@ export class Step4Component implements OnInit {
 
   updateMonths(): void {
     this.shared.inputNbrMonths = this.formGroup4.get('inputNbrMonths')?.value;
+  }
+
+  toggleDropdown() {
+    document.getElementById('dropdownBgHover')?.classList.toggle('hidden');
+  }
+
+  toggleModal() {
+    document.getElementById('popup-modal')?.classList.toggle('hidden');
   }
 
   updateDateRadio(event: Event) {

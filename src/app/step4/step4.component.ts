@@ -41,10 +41,6 @@ export class Step4Component implements OnInit {
     document.getElementById('dropdownBgHover')?.classList.toggle('hidden');
   }
 
-  toggleModal() {
-    document.getElementById('popup-modal')?.classList.toggle('hidden');
-  }
-
   updateDateRadio(event: Event) {
     // Cast the event target to an HTMLInputElement
     const target = event.target as HTMLInputElement;

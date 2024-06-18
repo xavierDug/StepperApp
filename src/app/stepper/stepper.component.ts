@@ -57,9 +57,42 @@ export class StepperComponent implements OnInit {
   }
 
   nextStep() {
+    // Condition to open the modal instead of going to the next step directly
+    if (this.shouldOpenModal()) {
+      this.toggleModal();
+    } else {
+      this.proceedToNextStep();
+    }
+  }
+  
+  // Function to actually proceed to the next step
+  proceedToNextStep() {
     if (this.currentStep < this.steps.length) {
       this.shared.currentStep++;
     }
+  }
+  
+  // Function to toggle the modal visibility
+  toggleModal() {
+    document.getElementById('popup-modal')?.classList.toggle('hidden');
+  }
+  
+  // Example function to decide when to open the modal
+  shouldOpenModal(): boolean {
+    // Implement your condition here
+    // For example, open the modal only on a specific step
+    return this.currentStep === 4;
+  }
+  
+  // Function to be called by the modal's "Stay on this step" button
+  stayOnStep() {
+    this.toggleModal();
+  }
+  
+  // Function to be called by the modal's "Proceed to next step" button
+  proceedFromModal() {
+    this.toggleModal();
+    this.proceedToNextStep();
   }
 
   prevStep() {

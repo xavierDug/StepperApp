@@ -10,6 +10,7 @@ import { SharedService } from '../services/shared.service';
 export class StepperComponent implements OnInit {
   // In your component.ts
   steps = new Array(10).fill(null).map((_, index) => index + 1);
+  stickerArray: any[] = [];
 
   constructor(private formBuilder: FormBuilder, private shared: SharedService) {}
 
@@ -56,6 +57,26 @@ export class StepperComponent implements OnInit {
   ngOnInit() {
   }
 
+  addInformationToArray() {
+    const sticker = {
+      selectedImageUrl: this.selectedImageUrl,
+      inputSelect: this.inputSelect,
+      inputText: this.inputText,
+      nbrLines: this.nbrLines,
+      telText: this.telText,
+      addressText: this.addressText,
+      isOil: this.isOil,
+      inputDateRadio: this.inputDateRadio,
+      inputNextDate: this.inputNextDate
+    };
+    this.stickerArray.push(sticker);
+  }
+
+  deleteItem(index: number): void {
+    this.stickerArray.splice(index, 1);
+    // If you're using a framework that doesn't automatically detect changes, you might need to manually trigger change detection or use a different method to update your array.
+  }
+
   nextStep() {
     // Condition to open the modal instead of going to the next step directly
     if (this.shouldOpenModal()) {
@@ -86,11 +107,13 @@ export class StepperComponent implements OnInit {
   
   // Function to be called by the modal's "Stay on this step" button
   stayOnStep() {
+    this.addInformationToArray(); // Add the information to the array
     this.toggleModal();
   }
   
   // Function to be called by the modal's "Proceed to next step" button
   proceedFromModal() {
+    this.addInformationToArray(); // Add the information to the array
     this.toggleModal();
     this.proceedToNextStep();
   }

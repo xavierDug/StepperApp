@@ -214,6 +214,8 @@
               <div *ngIf="currentStep == 5">
                 <app-step5></app-step5>
               </div>
+
+              <!--Sticker visualizer-->
               <div class="flex justify-end">
                 <div class="relative">
                   <img
@@ -222,7 +224,6 @@
                     src="/assets/images/{{ inputSelect }}.png"
                     alt="test"
                   />
-                  <!--Sticker visualizer-->
                   <div
                     [ngClass]="{ 'top-[10px]': inputSelect === 'White' }"
                     class="font-bold absolute top-[100px] left-1/2 -translate-x-1/2 text-black text-center whitespace-nowrap"
@@ -271,6 +272,12 @@
                     src="/assets/images/PROCHAINE_DATE_AUTO.png"
                     alt="nxtDateOil"
                   />
+                  <img
+                    class="max-w-52 mx-auto absolute top-[65px] left-[46%] -translate-x-1/2"
+                    *ngIf="inputDateRadio === 'isNoDate' && inputSelect"
+                    src="/assets/images/JUSTE_PROCHAIN_KM.png"
+                    alt="nxtDateOil"
+                  />
                 </div>
               </div>
             </div>
@@ -302,75 +309,153 @@
           </div>
         </div>
       </div>
-    </div>
-    <div
-    id="popup-modal"
-    tabindex="-1"
-    class="hidden overflow-y-auto overflow-x-hidden fixed z-50 flex justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full bg-black bg-opacity-50" 
-  >
-    <div class="relative p-4 w-full max-w-md max-h-full">
-      <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-        <button
-          type="button"
-          class="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
-          data-modal-hide="popup-modal"
-          (click)="toggleModal()"
-        >
-          <svg
-            class="w-3 h-3"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 14 14"
-          >
-            <path
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
-            />
-          </svg>
-          <span class="sr-only">Close modal</span>
-        </button>
-        <div class="p-4 md:p-5 text-center">
-          <svg
-            class="mx-auto mb-4 text-gray-400 w-12 h-12 dark:text-gray-200"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 20 20"
-          >
-            <path
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
-            />
-          </svg>
-          <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400 lowercase">
-            VOUS POUVEZ AVOIR PLUSIEURS FORMULAIRES DANS L’IMPRIMANTE ET PASSER D’UN A L’AUTRE RAPIDEMENT. VOULEZ VOUS Confrimer votre formulaire et AJOUTER UN AUTRE FORMULAIRE POUR UN FORMAT DE DATE DIFFERENT ou bien Confirmer et continuer?
-          </h3>
+
+      <!--Sticker array-->
+      <div class="grid md:grid-cols-3 grid-cols-2 gap-4 mt-4">
+        <div *ngFor="let item of stickerArray; let i = index" class="relative">
+          <img
+            *ngIf="item.inputSelect"
+            class="h-96 rounded-[30px] mx-auto"
+            src="/assets/images/{{ item.inputSelect }}.png"
+            alt="test"
+          />
+          <!-- X Button -->
           <button
-            data-modal-hide="popup-modal"
-            type="button"
-            class="text-white bg-blue-900 hover:bg-blue-950 focus:ring-4 focus:outline-none focus:ring-blue-700 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center"
-            (click)="stayOnStep()"
+            class="absolute top-0 right-0 bg-red-500 text-white p-1 rounded-full"
+            (click)="deleteItem(i)"
           >
-            Confirmer et ajouter
+            X
           </button>
-          <button
-            data-modal-hide="popup-modal"
-            type="button"
-            class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
-            (click)="proceedFromModal()"
+          <div
+            [ngClass]="{ 'top-[10px]': item.inputSelect === 'White' }"
+            class="font-bold absolute top-[100px] left-1/2 -translate-x-1/2 text-black text-center whitespace-nowrap"
           >
-            Confirmer et continuer
-          </button>
+            <div class="max-w-56">
+              <img
+                [src]="item.selectedImageUrl"
+                *ngIf="item.selectedImageUrl && item.inputSelect"
+                class="max-w-56 max-h-10 mx-auto"
+              />
+              <p *ngIf="item.inputSelect" class="text-2xl">
+                {{ item.inputText }}
+              </p>
+              <p
+                *ngIf="item.inputSelect && item.nbrLines === 'lines-3'"
+                class="font-normal text-sm"
+              >
+                {{ item.addressText }}
+              </p>
+              <p *ngIf="item.inputSelect" class="font-bold text-xl">
+                {{ item.telText }}
+              </p>
+            </div>
+          </div>
+          <img
+            class="max-w-52 mx-auto absolute top-[65px] left-[46%] -translate-x-1/2"
+            *ngIf="item.isOil === 'true' && item.inputSelect"
+            src="/assets/images/GRADE_HUILE.png"
+            alt="nxtDateOil"
+          />
+          <img
+            class="max-w-52 mx-auto absolute top-[65px] left-[46%] -translate-x-1/2"
+            *ngIf="item.inputDateRadio === 'isDateNow' && item.inputSelect"
+            src="/assets/images/DATE_DE_L'ENTRETIEN.png"
+            alt="nxtDateOil"
+          />
+          <img
+            class="max-w-52 mx-auto absolute top-[65px] left-[46%] -translate-x-1/2"
+            *ngIf="item.inputNextDate === 'manual' && item.inputSelect"
+            src="/assets/images/PROCHAINE_DATE_MANUELLE.png"
+            alt="nxtDateOil"
+          />
+          <img
+            class="max-w-52 mx-auto absolute top-[65px] left-[46%] -translate-x-1/2"
+            *ngIf="item.inputNextDate === 'auto' && item.inputSelect"
+            src="/assets/images/PROCHAINE_DATE_AUTO.png"
+            alt="nxtDateOil"
+          />
+          <img
+            class="max-w-52 mx-auto absolute top-[65px] left-[46%] -translate-x-1/2"
+            *ngIf="item.inputDateRadio === 'isNoDate' && item.inputSelect"
+            src="/assets/images/JUSTE_PROCHAIN_KM.png"
+            alt="nxtDateOil"
+          />
         </div>
       </div>
     </div>
-  </div>
+    <div
+      id="popup-modal"
+      tabindex="-1"
+      class="hidden overflow-y-auto overflow-x-hidden fixed z-50 flex justify-center items-center w-full inset-0 h-[calc(100%-1rem)] max-h-full bg-black bg-opacity-50"
+    >
+      <div class="relative p-4 w-full max-w-md max-h-full">
+        <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+          <button
+            type="button"
+            class="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+            data-modal-hide="popup-modal"
+            (click)="toggleModal()"
+          >
+            <svg
+              class="w-3 h-3"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 14 14"
+            >
+              <path
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
+              />
+            </svg>
+            <span class="sr-only">Close modal</span>
+          </button>
+          <div class="p-4 md:p-5 text-center">
+            <svg
+              class="mx-auto mb-4 text-gray-400 w-12 h-12 dark:text-gray-200"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 20 20"
+            >
+              <path
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+              />
+            </svg>
+            <h3
+              class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400 lowercase"
+            >
+              VOUS POUVEZ AVOIR PLUSIEURS FORMULAIRES DANS L’IMPRIMANTE ET
+              PASSER D’UN A L’AUTRE RAPIDEMENT. VOULEZ VOUS Confrimer votre
+              formulaire et AJOUTER UN AUTRE FORMULAIRE POUR UN FORMAT DE DATE
+              DIFFERENT ou bien Confirmer et continuer?
+            </h3>
+            <button
+              data-modal-hide="popup-modal"
+              type="button"
+              class="text-white bg-blue-900 hover:bg-blue-950 focus:ring-4 focus:outline-none focus:ring-blue-700 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center"
+              (click)="stayOnStep()"
+            >
+              Confirmer et ajouter
+            </button>
+            <button
+              data-modal-hide="popup-modal"
+              type="button"
+              class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+              (click)="proceedFromModal()"
+            >
+              Confirmer et continuer
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
 </html>

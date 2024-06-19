@@ -81,6 +81,22 @@ export class StepperComponent implements OnInit {
     this.stickerArray.push(sticker);
   }
 
+  addRouilleInformationToArray() {
+    const stickerRouille = {
+      selectedImageUrl: this.selectedImageUrl,
+      inputSelect: this.inputSelect,
+      inputText: this.inputText,
+      nbrLines: this.nbrLines,
+      telText: this.telText,
+      addressText: this.addressText,
+      inputAntiRouille: this.inputAntiRouille,
+    };
+    if (this.currentStep === 5 && this.inputAntiRouille === 'true') {
+      this.stickerArray.push(stickerRouille);
+      this.toggleToast();
+    }
+  }
+
   deleteItem(index: number): void {
     this.stickerArray.splice(index, 1);
   }
@@ -90,6 +106,7 @@ export class StepperComponent implements OnInit {
     if (this.shouldOpenModal()) {
       this.toggleModal();
     } else {
+      this.addRouilleInformationToArray();
       this.proceedToNextStep();
     }
   }
@@ -175,6 +192,7 @@ export class StepperComponent implements OnInit {
     this.shared.inputDateRadio = '';
     this.shared.inputNextDate = '';
     this.shared.inputNbrMonths = '';
+    this.shared.inputAntiRouille = '';
   }
 
   clearCurrentStickerStay() {

@@ -54,6 +54,14 @@ export class StepperComponent implements OnInit {
     return this.shared.inputNextDate;
   }
 
+  get inputNbrMonths() {
+    return this.shared.inputNbrMonths;
+  }
+
+  get inputAntiRouille() {
+    return this.shared.inputAntiRouille;
+  }
+
   ngOnInit() {
   }
 
@@ -67,14 +75,14 @@ export class StepperComponent implements OnInit {
       addressText: this.addressText,
       isOil: this.isOil,
       inputDateRadio: this.inputDateRadio,
-      inputNextDate: this.inputNextDate
+      inputNextDate: this.inputNextDate,
+      inputNbrMonths: this.inputNbrMonths,
     };
     this.stickerArray.push(sticker);
   }
 
   deleteItem(index: number): void {
     this.stickerArray.splice(index, 1);
-    // If you're using a framework that doesn't automatically detect changes, you might need to manually trigger change detection or use a different method to update your array.
   }
 
   nextStep() {
@@ -97,11 +105,37 @@ export class StepperComponent implements OnInit {
   toggleModal() {
     document.getElementById('popup-modal')?.classList.toggle('hidden');
   }
+
+  toggleToast() {
+    document.getElementById('toast-success')?.classList.toggle('hidden');
+  }
+
+  toggleWarningToast() {
+    document.getElementById('toast-warning')?.classList.toggle('hidden');
+  }
   
   // Example function to decide when to open the modal
   shouldOpenModal(): boolean {
     // Implement your condition here
     // For example, open the modal only on a specific step
+    if (
+      this.currentStep === 4 &&
+      !this.inputDateRadio &&
+      !this.inputNextDate &&
+      !this.inputNbrMonths
+    ) {
+      this.clearCurrentStickerNext();
+      return false;
+    }else{
+      for (const sticker of this.stickerArray) {
+        if (this.inputDateRadio === sticker.inputDateRadio && this.inputNextDate === sticker.inputNextDate && this.currentStep === 4 && this.inputNbrMonths === sticker.inputNbrMonths) {
+        this.toggleWarningToast();
+        this.clearCurrentStickerNext();
+        return false;
+        }
+      }
+    }
+
     return this.currentStep === 4;
   }
   
@@ -109,6 +143,8 @@ export class StepperComponent implements OnInit {
   stayOnStep() {
     this.addInformationToArray(); // Add the information to the array
     this.toggleModal();
+    this.toggleToast();
+    this.clearCurrentStickerStay();
   }
   
   // Function to be called by the modal's "Proceed to next step" button
@@ -116,6 +152,21 @@ export class StepperComponent implements OnInit {
     this.addInformationToArray(); // Add the information to the array
     this.toggleModal();
     this.proceedToNextStep();
+    this.toggleToast();
+    this.clearCurrentStickerNext();
+  }
+
+  clearCurrentStickerNext() {
+    this.shared.isOil = '';
+    this.shared.inputDateRadio = '';
+    this.shared.inputNextDate = '';
+    this.shared.inputNbrMonths = '';
+  }
+
+  clearCurrentStickerStay() {
+    this.shared.inputDateRadio = '';
+    this.shared.inputNextDate = '';
+    this.shared.inputNbrMonths = '';
   }
 
   prevStep() {

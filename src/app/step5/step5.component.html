@@ -1,3 +1,60 @@
-<p>
-  step5 works!
-</p>
+<form action="" [formGroup]="formGroup5">
+  <div>
+    <h1 class="text-3xl mb-5 font-bold">Formulaire anti rouille</h1>
+    <p class="text-xl mb-5">
+      Offrez vous le service d'antirouille?
+    </p>
+  </div>
+  <!--Check box date-->
+  <div class="mb-5">
+    <ul class="grid w-full gap-2 md:grid-cols-2">
+      <li>
+        <input
+          type="radio"
+          [checked]="inputAntiRouille === 'true' ? true : false"
+          id="rouille"
+          name="antiRouille"
+          value="true"
+          class="hidden peer"
+          (change)="updateAntiRouille($event)"
+          required
+        />
+        <label
+          for="rouille"
+          class="inline-flex items-center justify-between w-full h-full p-5 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100"
+        >
+          <div class="block">
+            <div class="w-full text-lg font-semibold">Oui</div>
+            <div class="w-full">
+              Je souhaite ajouter un formulare d'anti rouille.
+            </div>
+          </div>
+          <i class="fa-solid fa-circle-check text-xl text-green-600"></i>
+        </label>
+      </li>
+      <li>
+        <input
+          type="radio"
+          [checked]="inputAntiRouille === 'false' ? true : false"
+          id="noRouille"
+          name="antiRouille"
+          value="false"
+          class="hidden peer"
+          (change)="updateAntiRouille($event)"
+        />
+        <label
+          for="noRouille"
+          class="inline-flex items-center justify-between w-full h-full p-5 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100"
+        >
+          <div class="block">
+            <div class="w-full text-lg font-semibold">Non</div>
+            <div class="w-full">
+              Je ne souhaite pas ajouter un formulare d'anti rouille.
+            </div>
+          </div>
+          <i class="fa-solid fa-ban text-red-600 text-xl"></i>
+        </label>
+      </li>
+    </ul>
+  </div>
+</form>

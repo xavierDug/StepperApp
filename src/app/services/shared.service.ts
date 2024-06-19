@@ -11,16 +11,22 @@ export class SharedService {
   // this is the image url
   selectedImageUrl: string | ArrayBuffer | null | undefined = null;
 
+  //step 2
   inputText: string = '';
   nbrLines: string = '';
   telText: string = '';
   addressText: string = '';
 
+  //step 3
   isOil: string = '';
 
+  //step 4
   inputDateRadio: string = '';
   inputNextDate: string = '';
   inputNbrMonths: string = '';
+
+  //step 5
+  inputAntiRouille: string = '';
 
   constructor() {}
   

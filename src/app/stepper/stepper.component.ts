@@ -92,8 +92,13 @@ export class StepperComponent implements OnInit {
       inputAntiRouille: this.inputAntiRouille,
     };
     if (this.currentStep === 5 && this.inputAntiRouille === 'true') {
+      const isAlreadyInArray = this.stickerArray.some(sticker => sticker.inputAntiRouille === 'true');
+      if (isAlreadyInArray) {
+      this.toggleWarningToast();
+      } else {
       this.stickerArray.push(stickerRouille);
       this.toggleToast();
+      }
     }
   }
 

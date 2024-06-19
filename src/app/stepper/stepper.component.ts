@@ -9,7 +9,7 @@ import { SharedService } from '../services/shared.service';
 })
 export class StepperComponent implements OnInit {
   // In your component.ts
-  steps = new Array(10).fill(null).map((_, index) => index + 1);
+  steps = new Array(9).fill(null).map((_, index) => index + 1);
   stickerArray: any[] = [];
 
   constructor(private formBuilder: FormBuilder, private shared: SharedService) {}
@@ -126,13 +126,27 @@ export class StepperComponent implements OnInit {
     ) {
       this.clearCurrentStickerNext();
       return false;
-    }else{
+    } else {
+      let autoCount = 0;
       for (const sticker of this.stickerArray) {
-        if (this.inputDateRadio === sticker.inputDateRadio && this.inputNextDate === sticker.inputNextDate && this.currentStep === 4 && this.inputNbrMonths === sticker.inputNbrMonths) {
+        if (
+          this.inputDateRadio === sticker.inputDateRadio &&
+          this.inputNextDate === sticker.inputNextDate &&
+          this.currentStep === 4 &&
+          this.inputNbrMonths === sticker.inputNbrMonths
+        ) {
+          this.toggleWarningToast();
+          this.clearCurrentStickerNext();
+          return false;
+        }
+        if (sticker.inputNextDate === 'auto') {
+          autoCount++;
+        }
+      }
+      if (autoCount >= 2) {
         this.toggleWarningToast();
         this.clearCurrentStickerNext();
         return false;
-        }
       }
     }
 

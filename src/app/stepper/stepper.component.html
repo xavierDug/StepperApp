@@ -254,7 +254,7 @@
                         *ngIf="selectedImageUrl && inputSelect"
                         class="max-w-56 max-h-10 mx-auto"
                       />
-                      <p *ngIf="inputSelect" class="text-2xl">
+                      <p *ngIf="inputSelect" class="overflow-hidden" [ngStyle]="{'font-size': calculateFontSize(inputText) + 'px'}">
                         {{ inputText }}
                       </p>
                       <p

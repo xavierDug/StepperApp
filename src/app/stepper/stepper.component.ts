@@ -12,6 +12,9 @@ export class StepperComponent implements OnInit {
   steps = new Array(10).fill(null).map((_, index) => index + 1);
   stickerArray: any[] = [];
 
+  timeoutId: any = null;
+  timeoutIdWarning: any = null;
+
   constructor(private formBuilder: FormBuilder, private shared: SharedService) {}
 
   get currentStep() {
@@ -285,7 +288,7 @@ export class StepperComponent implements OnInit {
     if (!areRequiredInputsFilled) {
       // Prompt the user to fill out the missing fields.
       // This could be a simple alert or a more sophisticated modal/dialog with detailed information.
-      alert('Please fill out all required fields before proceeding to the next step.');
+      this.toggleDangerToast();
       return; // Exit the function to prevent proceeding to the next step.
     }
   
@@ -326,7 +329,7 @@ export class StepperComponent implements OnInit {
           }
           return this.inputNextDate;
         } else {
-          return this.inputDateRadio;
+          return true;
         }
       case 5:
         return this.inputAntiRouille;
@@ -363,11 +366,94 @@ export class StepperComponent implements OnInit {
   }
 
   toggleToast() {
-    document.getElementById('toast-success')?.classList.toggle('hidden');
+    // Clear existing timeout if there is one
+    if (this.timeoutId) {
+      clearTimeout(this.timeoutId);
+      // Ensure the toast is visible before setting a new timeout
+      document.getElementById('toast-success')?.classList.remove('hidden');
+    } else {
+      // If the toast is not already shown, show it
+      document.getElementById('toast-success')?.classList.toggle('hidden');
+    }
+  
+    // Set a new timeout to hide the toast after a duration
+    this.timeoutId = setTimeout(() => {
+      document.getElementById('toast-success')?.classList.add('hidden');
+      // Reset the timeoutId when the toast is hidden
+      this.timeoutId = null;
+    }, 3000); // Duration in milliseconds, adjust as needed
   }
 
   toggleWarningToast() {
-    document.getElementById('toast-warning')?.classList.toggle('hidden');
+    const toastWarning = document.getElementById('toast-warning');
+    // Clear existing timeout if there is one
+    if (this.timeoutIdWarning) {
+      clearTimeout(this.timeoutIdWarning);
+      // Ensure the toast is visible before setting a new timeout
+      toastWarning?.classList.remove('hidden');
+    } else {
+      // If the toast is not already shown, show it
+      toastWarning?.classList.toggle('hidden');
+    }
+  
+    // Set a new timeout to hide the toast after a duration
+    this.timeoutIdWarning = setTimeout(() => {
+      toastWarning?.classList.add('hidden');
+      // Reset the timeoutId when the toast is hidden
+      this.timeoutIdWarning = null;
+    }, 3000); // Duration in milliseconds, adjust as needed
+  }
+
+  toggleDangerToast() {
+    const toastDanger = document.getElementById('toast-danger');
+    // Clear existing timeout if there is one
+    if (this.timeoutId) {
+      clearTimeout(this.timeoutId);
+      // Ensure the toast is visible before setting a new timeout
+      toastDanger?.classList.remove('hidden');
+    } else {
+      // If the toast is not already shown, show it
+      toastDanger?.classList.toggle('hidden');
+    }
+  
+    // Set a new timeout to hide the toast after a duration
+    this.timeoutId = setTimeout(() => {
+      toastDanger?.classList.add('hidden');
+      // Reset the timeoutId when the toast is hidden
+      this.timeoutId = null;
+    }, 3000); // Duration in milliseconds, adjust as needed
+  }
+
+  closeWarningToast() {
+    const toastWarning = document.getElementById('toast-warning');
+    // Clear the timeout if there is one
+    if (this.timeoutIdWarning) {
+      clearTimeout(this.timeoutIdWarning);
+    }
+
+    // Hide the toast
+    toastWarning?.classList.add('hidden');
+  }
+
+  closeToast() {
+    // Clear the timeout if there is one
+    if (this.timeoutId) {
+      clearTimeout(this.timeoutId);
+    }
+
+    // Hide the toast
+    document.getElementById('toast-success')?.classList.add('hidden');
+  }
+
+  closeDangerToast() {
+    const toastDanger = document.getElementById('toast-danger');
+    // Clear the timeout if there is one
+    if (this.timeoutId) {
+      clearTimeout(this.timeoutId);
+    }
+
+    // Hide the toast
+    toastDanger?.classList.add('hidden');
   }
   
   // function to decide when to open the modal
@@ -398,13 +484,14 @@ export class StepperComponent implements OnInit {
           autoCount++;
         }
       }
-      if (autoCount >= 2) {
+      // Check if trying to add another 'auto' when the count is already 2 or more
+      if (autoCount >= 2 && this.inputNextDate === 'auto') {
         this.toggleWarningToast();
         this.clearCurrentStickerNext();
         return false;
       }
     }
-
+    // If none of the conditions to restrict adding more inputs are met, allow opening the modal
     return this.currentStep === 4;
   }
   
@@ -426,7 +513,6 @@ export class StepperComponent implements OnInit {
   }
 
   clearCurrentStickerNext() {
-    this.shared.isOil = '';
     this.shared.inputDateRadio = '';
     this.shared.inputNextDate = '';
     this.shared.inputNbrMonths = '';

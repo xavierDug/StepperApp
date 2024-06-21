@@ -21,7 +21,7 @@
         />
         <label
           for="datenow"
-          class="flex flex-col items-center w-full h-full p-5 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100"
+          class="flex flex-col items-center w-full h-full p-5 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer peer-checked:border-blue-800 peer-checked:border-4 peer-checked:text-blue-800 hover:text-gray-600 hover:bg-gray-100"
         >
           <i class="fa-solid fa-calendar-check text-xl m-2"></i>
           <div class="block">
@@ -41,7 +41,7 @@
         />
         <label
           for="datenext"
-          class="flex flex-col items-center w-full h-full p-5 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100"
+          class="flex flex-col items-center w-full h-full p-5 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer peer-checked:border-blue-800 peer-checked:border-4 peer-checked:text-blue-800 hover:text-gray-600 hover:bg-gray-100"
         >
           <i class="fa-solid fa-calendar-plus text-xl m-2"></i>
           <div class="block">
@@ -61,7 +61,7 @@
         />
         <label
           for="nodate"
-          class="flex flex-col items-center w-full h-full p-5 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100"
+          class="flex flex-col items-center w-full h-full p-5 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer peer-checked:border-blue-800 peer-checked:border-4 peer-checked:text-blue-800 hover:text-gray-600 hover:bg-gray-100"
         >
           <i class="fa-solid fa-calendar-xmark text-xl m-2"></i>
           <div class="block">
@@ -104,7 +104,7 @@
         />
         <label
           for="manualdate"
-          class="flex flex-col items-center w-full h-full p-5 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100"
+          class="flex flex-col items-center w-full h-full p-5 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer peer-checked:border-blue-800 peer-checked:border-4 peer-checked:text-blue-800 hover:text-gray-600 hover:bg-gray-100"
         >
           <i class="fa-solid fa-calendar-check text-xl m-2"></i>
           <div class="block">
@@ -124,7 +124,7 @@
         />
         <label
           for="autodate"
-          class="flex flex-col items-center w-full h-full p-5 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100"
+          class="flex flex-col items-center w-full h-full p-5 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer peer-checked:border-blue-800 peer-checked:border-4 peer-checked:text-blue-800 hover:text-gray-600 hover:bg-gray-100"
         >
           <i class="fa-solid fa-calendar-plus text-xl m-2"></i>
           <div class="block">
@@ -159,6 +159,7 @@
       required
       placeholder="6"
       formControlName="inputNbrMonths"
+      [(ngModel)]="shared.inputNbrMonths"
       (input)="updateMonths()"
     />
   </div>

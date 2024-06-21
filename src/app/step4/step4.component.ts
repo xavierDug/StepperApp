@@ -11,7 +11,7 @@ import { SharedService } from '../services/shared.service';
 export class Step4Component implements OnInit {
   formGroup4!: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private shared: SharedService) { }
+  constructor(private formBuilder: FormBuilder, public shared: SharedService) { }
 
   get inputDateRadio() {
     return this.shared.inputDateRadio;

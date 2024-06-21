@@ -1,0 +1,42 @@
+<form action="" [formGroup]="formGroupFinale">
+  <div>
+    <h1 class="text-3xl mb-5 font-bold">Fin et information</h1>
+    <p class="text-xl mb-5">
+      Si vous avez des besoins spéciaux ou demande spéciales, veuillez nous en faire part:
+    </p>
+  </div>
+  <div class="mb-5">
+    <textarea
+      class="w-full p-5 text-black bg-white border border-gray-200 rounded-lg"
+      formControlName="inputMessage"
+      placeholder="Veuillez nous en faire part ici"
+    ></textarea>
+  </div>
+  <div class="mb-5">
+    <label for="inputEmailId" class="block mb-2 text-sm font-medium"
+      >Courriel de l'atelier</label
+    >
+    <input
+      type="text"
+      id="inputEmailId"
+      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+      required
+      formControlName="inputEmail"
+      (input)="updateFinaleForm()"
+      placeholder="exemple@gmail.com"
+    />
+  </div>
+  <div class="mb-5">
+    <label for="inputFirstnameId" class="block mb-2 text-sm font-medium"
+      >Nom de la personne à contacter</label
+    >
+    <input
+      type="text"
+      id="inputFirstnameId"
+      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+      required
+      formControlName="inputFirstname"
+      (input)="updateFinaleForm()"
+    />
+  </div>
+</form>

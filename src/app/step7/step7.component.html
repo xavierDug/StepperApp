@@ -1,8 +1,8 @@
-<form action="" [formGroup]="formGroup5">
+<form action="" [formGroup]="formGroup7">
   <div>
-    <h1 class="text-3xl mb-5 font-bold">Formulaire anti rouille</h1>
+    <h1 class="text-3xl mb-5 font-bold">Formulaire de rappel de retorq</h1>
     <p class="text-xl mb-5">
-      Offrez vous le service d'antirouille?
+      Voulez vous un formulaire pour un rappel de retorq?
     </p>
   </div>
   <!--Check box date-->
@@ -11,22 +11,22 @@
       <li>
         <input
           type="radio"
-          [checked]="inputAntiRouille === 'true' ? true : false"
-          id="rouille"
-          name="antiRouille"
+          [checked]="inputRetorq === 'true' ? true : false"
+          id="retorq"
+          name="inputRetorq"
           value="true"
           class="hidden peer"
-          (change)="updateAntiRouille($event)"
+          (change)="updateRetorq($event)"
           required
         />
         <label
-          for="rouille"
+          for="retorq"
           class="inline-flex items-center justify-between w-full h-full p-5 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100"
         >
           <div class="block">
             <div class="w-full text-lg font-semibold">Oui</div>
             <div class="w-full">
-              Je souhaite ajouter un formulaire d'anti rouille.
+              Je souhaite ajouter un formulaire de rappel de retorq.
             </div>
           </div>
           <i class="fa-solid fa-circle-check text-xl text-green-600 peer-checked:text-blue-600"></i>
@@ -35,21 +35,21 @@
       <li>
         <input
           type="radio"
-          [checked]="inputAntiRouille === 'false' ? true : false"
-          id="noRouille"
-          name="antiRouille"
+          [checked]="inputRetorq === 'false' ? true : false"
+          id="noRetorq"
+          name="inputRetorq"
           value="false"
           class="hidden peer"
-          (change)="updateAntiRouille($event)"
+          (change)="updateRetorq($event)"
         />
         <label
-          for="noRouille"
+          for="noRetorq"
           class="inline-flex items-center justify-between w-full h-full p-5 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100"
         >
           <div class="block">
             <div class="w-full text-lg font-semibold">Non</div>
             <div class="w-full">
-              Je ne souhaite pas ajouter un formulaire d'anti rouille.
+              Je ne souhaite pas ajouter un formulaire de rappel de retorq.
             </div>
           </div>
           <i class="fa-solid fa-ban text-red-600 text-xl peer-checked:text-blue-600"></i>

@@ -28,6 +28,25 @@ export class SharedService {
   //step 5
   inputAntiRouille: string = '';
 
+  //step 6
+  inputLight: string = '';
+  inputLightDate: string = '';
+  inputLightMonth: string = '';
+
+  //step 7
+  inputRetorq: string = '';
+
+  //step 8
+  inputCustom: string = '';
+
+  //step 9
+  inputEntretien: string = '';
+
+  //step finale
+  inputMessage: string = '';
+  inputEmail: string = '';
+  inputFirstname: string = '';
+
   constructor() {}
   
 }

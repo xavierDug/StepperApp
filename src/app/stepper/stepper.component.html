@@ -88,6 +88,10 @@
                 class="fa-solid fa-pen-to-square text=xl"
               ></i>
               <i *ngIf="steps[i] == 9" class="fa-solid fa-wrench text-xl"></i>
+              <i
+                *ngIf="steps[i] == steps.length"
+                class="fa-solid fa-flag-checkered text-xl"
+              ></i>
             </span>
             <span
               *ngIf="currentStep > i + 1"
@@ -160,7 +164,7 @@
               </svg>
               <i
                 *ngIf="steps[i] == 5"
-                class="fa-solid fa-gauge-high text-xl"
+                class="fa-solid fa-fill-drip text-xl"
               ></i>
               <i
                 *ngIf="steps[i] == 6"
@@ -176,8 +180,8 @@
               ></i>
               <i *ngIf="steps[i] == 9" class="fa-solid fa-wrench text-xl"></i>
               <i
-                *ngIf="steps[i] == 10"
-                class="fa-solid fa-fill-drip text-xl"
+                *ngIf="steps[i] == steps.length"
+                class="fa-solid fa-flag-checkered text-xl"
               ></i>
             </span>
           </li>
@@ -210,9 +214,29 @@
               <div *ngIf="currentStep == 5">
                 <app-step5></app-step5>
               </div>
+              <!-- Form 6 -->
+              <div *ngIf="currentStep == 6">
+                <app-step6></app-step6>
+              </div>
+              <!-- Form 7 -->
+              <div *ngIf="currentStep == 7">
+                <app-step7></app-step7>
+              </div>
+              <!-- Form 8 -->
+              <div *ngIf="currentStep == 8">
+                <app-step8></app-step8>
+              </div>
+              <!-- Form 9 -->
+              <div *ngIf="currentStep == 9">
+                <app-step9></app-step9>
+              </div>
+              <!-- Form finale -->
+              <div *ngIf="currentStep == steps.length">
+                <app-stepFinale></app-stepFinale>
+              </div>
 
               <!--Sticker visualizer-->
-              <div class="flex justify-end">
+              <div *ngIf="currentStep !== steps.length" class="flex justify-end">
                 <div class="relative">
                   <img
                     *ngIf="inputSelect"
@@ -221,7 +245,7 @@
                     alt="test"
                   />
                   <div
-                    [ngClass]="{ 'top-[10px]': inputSelect === 'White' }"
+                    [ngClass]="{ 'top-[30px]': inputSelect === 'White' }"
                     class="font-bold absolute top-[100px] left-1/2 -translate-x-1/2 text-black text-center whitespace-nowrap"
                   >
                     <div class="max-w-56">
@@ -280,6 +304,30 @@
                     src="/assets/images/ANTIROUILLE.png"
                     alt="nxtDateOil"
                   />
+                  <img
+                    class="mx-auto h-80 absolute top-[74px] left-1/2 -translate-x-1/2"
+                    *ngIf="inputSelect && currentStep === 6"
+                    src="/assets/images/LUMIERE_ENTRETIEN.png"
+                    alt="nxtDateOil"
+                  />
+                  <img
+                    class="mx-auto h-80 absolute top-[74px] left-1/2 -translate-x-1/2"
+                    *ngIf="inputSelect && currentStep === 7"
+                    src="/assets/images/RETORQ.png"
+                    alt="nxtDateOil"
+                  />
+                  <img
+                    class="mx-auto h-80 absolute top-[61px] left-1/2 -translate-x-1/2"
+                    *ngIf="inputSelect && currentStep === 8"
+                    src="/assets/images/TEMPLATE_MESSAGE_CLIENT.png"
+                    alt="nxtDateOil"
+                  />
+                  <img
+                    class="mx-auto h-80 absolute top-[61px] left-1/2 -translate-x-1/2"
+                    *ngIf="inputSelect && currentStep === 9"
+                    src="/assets/images/TEMPLATE_ENTRETIEN_EFFECTUE.png"
+                    alt="nxtDateOil"
+                  />
                 </div>
               </div>
             </div>
@@ -326,13 +374,13 @@
           />
           <!-- X Button -->
           <button
-            class="absolute top-0 right-9 text-white z-[1000] bg-red-600 hover:bg-red-800 p-2 rounded-full"
+            class="absolute top-0 right-9 text-white z-[900] bg-red-600 hover:bg-red-800 p-2 rounded-full"
             (click)="deleteItem(i)"
           >
             <i class="fa-solid fa-xmark"></i>
           </button>
           <div
-            [ngClass]="{ 'top-[10px]': item.inputSelect === 'White' }"
+            [ngClass]="{ 'top-[30px]': item.inputSelect === 'White' }"
             class="font-bold absolute top-[100px] left-1/2 -translate-x-1/2 text-black text-center whitespace-nowrap"
           >
             <div class="max-w-56">
@@ -391,6 +439,31 @@
             src="/assets/images/ANTIROUILLE.png"
             alt="nxtDateOil"
           />
+          <img
+            class="h-80 mx-auto absolute top-[74px] left-1/2 -translate-x-1/2"
+            *ngIf="item.inputLight === 'true' && item.inputSelect"
+            src="/assets/images/LUMIERE_ENTRETIEN.png"
+            alt="nxtDateOil"
+          />
+          <img
+            class="h-80 mx-auto absolute top-[74px] left-1/2 -translate-x-1/2"
+            *ngIf="item.inputRetorq === 'true' && item.inputSelect"
+            src="/assets/images/RETORQ.png"
+            alt="nxtDateOil"
+          />
+          <img
+            class="h-80 mx-auto absolute top-[61px] left-1/2 -translate-x-1/2"
+            *ngIf="item.inputCustom === 'true' && item.inputSelect"
+            src="/assets/images/TEMPLATE_MESSAGE_CLIENT.png"
+            alt="nxtDateOil"
+          />
+          <img
+            class="h-80 mx-auto absolute top-[61px] left-1/2 -translate-x-1/2"
+            *ngIf="item.inputEntretien === 'true' && item.inputSelect"
+            src="/assets/images/TEMPLATE_ENTRETIEN_EFFECTUE.png"
+            alt="nxtDateOil"
+          />
+          
         </div>
       </div>
     </div>
@@ -472,7 +545,7 @@
     <!-- Toast -->
     <div
       id="toast-success"
-      class="fixed hidden bottom-[20px] right-[20px] z-50"
+      class="fixed hidden bottom-[20px] right-[20px] z-[1000]"
     >
       <div
         class="flex items-center w-full max-w-xs p-4 text-gray-500 bg-white rounded-lg shadow"
@@ -525,7 +598,7 @@
     </div>
     <div
       id="toast-warning"
-      class="fixed hidden bottom-[20px] right-[20px] z-50"
+      class="fixed hidden bottom-[20px] right-[20px] z-[1000]"
     >
       <div
         class="flex items-center w-full max-w-xs p-4 text-gray-500 bg-white rounded-lg shadow"

@@ -1,0 +1,149 @@
+<form action="" [formGroup]="formGroup6">
+  <div>
+    <h1 class="text-3xl mb-5 font-bold">Formulaire rappel d’entretien</h1>
+    <p class="text-xl mb-5">Voulez vous inclure un formulaire qui induque au client de passer quand la lumiere de rappel 
+      d’entretien allume?</p>
+  </div>
+  <!--Check box light-->
+  <div class="mb-5">
+    <ul class="grid w-full gap-2 md:grid-cols-2">
+      <li>
+        <input
+          type="radio"
+          [checked]="inputLight === 'true' ? true : false"
+          id="light"
+          name="lightForm"
+          value="true"
+          class="hidden peer"
+          (change)="updateInputLight($event)"
+          required
+        />
+        <label
+          for="light"
+          class="inline-flex items-center justify-between w-full h-full p-5 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100"
+        >
+          <div class="block">
+            <div class="w-full text-lg font-semibold">Oui</div>
+            <div class="w-full">
+              Je souhaite ajouter un formulaire de rappel d'entretien.
+            </div>
+          </div>
+          <i class="fa-solid fa-circle-check text-xl text-green-600 peer-checked:text-blue-600"></i>
+        </label>
+      </li>
+      <li>
+        <input
+          type="radio"
+          [checked]="inputLight === 'false' ? true : false"
+          id="noLight"
+          name="lightForm"
+          value="false"
+          class="hidden peer"
+          (change)="updateInputLight($event)"
+        />
+        <label
+          for="noLight"
+          class="inline-flex items-center justify-between w-full h-full p-5 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100"
+        >
+          <div class="block">
+            <div class="w-full text-lg font-semibold">Non</div>
+            <div class="w-full">
+              Je ne souhaite pas ajouter un formulaire de rappel d'entretien.
+            </div>
+          </div>
+          <i class="fa-solid fa-ban text-red-600 text-xl peer-checked:text-blue-600"></i>
+        </label>
+      </li>
+    </ul>
+  </div>
+  <!--Checkbox light separator-->
+  <div
+    *ngIf="inputLight === 'true'"
+    class="inline-flex items-center justify-center w-full mb-5"
+  >
+    <hr class="w-64 h-1 my-8 bg-gray-200 border-0 rounded" />
+    <div class="mx-8">
+      <i class="fa-solid fa-circle-arrow-down text-2xl"></i>
+    </div>
+    <hr class="w-64 h-1 my-8 bg-gray-200 border-0 rounded" />
+  </div>
+  <!--Checkbox date manual or auto-->
+  <div class="mb-5" *ngIf="inputLight === 'true'">
+    <div>
+      <p class="text-xl mb-5">
+        Voulez vous mettre une date?
+      </p>
+    </div>
+    <ul class="grid w-full gap-2 md:grid-cols-2">
+      <li>
+        <input
+          type="radio"
+          [checked]="inputLightDate === 'true' ? true : false"
+          id="lightdate"
+          name="LDate"
+          value="true"
+          class="hidden peer"
+          (change)="updateInputLightDate($event)"
+          required
+        />
+        <label
+          for="lightdate"
+          class="flex flex-col items-center w-full h-full p-5 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100"
+        >
+          <i class="fa-solid fa-calendar-check text-xl m-2"></i>
+          <div class="block">
+            <div class="w-full text-lg font-semibold">Oui</div>
+          </div>
+        </label>
+      </li>
+      <li>
+        <input
+          type="radio"
+          [checked]="inputLightDate === 'false' ? true : false"
+          id="nolightdate"
+          name="LDate"
+          value="false"
+          class="hidden peer"
+          (change)="updateInputLightDate($event)"
+        />
+        <label
+          for="nolightdate"
+          class="flex flex-col items-center w-full h-full p-5 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100"
+        >
+        <i class="fa-solid fa-calendar-xmark text-xl m-2"></i>
+          <div class="block">
+            <div class="w-full text-lg font-semibold">
+              Non
+            </div>
+          </div>
+        </label>
+      </li>
+    </ul>
+  </div>
+  <!--Checkbox date separator-->
+  <div
+    *ngIf="inputLightDate === 'true' && inputLight === 'true'"
+    class="inline-flex items-center justify-center w-full mb-5"
+  >
+    <hr class="w-64 h-1 my-8 bg-gray-200 border-0 rounded" />
+    <div class="mx-8">
+      <i class="fa-solid fa-circle-arrow-down text-2xl"></i>
+    </div>
+    <hr class="w-64 h-1 my-8 bg-gray-200 border-0 rounded" />
+  </div>
+  <!--Text inpput auto-->
+  <div class="mb-5" *ngIf="inputLightDate === 'true' && inputLight === 'true'">
+    <label for="inputLightDate" class="block mb-2 text-sm font-medium"
+      >Veuillez inscrire le nombre de mois</label
+    >
+    <input
+      type="text"
+      id="inputLightDate"
+      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+      required
+      placeholder="6"
+      formControlName="inputLightMonth"
+      (input)="updateInputLightMonth()"
+    />
+  </div>
+</form>

@@ -9,7 +9,7 @@ import { SharedService } from '../services/shared.service';
 })
 export class StepperComponent implements OnInit {
   // In your component.ts
-  steps = new Array(9).fill(null).map((_, index) => index + 1);
+  steps = new Array(10).fill(null).map((_, index) => index + 1);
   stickerArray: any[] = [];
 
   constructor(private formBuilder: FormBuilder, private shared: SharedService) {}
@@ -62,6 +62,30 @@ export class StepperComponent implements OnInit {
     return this.shared.inputAntiRouille;
   }
 
+  get inputLight() {
+    return this.shared.inputLight;
+  }
+
+  get inputLightDate() {
+    return this.shared.inputLightDate;
+  }
+
+  get inputLightMonth() {
+    return this.shared.inputLightMonth;
+  }
+
+  get inputRetorq() {
+    return this.shared.inputRetorq;
+  }
+
+  get inputCustom() {
+    return this.shared.inputCustom;
+  }
+
+  get inputEntretien() {
+    return this.shared.inputEntretien;
+  }
+
   ngOnInit() {
   }
 
@@ -102,17 +126,214 @@ export class StepperComponent implements OnInit {
     }
   }
 
+  addLightInformationToArray() {
+    const stickerLight = {
+      selectedImageUrl: this.selectedImageUrl,
+      inputSelect: this.inputSelect,
+      inputText: this.inputText,
+      nbrLines: this.nbrLines,
+      telText: this.telText,
+      addressText: this.addressText,
+      inputLight: this.inputLight,
+      inputLightDate: this.inputLightDate,
+      inputLightMonth: this.inputLightMonth,
+    };
+    if (this.currentStep === 6 && this.inputLight === 'true') {
+      const isAlreadyInArray = this.stickerArray.some(sticker => sticker.inputLight === 'true' //&& sticker.inputLightDate === this.inputLightDate && sticker.inputLightMonth === this.inputLightMonth
+      );
+      if (isAlreadyInArray) {
+      this.toggleWarningToast();
+      } else {
+      this.stickerArray.push(stickerLight);
+      this.toggleToast();
+      }
+    }
+  }
+
+  addRetorqInformationToArray() {
+    const stickerRetorq = {
+      selectedImageUrl: this.selectedImageUrl,
+      inputSelect: this.inputSelect,
+      inputText: this.inputText,
+      nbrLines: this.nbrLines,
+      telText: this.telText,
+      addressText: this.addressText,
+      inputRetorq: this.inputRetorq
+    };
+    if (this.currentStep === 7 && this.inputRetorq === 'true') {
+      const isAlreadyInArray = this.stickerArray.some(sticker => sticker.inputRetorq === 'true' 
+      );
+      if (isAlreadyInArray) {
+      this.toggleWarningToast();
+      } else {
+      this.stickerArray.push(stickerRetorq);
+      this.toggleToast();
+      }
+    }
+  }
+
+  addCustomInformationToArray() {
+    const stickerCustom = {
+      selectedImageUrl: this.selectedImageUrl,
+      inputSelect: this.inputSelect,
+      inputText: this.inputText,
+      nbrLines: this.nbrLines,
+      telText: this.telText,
+      addressText: this.addressText,
+      inputCustom: this.inputCustom
+    };
+    if (this.currentStep === 8 && this.inputCustom === 'true') {
+      const isAlreadyInArray = this.stickerArray.some(sticker => sticker.inputCustom === 'true'
+      );
+      if (isAlreadyInArray) {
+      this.toggleWarningToast();
+      } else {
+      this.stickerArray.push(stickerCustom);
+      this.toggleToast();
+      }
+    }
+  }
+
+  addEntretienInformationToArray() {
+    const stickerEntretien = {
+      selectedImageUrl: this.selectedImageUrl,
+      inputSelect: this.inputSelect,
+      inputText: this.inputText,
+      nbrLines: this.nbrLines,
+      telText: this.telText,
+      addressText: this.addressText,
+      inputEntretien: this.inputEntretien
+    };
+    if (this.currentStep === 9 && this.inputEntretien === 'true') {
+      const isAlreadyInArray = this.stickerArray.some(sticker => sticker.inputEntretien === 'true'
+      );
+      if (isAlreadyInArray) {
+      this.toggleWarningToast();
+      } else {
+      this.stickerArray.push(stickerEntretien);
+      this.toggleToast();
+      }
+    }
+  }
+
   deleteItem(index: number): void {
     this.stickerArray.splice(index, 1);
   }
+  
+  removeRouilleItem() {
+    if (this.inputAntiRouille === 'false') {
+      const index = this.stickerArray.findIndex(sticker => sticker.inputAntiRouille === 'true');
+      if (index !== -1) {
+        this.stickerArray.splice(index, 1);
+      }
+    }
+  }
+
+  removeLightItem() {
+    if (this.inputLight === 'false') {
+      const index = this.stickerArray.findIndex(sticker => sticker.inputLight === 'true');
+      if (index !== -1) {
+        this.stickerArray.splice(index, 1);
+      }
+    }
+  }
+
+  removeRetorqItem() {
+    if (this.inputRetorq === 'false') {
+      const index = this.stickerArray.findIndex(sticker => sticker.inputRetorq === 'true');
+      if (index !== -1) {
+        this.stickerArray.splice(index, 1);
+      }
+    }
+  }
+
+  removeCustomItem() {
+    if (this.inputCustom === 'false') {
+      const index = this.stickerArray.findIndex(sticker => sticker.inputCustom === 'true');
+      if (index !== -1) {
+        this.stickerArray.splice(index, 1);
+      }
+    }
+  }
+
+  removeEntretienItem() {
+    if (this.inputEntretien === 'false') {
+      const index = this.stickerArray.findIndex(sticker => sticker.inputEntretien === 'true');
+      if (index !== -1) {
+        this.stickerArray.splice(index, 1);
+      }
+    }
+  }
 
   nextStep() {
+    // This function should return true if all required inputs are filled, false otherwise.
+    const areRequiredInputsFilled = this.checkRequiredInputs();
+  
+    if (!areRequiredInputsFilled) {
+      // Prompt the user to fill out the missing fields.
+      // This could be a simple alert or a more sophisticated modal/dialog with detailed information.
+      alert('Please fill out all required fields before proceeding to the next step.');
+      return; // Exit the function to prevent proceeding to the next step.
+    }
+  
     // Condition to open the modal instead of going to the next step directly
     if (this.shouldOpenModal()) {
       this.toggleModal();
     } else {
       this.addRouilleInformationToArray();
+      this.addLightInformationToArray();
+      this.addRetorqInformationToArray();
+      this.addCustomInformationToArray();
+      this.addEntretienInformationToArray();
+      this.removeRouilleItem();
+      this.removeLightItem();
+      this.removeRetorqItem();
+      this.removeCustomItem();
+      this.removeEntretienItem();
       this.proceedToNextStep();
+    }
+  }
+  
+  checkRequiredInputs() {
+    switch (this.currentStep) {
+      case 1:
+        return this.inputSelect;
+      case 2:
+        if (this.nbrLines === 'lines-2') {
+          return this.inputText && this.telText; // addressText not required.
+        } else {
+          return this.inputText && this.telText && this.addressText; // addressText required.
+        }
+      case 3:
+        return this.isOil;
+      case 4:
+        if (this.inputDateRadio === 'isDateNext') {
+          if (this.inputNextDate === 'auto') {
+            return this.inputNextDate && this.inputNbrMonths;
+          }
+          return this.inputNextDate;
+        } else {
+          return this.inputDateRadio;
+        }
+      case 5:
+        return this.inputAntiRouille;
+      case 6:
+        if (this.inputLight === 'true') {
+          if (this.inputLightDate === 'true') {
+            return this.inputLightDate && this.inputLightMonth;
+          }
+          return this.inputLightDate;
+        } else {
+          return this.inputLight;
+        }
+      case 7:
+        return this.inputRetorq;
+      case 8:
+        return this.inputCustom;
+      case 9:
+        return this.inputEntretien;
+      default:
+        return true;
     }
   }
   
@@ -136,9 +357,8 @@ export class StepperComponent implements OnInit {
     document.getElementById('toast-warning')?.classList.toggle('hidden');
   }
   
-  // Example function to decide when to open the modal
+  // function to decide when to open the modal
   shouldOpenModal(): boolean {
-    // Implement your condition here
     // For example, open the modal only on a specific step
     if (
       this.currentStep === 4 &&
@@ -197,7 +417,6 @@ export class StepperComponent implements OnInit {
     this.shared.inputDateRadio = '';
     this.shared.inputNextDate = '';
     this.shared.inputNbrMonths = '';
-    this.shared.inputAntiRouille = '';
   }
 
   clearCurrentStickerStay() {

@@ -1,8 +1,6 @@
 <form class="" [formGroup]="formGroup1">
   <div>
-    <h1 class="text-3xl mb-5 font-bold">
-      Choix du modèle d'étiquette
-    </h1>
+    <h1 class="text-3xl mb-5 font-bold">Choix du modèle d'étiquette</h1>
   </div>
   <div class="mb-5">
     <label for="countries" class="block mb-2 text-sm font-medium"
@@ -37,14 +35,31 @@
     <div>
       <p class="text-sm font-bold mb-2">Logo (optional)</p>
     </div>
-    <div class="flex items-center justify-center w-full">
+    <div class="relative flex items-center justify-center w-full">
+      <!--Remove image button-->
+      <button
+        *ngIf="selectedImageUrl"
+        class="absolute top-0 right-2 p-1 m-2 bg-transparent rounded-full"
+        (click)="removeImage()"
+        (mouseenter)="showTooltip()"
+        (mouseleave)="hideTooltip()"
+      >
+        <i class="fa-solid fa-xmark text-red-600 text-2xl"></i>
+      </button>
+      <div
+      *ngIf="selectedImageUrl"
+        id="tooltip-default"
+        role="tooltip"
+        class="absolute bottom-[95%] right-0 z-10 inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm tooltip"
+        [ngStyle]="{ opacity: showTooltipVisible ? '1' : '0' }"
+      >
+        Retirer le logo.
+      </div>
       <label
         for="dropzone-file"
         class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 hover:bg-gray-100"
       >
-        <div
-          class="flex flex-col items-center justify-center pt-5 pb-6"
-        >
+        <div class="flex flex-col items-center justify-center pt-5 pb-6">
           <svg
             *ngIf="!selectedImageUrl"
             class="w-8 h-8 mb-4 text-gray-500"
@@ -65,13 +80,8 @@
             *ngIf="selectedImageUrl"
             class="mb-4 fa-solid fa-circle-check text-green-600 text-3xl"
           ></i>
-          <p
-            *ngIf="!selectedImageUrl"
-            class="mb-2 text-sm text-gray-500"
-          >
-            <span class="font-semibold"
-              >Click to upload your logo</span
-            >
+          <p *ngIf="!selectedImageUrl" class="mb-2 text-sm text-gray-500">
+            <span class="font-semibold">Click to upload your logo</span>
             or drag and drop
           </p>
           <p
@@ -80,10 +90,7 @@
           >
             Logo uploaded successfully
           </p>
-          <p
-            *ngIf="!selectedImageUrl"
-            class="text-xs text-gray-500"
-          >
+          <p *ngIf="!selectedImageUrl" class="text-xs text-gray-500">
             SVG, PNG, JPG
           </p>
         </div>

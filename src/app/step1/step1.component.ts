@@ -5,13 +5,17 @@ import { SharedService } from '../services/shared.service';
 @Component({
   selector: 'app-step1',
   templateUrl: './step1.component.html',
-  styleUrls: ['./step1.component.css']
+  styleUrls: ['./step1.component.css'],
 })
 export class Step1Component implements OnInit {
   formGroup1!: FormGroup;
 
+  showTooltipVisible: boolean = false;
 
-  constructor(private formBuilder: FormBuilder, private shared: SharedService) { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private shared: SharedService
+  ) {}
 
   get currentStep() {
     return this.shared.currentStep;
@@ -23,7 +27,7 @@ export class Step1Component implements OnInit {
 
   ngOnInit() {
     this.formGroup1 = this.formBuilder.group({
-      inputSelect: [this.shared.inputSelect || '']
+      inputSelect: [this.shared.inputSelect || ''],
     });
   }
 
@@ -31,7 +35,25 @@ export class Step1Component implements OnInit {
     this.shared.inputSelect = this.formGroup1.get('inputSelect')?.value;
   }
 
+  removeImage() {
+    this.shared.selectedImageUrl = '';
+
+    const fileInput: HTMLInputElement = document.getElementById(
+      'dropzone-file'
+    ) as HTMLInputElement;
+    if (fileInput) {
+      fileInput.value = ''; // Clear the file input
+    }
+  }
+
+  showTooltip() {
+    this.showTooltipVisible = true;
+  }
   
+  hideTooltip() {
+    this.showTooltipVisible = false;
+  }
+
   onFileSelected(event: Event): void {
     const file = (event.target as HTMLInputElement).files?.[0];
     if (file) {
@@ -42,5 +64,4 @@ export class Step1Component implements OnInit {
       reader.readAsDataURL(file);
     }
   }
-
 }

@@ -235,6 +235,10 @@
                 <app-stepFinale></app-stepFinale>
               </div>
 
+              <div *ngIf="currentStep === steps.length">
+                <img src="/assets/images/end_illustration.png" alt="" class="mx-auto max-h-[450px]">
+              </div>
+
               <!--Sticker visualizer-->
               <div
                 *ngIf="currentStep !== steps.length"
@@ -349,6 +353,7 @@
                 class="px-4 py-2 w-28 text-white font-bold bg-gray-400 hover:bg-gray-500 rounded"
                 (click)="prevStep()"
               >
+                <i class="fa-solid fa-arrow-left text-lg"></i> 
                 Back
               </button>
               <button
@@ -356,13 +361,15 @@
                 (click)="nextStep()"
                 class="px-4 py-2 w-28 text-white font-bold bg-blue-900 hover:bg-blue-950 rounded"
               >
-                Next
+                Next 
+                <i class="fa-solid fa-arrow-right text-lg"></i>
               </button>
               <button
                 *ngIf="currentStep === steps.length"
                 class="px-4 py-2 w-28 text-white font-bold bg-green-900 hover:bg-green-950 rounded"
               >
-                Submit
+                Submit 
+                <i class="fa-solid fa-check text-lg"></i>
               </button>
             </div>
           </div>

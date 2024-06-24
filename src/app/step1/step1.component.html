@@ -1,6 +1,13 @@
 <form class="" [formGroup]="formGroup1">
-  <div>
+  <div class="mb-5">
     <h1 class="text-3xl mb-5 font-bold">Choix du modèle d'étiquette</h1>
+    <p class="mb-2">Bienvenu dans notre générateur d’étiquette pour le système Autonome de OCH Planner. Ces quelques questions vont nous permettre de créer les différents modèles d’étiquettes qui seront incluses dans l’imprimante. Il vous sera possible de passer d’un modèle à l’autre très facilement. Tout au long de ce formulaire, vous pourrai voir la liste des épreuves dans le bas de votre écran. Nous vous enverrons par courriel , avant l’expédition, une photo des épreuves incluses.</p>
+    <p>Prenez le temps de visionner le court vidéo suivant pour voir comment le système fonctionne.</p>
+  </div>
+  <div class="mb-5">
+    <a href="https://youtu.be/FoA4hiwV5qc" target="_blank">
+      <img src="/assets/images/Image1.png" alt="">
+    </a>
   </div>
   <div class="mb-5">
     <label for="countries" class="block mb-2 text-sm font-medium"
@@ -30,78 +37,5 @@
       <option value="Ford">Ford</option>
       <option value="B2B">Bumper to bumper</option>
     </select>
-  </div>
-  <div>
-    <div>
-      <p class="text-sm font-bold mb-2">Logo (optional)</p>
-    </div>
-    <div class="relative flex items-center justify-center w-full">
-      <!--Remove image button-->
-      <button
-        *ngIf="selectedImageUrl"
-        class="absolute top-0 right-2 p-1 m-2 bg-transparent rounded-full"
-        (click)="removeImage()"
-        (mouseenter)="showTooltip()"
-        (mouseleave)="hideTooltip()"
-      >
-        <i class="fa-solid fa-xmark text-red-600 text-2xl"></i>
-      </button>
-      <div
-      *ngIf="selectedImageUrl"
-        id="tooltip-default"
-        role="tooltip"
-        class="absolute bottom-[95%] right-0 z-10 inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm tooltip"
-        [ngStyle]="{ opacity: showTooltipVisible ? '1' : '0' }"
-      >
-        Retirer le logo.
-      </div>
-      <label
-        for="dropzone-file"
-        class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 hover:bg-gray-100"
-      >
-        <div class="flex flex-col items-center justify-center pt-5 pb-6">
-          <svg
-            *ngIf="!selectedImageUrl"
-            class="w-8 h-8 mb-4 text-gray-500"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 20 16"
-          >
-            <path
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
-            />
-          </svg>
-          <i
-            *ngIf="selectedImageUrl"
-            class="mb-4 fa-solid fa-circle-check text-green-600 text-3xl"
-          ></i>
-          <p *ngIf="!selectedImageUrl" class="mb-2 text-sm text-gray-500">
-            <span class="font-semibold">Click to upload your logo</span>
-            or drag and drop
-          </p>
-          <p
-            *ngIf="selectedImageUrl"
-            class="mb-2 text-sm text-gray-500 font-semibold"
-          >
-            Logo uploaded successfully
-          </p>
-          <p *ngIf="!selectedImageUrl" class="text-xs text-gray-500">
-            SVG, PNG, JPG
-          </p>
-        </div>
-        <input
-          id="dropzone-file"
-          type="file"
-          class="hidden"
-          accept="image/*"
-          (change)="onFileSelected($event)"
-        />
-      </label>
-    </div>
   </div>
 </form>

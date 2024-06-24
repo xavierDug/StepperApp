@@ -34,34 +34,4 @@ export class Step1Component implements OnInit {
   updateSelectTemplate(): void {
     this.shared.inputSelect = this.formGroup1.get('inputSelect')?.value;
   }
-
-  removeImage() {
-    this.shared.selectedImageUrl = '';
-
-    const fileInput: HTMLInputElement = document.getElementById(
-      'dropzone-file'
-    ) as HTMLInputElement;
-    if (fileInput) {
-      fileInput.value = ''; // Clear the file input
-    }
-  }
-
-  showTooltip() {
-    this.showTooltipVisible = true;
-  }
-  
-  hideTooltip() {
-    this.showTooltipVisible = false;
-  }
-
-  onFileSelected(event: Event): void {
-    const file = (event.target as HTMLInputElement).files?.[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        this.shared.selectedImageUrl = e.target?.result;
-      };
-      reader.readAsDataURL(file);
-    }
-  }
 }

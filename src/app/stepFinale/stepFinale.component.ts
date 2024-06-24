@@ -10,6 +10,8 @@ import { SharedService } from '../services/shared.service';
 export class StepFinaleComponent implements OnInit {
   formGroupFinale!: FormGroup;
 
+  showTooltipVisible: boolean = false;
+
   constructor(private formBuilder: FormBuilder, private shared: SharedService) { }
 
   get inputMessage() {
@@ -24,6 +26,10 @@ export class StepFinaleComponent implements OnInit {
     return this.shared.inputFirstname;
   }
 
+  get selectedImageUrl() {
+    return this.shared.selectedImageUrl;
+  }
+
   ngOnInit() {
     this.formGroupFinale = this.formBuilder.group({
       inputEmail: [''],
@@ -36,5 +42,35 @@ export class StepFinaleComponent implements OnInit {
     this.shared.inputEmail = this.formGroupFinale.get('inputEmail')?.value;
     this.shared.inputFirstname = this.formGroupFinale.get('inputFirstname')?.value;
     this.shared.inputMessage = this.formGroupFinale.get('inputMessage')?.value;
+  }
+
+  onFileSelected(event: Event): void {
+    const file = (event.target as HTMLInputElement).files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        this.shared.selectedImageUrl = e.target?.result;
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+
+  removeImage() {
+    this.shared.selectedImageUrl = '';
+
+    const fileInput: HTMLInputElement = document.getElementById(
+      'dropzone-file'
+    ) as HTMLInputElement;
+    if (fileInput) {
+      fileInput.value = ''; // Clear the file input
+    }
+  }
+
+  showTooltip() {
+    this.showTooltipVisible = true;
+  }
+  
+  hideTooltip() {
+    this.showTooltipVisible = false;
   }
 }

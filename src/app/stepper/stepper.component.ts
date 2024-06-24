@@ -93,7 +93,7 @@ export class StepperComponent implements OnInit {
   }
 
   calculateFontSize(text: string): number {
-    const baseSize = 24; // Starting font size in pixels for up to 14 characters
+    const baseSize = 26; // Starting font size in pixels for up to 14 characters
     const maxLength = 15; // Start decreasing font size after this character count
     const decreaseFactor = 0.5; // Decrease font size by 0.5px for each character beyond maxLength
 

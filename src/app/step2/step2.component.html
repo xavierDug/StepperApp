@@ -1,6 +1,6 @@
 <form class="" [formGroup]="formGroup2">
   <div>
-    <h1 class="text-3xl mb-5 font-bold">Nombre de lignes</h1>
+    <h1 class="text-3xl mb-5 font-bold">Personnalisation de votre étiquette</h1>
   </div>
   <!--Check box lines-->
   <div class="mb-5">
@@ -24,7 +24,7 @@
             <div class="w-full text-lg font-semibold">
               2 lignes
             </div>
-            <div class="w-full">Nom et telephone seulement</div>
+            <div class="w-full">Nom et téléphone seulement</div>
           </div>
           <i class="fa-solid fa-grip-lines text-xl"></i>
         </label>
@@ -47,7 +47,7 @@
             <div class="w-full text-lg font-semibold">
               3 lignes
             </div>
-            <div class="w-full">Nom, adresse et telephone</div>
+            <div class="w-full">Nom, adresse et téléphone</div>
           </div>
           <i class="fa-solid fa-bars text-xl"></i>
         </label>
@@ -56,7 +56,7 @@
   </div>
   <div class="mb-5" *ngIf="nbrLines">
     <label for="name" class="block mb-2 text-sm font-medium"
-      >Name</label
+      >Nom</label
     >
     <input
       type="text"
@@ -80,12 +80,11 @@
       required
       formControlName="addressText"
       (input)="updateText()"
-      placeholder="123 main st"
     />
   </div>
   <div class="mb-5" *ngIf="nbrLines">
     <label for="tel" class="block mb-2 text-sm font-medium"
-      >Tel</label
+      >Téléphone</label
     >
     <input
       type="text"
@@ -94,7 +93,7 @@
       required
       formControlName="telText"
       (input)="updateText()"
-      placeholder="123-456-7890"
     />
   </div>
+  <p>Il vous sera possible à la fin de ce formulaire d’inclure le logo de votre entreprise qui pourra être inclus dans le haut de votre étiquette.</p>
 </form>

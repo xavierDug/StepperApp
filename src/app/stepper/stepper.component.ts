@@ -89,6 +89,22 @@ export class StepperComponent implements OnInit {
     return this.shared.inputEntretien;
   }
 
+  get inputMessage() {
+    return this.shared.inputMessage;
+  }
+
+  get inputEmail() {
+    return this.shared.inputEmail;
+  }
+
+  get inputFirstname() {
+    return this.shared.inputFirstname;
+  }
+
+  get inputTel() {
+    return this.shared.inputTel;
+  }
+
   ngOnInit() {
   }
 
@@ -309,6 +325,15 @@ export class StepperComponent implements OnInit {
       this.proceedToNextStep();
     }
   }
+
+  submitForm() {
+    const areRequiredInputsFilled = this.checkRequiredInputs();
+  
+    if (!areRequiredInputsFilled) {
+      this.toggleDangerToast();
+      return; // Exit the function to prevent proceeding to the next step.
+    }
+  }
   
   checkRequiredInputs() {
     switch (this.currentStep) {
@@ -348,6 +373,8 @@ export class StepperComponent implements OnInit {
         return this.inputCustom;
       case 9:
         return this.inputEntretien;
+      case 10:
+        return this.inputEmail && this.inputFirstname && this.inputTel;
       default:
         return true;
     }

@@ -236,7 +236,11 @@
               </div>
 
               <div *ngIf="currentStep === steps.length">
-                <img src="/assets/images/end_illustration.png" alt="" class="mx-auto max-h-[730px]">
+                <img
+                  src="/assets/images/end_illustration.png"
+                  alt=""
+                  class="mx-auto max-h-[730px]"
+                />
               </div>
 
               <!--Sticker visualizer-->
@@ -348,7 +352,7 @@
                 class="px-6 py-2 text-white font-bold bg-gray-400 hover:bg-gray-500 rounded"
                 (click)="prevStep()"
               >
-                <i class="fa-solid fa-arrow-left text-lg"></i> 
+                <i class="fa-solid fa-arrow-left text-lg"></i>
                 Précédent
               </button>
               <button
@@ -356,14 +360,15 @@
                 (click)="nextStep()"
                 class="px-6 py-2 text-white font-bold bg-blue-900 hover:bg-blue-950 rounded"
               >
-                Suivant 
+                Suivant
                 <i class="fa-solid fa-arrow-right text-lg"></i>
               </button>
               <button
                 *ngIf="currentStep === steps.length"
-                class="px-4 py-2 w-28 text-white font-bold bg-green-900 hover:bg-green-950 rounded"
+                class="px-6 py-2 text-white font-bold bg-green-900 hover:bg-green-950 rounded"
+                (click)="submitForm()"
               >
-                Soumettre 
+                Soumettre
                 <i class="fa-solid fa-check text-lg"></i>
               </button>
             </div>
@@ -372,7 +377,7 @@
       </div>
 
       <h1 *ngIf="stickerArray.length > 0" class="text-3xl mb-5 mt-5 font-bold">
-        Votre collection de formulaires:
+        Liste des formulaires inclus dans votre imprimante:
       </h1>
       <!--Sticker array-->
       <div class="grid md:grid-cols-3 grid-cols-2 gap-4">
@@ -481,6 +486,7 @@
         </div>
       </div>
     </div>
+    <!--Modal-->
     <div
       id="popup-modal"
       tabindex="-1"
@@ -527,27 +533,28 @@
                 d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
               />
             </svg>
-            <h3 class="mb-5 text-lg font-normal text-gray-500 lowercase">
-              VOUS POUVEZ AVOIR PLUSIEURS FORMULAIRES DANS L’IMPRIMANTE ET
-              PASSER D’UN A L’AUTRE RAPIDEMENT. VOULEZ VOUS Confrimer votre
-              formulaire et AJOUTER UN AUTRE FORMULAIRE POUR UN FORMAT DE DATE
-              DIFFERENT ou bien Confirmer et continuer?
+            <h3 class="mb-5 text-start text-lg font-normal text-gray-500 lowercase">
+              Vous pouvez avoir plusieurs formulaires dans l’imprimante et
+              passer d’un a l’autre rapidement. Voulez-vous seulement un
+              formulaire de changement d’huile avec le format de date choisi ou
+              désirez-vous ajouter un autre formulaire pour un format de date
+              différent?
             </h3>
             <button
               data-modal-hide="popup-modal"
               type="button"
-              class="text-white bg-blue-900 hover:bg-blue-950 focus:ring-4 focus:outline-none focus:ring-blue-700 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center"
+              class="text-white mb-2 bg-blue-900 hover:bg-blue-950 focus:ring-4 focus:outline-none focus:ring-blue-700 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center"
               (click)="stayOnStep()"
             >
-              Confirmer et ajouter
+            Je désire ajouter un autre formulaire de changement d’huile avec un format de date 
             </button>
             <button
               data-modal-hide="popup-modal"
               type="button"
-              class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100"
+              class="py-2.5 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100"
               (click)="proceedFromModal()"
             >
-              Confirmer et continuer
+            Je désire avoir seulement le formulaire de changement d’huile avec le format de date choisi
             </button>
           </div>
         </div>
@@ -688,8 +695,7 @@
           <span class="sr-only">Missing inputs</span>
         </div>
         <div class="ms-3 text-sm font-normal">
-          Please fill out all required fields before proceeding to the next
-          step.
+          S'il-vous-plaît remplissez tous les champs requis.
         </div>
         <button
           type="button"

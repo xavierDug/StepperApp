@@ -1,8 +1,9 @@
 <form action="" [formGroup]="formGroupFinale">
   <div>
-    <h1 class="text-3xl mb-5 font-bold">Fin et information</h1>
+    <h1 class="text-3xl mb-5 font-bold">Comment vous rejoindre?</h1>
     <p class="text-xl mb-5">
-      Si vous avez des besoins spéciaux ou demande spéciales, veuillez nous en faire part:
+      Si vous avez des besoins spéciaux ou demande spéciales, veuillez nous en
+      faire part:
     </p>
   </div>
   <div class="mb-5">
@@ -27,6 +28,19 @@
     />
   </div>
   <div class="mb-5">
+    <label for="inputTelId" class="block mb-2 text-sm font-medium"
+      >No de téléphone</label
+    >
+    <input
+      type="text"
+      id="inputTelId"
+      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+      required
+      formControlName="inputTel"
+      (input)="updateFinaleForm()"
+    />
+  </div>
+  <div class="mb-5">
     <label for="inputFirstnameId" class="block mb-2 text-sm font-medium"
       >Nom de la personne à contacter</label
     >
@@ -37,12 +51,12 @@
       required
       formControlName="inputFirstname"
       (input)="updateFinaleForm()"
-      placeholder="Firstname Lastname"
+      placeholder="Prénom Nom"
     />
   </div>
   <div>
     <div>
-      <p class="text-sm font-bold mb-2">Logo (optional)</p>
+      <p class="text-sm font-bold mb-2">Logo (optionnel)</p>
     </div>
     <div class="relative flex items-center justify-center w-full">
       <!--Remove image button-->
@@ -56,7 +70,7 @@
         <i class="fa-solid fa-xmark text-red-600 text-2xl"></i>
       </button>
       <div
-      *ngIf="selectedImageUrl"
+        *ngIf="selectedImageUrl"
         id="tooltip-default"
         role="tooltip"
         class="absolute bottom-[95%] right-0 z-10 inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm tooltip"
@@ -90,8 +104,8 @@
             class="mb-4 fa-solid fa-circle-check text-green-600 text-3xl"
           ></i>
           <p *ngIf="!selectedImageUrl" class="mb-2 text-sm text-gray-500">
-            <span class="font-semibold">Click to upload your logo</span>
-            or drag and drop
+            <span class="font-semibold">Cliquez pour soumettre votre logo</span>
+            ou faites un glisser-déposer
           </p>
           <p
             *ngIf="selectedImageUrl"
@@ -113,4 +127,11 @@
       </label>
     </div>
   </div>
+  <p>
+    Avec les informations que vous nous avez transmises, nous allons créer des
+    épreuves les étiquettes demandées et vous retourner une photo pour
+    approbation par courriel. Un de nos représentant vous contactera dans 24 à
+    48 heures. Vérifier occasionnellement votre boîte de courriel et aussi votre
+    boîte de pourriel.
+  </p>
 </form>

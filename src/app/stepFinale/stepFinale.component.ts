@@ -30,11 +30,16 @@ export class StepFinaleComponent implements OnInit {
     return this.shared.selectedImageUrl;
   }
 
+  get inputTel() {
+    return this.shared.inputTel;
+  }
+
   ngOnInit() {
     this.formGroupFinale = this.formBuilder.group({
       inputEmail: [''],
       inputFirstname: [''],
-      inputMessage: ['']
+      inputMessage: [''],
+      inputTel: ['']
     });
   }
 
@@ -42,6 +47,7 @@ export class StepFinaleComponent implements OnInit {
     this.shared.inputEmail = this.formGroupFinale.get('inputEmail')?.value;
     this.shared.inputFirstname = this.formGroupFinale.get('inputFirstname')?.value;
     this.shared.inputMessage = this.formGroupFinale.get('inputMessage')?.value;
+    this.shared.inputTel = this.formGroupFinale.get('inputTel')?.value;
   }
 
   onFileSelected(event: Event): void {

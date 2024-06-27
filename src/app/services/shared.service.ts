@@ -46,6 +46,7 @@ export class SharedService {
   inputMessage: string = '';
   inputEmail: string = '';
   inputFirstname: string = '';
+  inputTel: string = '';
 
   constructor() {}
   

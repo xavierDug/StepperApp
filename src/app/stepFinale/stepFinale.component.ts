@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { SharedService } from '../services/shared.service';
+import { MailgunService } from '../services/mailgun.service';
 
 @Component({
   selector: 'app-stepFinale',
@@ -12,7 +13,7 @@ export class StepFinaleComponent implements OnInit {
 
   showTooltipVisible: boolean = false;
 
-  constructor(private formBuilder: FormBuilder, private shared: SharedService) { }
+  constructor(private formBuilder: FormBuilder, private shared: SharedService, private mailgun: MailgunService) { }
 
   get inputMessage() {
     return this.shared.inputMessage;
@@ -79,4 +80,6 @@ export class StepFinaleComponent implements OnInit {
   hideTooltip() {
     this.showTooltipVisible = false;
   }
+
+  
 }

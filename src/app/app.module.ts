@@ -16,6 +16,7 @@ import { Step7Component } from './step7/step7.component';
 import { Step8Component } from './step8/step8.component';
 import { Step9Component } from './step9/step9.component';
 import { StepFinaleComponent } from './stepFinale/stepFinale.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -31,13 +32,14 @@ import { StepFinaleComponent } from './stepFinale/stepFinale.component';
       Step7Component,
       Step8Component,
       Step9Component,
-      StepFinaleComponent
+      StepFinaleComponent,
    ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

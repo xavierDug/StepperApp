@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { SharedService } from '../services/shared.service';
+import { MailgunService } from '../services/mailgun.service';
 
 @Component({
   selector: 'app-stepper',
@@ -10,12 +11,15 @@ import { SharedService } from '../services/shared.service';
 export class StepperComponent implements OnInit {
   // In your component.ts
   steps = new Array(10).fill(null).map((_, index) => index + 1);
-  stickerArray: any[] = [];
 
   timeoutId: any = null;
   timeoutIdWarning: any = null;
 
-  constructor(private formBuilder: FormBuilder, private shared: SharedService) {}
+  constructor(private formBuilder: FormBuilder, private shared: SharedService, private mailgun: MailgunService) {}
+
+  get stickerArray() {
+    return this.shared.stickerArray;
+  }
 
   get currentStep() {
     return this.shared.currentStep;
@@ -134,7 +138,7 @@ export class StepperComponent implements OnInit {
       inputNextDate: this.inputNextDate,
       inputNbrMonths: this.inputNbrMonths,
     };
-    this.stickerArray.push(sticker);
+    this.shared.stickerArray.push(sticker);
   }
 
   addRouilleInformationToArray() {
@@ -148,11 +152,11 @@ export class StepperComponent implements OnInit {
       inputAntiRouille: this.inputAntiRouille,
     };
     if (this.currentStep === 5 && this.inputAntiRouille === 'true') {
-      const isAlreadyInArray = this.stickerArray.some(sticker => sticker.inputAntiRouille === 'true');
+      const isAlreadyInArray = this.shared.stickerArray.some(sticker => sticker.inputAntiRouille === 'true');
       if (isAlreadyInArray) {
       this.toggleWarningToast();
       } else {
-      this.stickerArray.push(stickerRouille);
+      this.shared.stickerArray.push(stickerRouille);
       this.toggleToast();
       }
     }
@@ -171,12 +175,12 @@ export class StepperComponent implements OnInit {
       inputLightMonth: this.inputLightMonth,
     };
     if (this.currentStep === 6 && this.inputLight === 'true') {
-      const isAlreadyInArray = this.stickerArray.some(sticker => sticker.inputLight === 'true' //&& sticker.inputLightDate === this.inputLightDate && sticker.inputLightMonth === this.inputLightMonth
+      const isAlreadyInArray = this.shared.stickerArray.some(sticker => sticker.inputLight === 'true' //&& sticker.inputLightDate === this.inputLightDate && sticker.inputLightMonth === this.inputLightMonth
       );
       if (isAlreadyInArray) {
       this.toggleWarningToast();
       } else {
-      this.stickerArray.push(stickerLight);
+      this.shared.stickerArray.push(stickerLight);
       this.toggleToast();
       }
     }
@@ -193,12 +197,12 @@ export class StepperComponent implements OnInit {
       inputRetorq: this.inputRetorq
     };
     if (this.currentStep === 7 && this.inputRetorq === 'true') {
-      const isAlreadyInArray = this.stickerArray.some(sticker => sticker.inputRetorq === 'true' 
+      const isAlreadyInArray = this.shared.stickerArray.some(sticker => sticker.inputRetorq === 'true' 
       );
       if (isAlreadyInArray) {
       this.toggleWarningToast();
       } else {
-      this.stickerArray.push(stickerRetorq);
+      this.shared.stickerArray.push(stickerRetorq);
       this.toggleToast();
       }
     }
@@ -215,12 +219,12 @@ export class StepperComponent implements OnInit {
       inputCustom: this.inputCustom
     };
     if (this.currentStep === 8 && this.inputCustom === 'true') {
-      const isAlreadyInArray = this.stickerArray.some(sticker => sticker.inputCustom === 'true'
+      const isAlreadyInArray = this.shared.stickerArray.some(sticker => sticker.inputCustom === 'true'
       );
       if (isAlreadyInArray) {
       this.toggleWarningToast();
       } else {
-      this.stickerArray.push(stickerCustom);
+      this.shared.stickerArray.push(stickerCustom);
       this.toggleToast();
       }
     }
@@ -237,62 +241,62 @@ export class StepperComponent implements OnInit {
       inputEntretien: this.inputEntretien
     };
     if (this.currentStep === 9 && this.inputEntretien === 'true') {
-      const isAlreadyInArray = this.stickerArray.some(sticker => sticker.inputEntretien === 'true'
+      const isAlreadyInArray = this.shared.stickerArray.some(sticker => sticker.inputEntretien === 'true'
       );
       if (isAlreadyInArray) {
       this.toggleWarningToast();
       } else {
-      this.stickerArray.push(stickerEntretien);
+      this.shared.stickerArray.push(stickerEntretien);
       this.toggleToast();
       }
     }
   }
 
   deleteItem(index: number): void {
-    this.stickerArray.splice(index, 1);
+    this.shared.stickerArray.splice(index, 1);
   }
   
   removeRouilleItem() {
     if (this.inputAntiRouille === 'false') {
-      const index = this.stickerArray.findIndex(sticker => sticker.inputAntiRouille === 'true');
+      const index = this.shared.stickerArray.findIndex(sticker => sticker.inputAntiRouille === 'true');
       if (index !== -1) {
-        this.stickerArray.splice(index, 1);
+        this.shared.stickerArray.splice(index, 1);
       }
     }
   }
 
   removeLightItem() {
     if (this.inputLight === 'false') {
-      const index = this.stickerArray.findIndex(sticker => sticker.inputLight === 'true');
+      const index = this.shared.stickerArray.findIndex(sticker => sticker.inputLight === 'true');
       if (index !== -1) {
-        this.stickerArray.splice(index, 1);
+        this.shared.stickerArray.splice(index, 1);
       }
     }
   }
 
   removeRetorqItem() {
     if (this.inputRetorq === 'false') {
-      const index = this.stickerArray.findIndex(sticker => sticker.inputRetorq === 'true');
+      const index = this.shared.stickerArray.findIndex(sticker => sticker.inputRetorq === 'true');
       if (index !== -1) {
-        this.stickerArray.splice(index, 1);
+        this.shared.stickerArray.splice(index, 1);
       }
     }
   }
 
   removeCustomItem() {
     if (this.inputCustom === 'false') {
-      const index = this.stickerArray.findIndex(sticker => sticker.inputCustom === 'true');
+      const index = this.shared.stickerArray.findIndex(sticker => sticker.inputCustom === 'true');
       if (index !== -1) {
-        this.stickerArray.splice(index, 1);
+        this.shared.stickerArray.splice(index, 1);
       }
     }
   }
 
   removeEntretienItem() {
     if (this.inputEntretien === 'false') {
-      const index = this.stickerArray.findIndex(sticker => sticker.inputEntretien === 'true');
+      const index = this.shared.stickerArray.findIndex(sticker => sticker.inputEntretien === 'true');
       if (index !== -1) {
-        this.stickerArray.splice(index, 1);
+        this.shared.stickerArray.splice(index, 1);
       }
     }
   }
@@ -333,6 +337,11 @@ export class StepperComponent implements OnInit {
       this.toggleDangerToast();
       return; // Exit the function to prevent proceeding to the next step.
     }
+
+    this.mailgun.sendEmail().subscribe({
+      next: (response) => console.log('Email sent successfully', response),
+      error: (error) => console.error('Error sending email', error)
+    });
   }
   
   checkRequiredInputs() {
@@ -496,7 +505,7 @@ export class StepperComponent implements OnInit {
       return false;
     } else {
       let autoCount = 0;
-      for (const sticker of this.stickerArray) {
+      for (const sticker of this.shared.stickerArray) {
         if (
           this.inputDateRadio === sticker.inputDateRadio &&
           this.inputNextDate === sticker.inputNextDate &&

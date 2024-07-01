@@ -5,6 +5,7 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root',
 })
 export class SharedService {
+  stickerArray: any[] = [];
   currentStep = 1;
   // this is the sticker template
   inputSelect: string = '';

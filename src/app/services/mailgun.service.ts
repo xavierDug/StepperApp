@@ -19,7 +19,7 @@ export class MailgunService {
     <div style="font-family: Arial, sans-serif;">
       <div style="display: block; text-align: center; align-content: center; background-color: #0473bb; padding: 20px;">
   
-            <img src="/assets/images/cropped-ochplanner-logo-gros-blanc-1.png" style="width: 200px; display: block; margin: auto;">
+            <img src="https://ochplanner3.blob.core.windows.net/sticker-generator/cropped-ochplanner-logo-gros-blanc-1.png" style="width: 200px; display: block; margin: auto;">
 
           </div>
           <div style="color: white; background-color:#3c83b3;  padding:20px; text-align: center;">
@@ -33,10 +33,10 @@ export class MailgunService {
             <h1>Sticker choisit:</h1>
             <img src="https://ochplanner3.blob.core.windows.net/sticker-generator/${this.shared.inputSelect}.png" style="height: 200px; display: block; margin: auto;">
             <h2>Info client:</h2>
-            <p><strong>Nom du garage:</strong> ${this.shared.inputText}</p>
             <p><strong>Nombre de lignes:</strong> ${this.shared.nbrLines}</p>
+            <p><strong>Nom du garage:</strong> ${this.shared.inputText}</p>
             <p><strong>Téléphone:</strong> ${this.shared.telText}</p>
-            <p><strong>Adresse:</strong> ${this.shared.addressText}</p>
+            ${this.shared.addressText ? `<p><strong>Adresse:</strong> ${this.shared.addressText}</p>` : ''}
             <hr>
             <h2>Grade d'huile et dates:</h2>
             ${this.shared.isOil === "true" ? `<p><strong>Grade/Type d'huile:</strong> Inclus</p>` : ''}

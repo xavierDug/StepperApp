@@ -339,7 +339,7 @@ export class StepperComponent implements OnInit {
     }
 
     this.mailgun.sendEmail().subscribe({
-      next: (response) => console.log('Email sent successfully', response),
+      next: (response) => this.toggleToastSubmited(),
       error: (error) => console.error('Error sending email', error)
     });
   }
@@ -420,6 +420,25 @@ export class StepperComponent implements OnInit {
     }, 3000); // Duration in milliseconds, adjust as needed
   }
 
+  toggleToastSubmited() {
+    // Clear existing timeout if there is one
+    if (this.timeoutId) {
+      clearTimeout(this.timeoutId);
+      // Ensure the toast is visible before setting a new timeout
+      document.getElementById('toast-submited')?.classList.remove('hidden');
+    } else {
+      // If the toast is not already shown, show it
+      document.getElementById('toast-submited')?.classList.toggle('hidden');
+    }
+  
+    // Set a new timeout to hide the toast after a duration
+    this.timeoutId = setTimeout(() => {
+      document.getElementById('toast-submited')?.classList.add('hidden');
+      // Reset the timeoutId when the toast is hidden
+      this.timeoutId = null;
+    }, 3000); // Duration in milliseconds, adjust as needed
+  }
+
   toggleWarningToast() {
     const toastWarning = document.getElementById('toast-warning');
     // Clear existing timeout if there is one
@@ -480,6 +499,17 @@ export class StepperComponent implements OnInit {
     // Hide the toast
     document.getElementById('toast-success')?.classList.add('hidden');
   }
+
+  closeToastSubmited() {
+    // Clear the timeout if there is one
+    if (this.timeoutId) {
+      clearTimeout(this.timeoutId);
+    }
+
+    // Hide the toast
+    document.getElementById('toast-submited')?.classList.add('hidden');
+  }
+
 
   closeDangerToast() {
     const toastDanger = document.getElementById('toast-danger');

@@ -1,12 +1,16 @@
 <form class="" [formGroup]="formGroup1">
   <div class="mb-5">
-    <h1 class="text-3xl mb-5 font-bold">Choix du modèle d'étiquette</h1>
-    <p class="mb-2">Bienvenu dans notre générateur d’étiquette pour le système Autonome de OCH Planner. Ces quelques questions vont nous permettre de créer les différents modèles d’étiquettes qui seront incluses dans l’imprimante. Il vous sera possible de passer d’un modèle à l’autre très facilement. Tout au long de ce formulaire, vous pourrai voir la liste des épreuves dans le bas de votre écran. Nous vous enverrons par courriel , avant l’expédition, une photo des épreuves incluses.</p>
-    <p>Prenez le temps de visionner le court vidéo suivant pour voir comment le système fonctionne.</p>
+    <h1 class="text-3xl mb-5 font-bold">Choix du modèle d'étiquettes</h1>
+    <p class="mb-2">
+      Bienvenue dans notre générateur d’étiquettes pour le système Autonome de OCH Planner. Ces quelques questions vont nous permettre de créer les différents modèles d’étiquettes qui seront incluses dans l’imprimante. Il vous sera possible de passer d’un modèle à l’autre très facilement. Tout au long de ce formulaire, vous pourrez voir la liste des épreuves dans le bas de votre écran. Nous vous enverrons par courriel , avant l’expédition, une photo des épreuves incluses.
+    </p>
+    <p>
+      Prenez le temps de visionner la courte vidéo suivante pour voir comment le système fonctionne.
+    </p>
   </div>
   <div class="mb-5">
     <a href="https://youtu.be/FoA4hiwV5qc" target="_blank">
-      <img src="/assets/images/Image1.png" alt="">
+      <img src="/assets/images/Image1.png" alt="" />
     </a>
   </div>
   <div class="mb-5">
@@ -20,22 +24,26 @@
       (change)="updateSelectTemplate()"
       required
     >
-      <option disabled value="">Choisissez un modèle d'étiquette</option>
+      <option disabled value="">Choisissez un modèle d'étiquettes</option>
       <option value="White">White</option>
       <option value="generique">Generic</option>
       <option value="april-324x324">April</option>
-      <option value="castrol">Castrol</option>
+      <option value="castrol-V2">Castrol</option>
       <option value="gulf_lub_express">Gulf lub express</option>
-      <option value="autocare">autocare</option>
-      <option value="autoplace">autoplace</option>
-      <option value="auto_value">auto value</option>
-      <option value="autopro">autopro</option>
-      <option value="gulf">gulf</option>
+      <option value="autocare">Autocare</option>
+      <option value="autoplace">Autoplace</option>
+      <option value="auto_value">Auto value</option>
+      <option value="autopro">Autopro</option>
+      <option value="gulf">Gulf</option>
       <option value="canadian_tire">Canadian tire</option>
       <option value="fountain_tire">Fountain tire</option>
       <option value="hyundai">Hyundai</option>
       <option value="Ford">Ford</option>
       <option value="B2B">Bumper to bumper</option>
+      <option value="Master-Mechanic">Master-Mechanic</option>
+      <option value="kaltire">Kaltire</option>
+      <option value="Integra">Integra</option>
+      <option value="Liqui-Moly">Liqui-Moly</option>
     </select>
   </div>
 </form>

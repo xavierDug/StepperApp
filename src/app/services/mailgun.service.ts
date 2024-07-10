@@ -83,7 +83,7 @@ export class MailgunService {
     const emailContent = this.prepareEmailContent();
 
     const formData = new FormData();
-    formData.append('to', 'xavierdugal2004@hotmail.com');
+    formData.append('to', 'robgemme@gmail.com');
     formData.append('subject', 'Sticker Generator');
     formData.append('body', emailContent);
 

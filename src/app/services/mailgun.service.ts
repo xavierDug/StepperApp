@@ -6,7 +6,7 @@ import { SharedService } from './shared.service';
   providedIn: 'root',
 })
 export class MailgunService {
-  private apiUrl = 'https://localhost:7076/api/email';
+  private apiUrl = 'https://ochgenerator.azurewebsites.net/api/email';
 
   constructor(private http: HttpClient, private shared: SharedService) {}
 
@@ -66,7 +66,8 @@ export class MailgunService {
               this.shared.inputEntretien === "true"
               ? 
               `${this.shared.inputAntiRouille === "true" ? `<p><strong>Formulaire Anti-rouille:</strong> Inclus</p>` : ''}
-               ${this.shared.inputLight === "true" ? `<p><strong>Formulaire rappel d’entretien:</strong> Inclus</p>` : ''}
+               ${this.shared.inputLight === "true" && this.shared.inputLightDate === "false" ? `<p><strong>Formulaire rappel d’entretien pas de date:</strong> Inclus</p>` : ''}
+               ${this.shared.inputLight === "true" && this.shared.inputLightDate === "true" ? `<p><strong>Formulaire rappel d’entretien avec date:</strong> Inclus (au ${this.shared.inputLightMonth} mois)</p>` : ''}
                ${this.shared.inputRetorq === "true" ? `<p><strong>Formulaire de rappel de serrage des roues:</strong> Inclus</p>` : ''}
                ${this.shared.inputCustom === "true" ? `<p><strong>Formulaire de message personnalisé:</strong> Inclus</p>` : ''}
                ${this.shared.inputEntretien === "true" ? `<p><strong>Formulaire pour les entretiens effectués:</strong> Inclus</p>` : ''}`
@@ -81,12 +82,29 @@ export class MailgunService {
   sendEmail() {
     const emailContent = this.prepareEmailContent();
 
-    const emailRequest = {
-      to: 'xavierdugal2004@hotmail.com',
-      subject: 'Sticker Generator',
-      body: emailContent,
-    };
+    const formData = new FormData();
+    formData.append('to', 'xavierdugal2004@hotmail.com');
+    formData.append('subject', 'Sticker Generator');
+    formData.append('body', emailContent);
 
-    return this.http.post(`${this.apiUrl}/send`, emailRequest);
+    if (this.shared.selectedImageUrl) {
+      const blob = this.dataURItoBlob(this.shared.selectedImageUrl as string);
+      formData.append('attachment', blob, 'uploaded-image.png');
+    }
+
+    return this.http.post(`${this.apiUrl}/send`, formData);
+  }
+
+  private dataURItoBlob(dataURI: string): Blob {
+    const byteString = atob(dataURI.split(',')[1]);
+    const mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+
+    const ab = new ArrayBuffer(byteString.length);
+    const ia = new Uint8Array(ab);
+    for (let i = 0; i < byteString.length; i++) {
+      ia[i] = byteString.charCodeAt(i);
+    }
+
+    return new Blob([ab], { type: mimeString });
   }
 }

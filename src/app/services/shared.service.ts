@@ -49,6 +49,13 @@ export class SharedService {
   inputFirstname: string = '';
   inputTel: string = '';
 
+  nomRep: string = '';
+  emailRep: string = '';
+  telRep: string = '';
+
+
+  showRep: boolean = true;
+
   constructor() {}
   
 }

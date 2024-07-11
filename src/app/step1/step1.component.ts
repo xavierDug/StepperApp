@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { SharedService } from '../services/shared.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-step1',
@@ -12,9 +13,12 @@ export class Step1Component implements OnInit {
 
   showTooltipVisible: boolean = false;
 
+  showSelect: boolean = true;
+
   constructor(
     private formBuilder: FormBuilder,
-    private shared: SharedService
+    private shared: SharedService,
+    private route: ActivatedRoute
   ) {}
 
   get currentStep() {
@@ -28,6 +32,16 @@ export class Step1Component implements OnInit {
   ngOnInit() {
     this.formGroup1 = this.formBuilder.group({
       inputSelect: [this.shared.inputSelect || ''],
+    });
+
+    this.route.url.subscribe(url => {
+      // Check if the current route is '/april'
+      const isAprilRoute = url.toString().includes('april');
+      if (isAprilRoute) {
+        // Hide the select and set the inputSelect value
+        this.showSelect = false;
+        this.shared.inputSelect = 'april-324x324';
+      }
     });
   }
 

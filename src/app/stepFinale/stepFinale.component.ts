@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { SharedService } from '../services/shared.service';
 import { MailgunService } from '../services/mailgun.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-stepFinale',
@@ -13,7 +14,11 @@ export class StepFinaleComponent implements OnInit {
 
   showTooltipVisible: boolean = false;
 
-  constructor(private formBuilder: FormBuilder, private shared: SharedService, private mailgun: MailgunService) { }
+  constructor(private formBuilder: FormBuilder, private shared: SharedService, private mailgun: MailgunService, private route: ActivatedRoute) { }
+
+  get showRep() {
+    return this.shared.showRep;
+  }
 
   get inputMessage() {
     return this.shared.inputMessage;
@@ -35,12 +40,36 @@ export class StepFinaleComponent implements OnInit {
     return this.shared.inputTel;
   }
 
+  get nomRep() {
+    return this.shared.nomRep;
+  }
+
+  get emailRep() {
+    return this.shared.emailRep;
+  }
+
+  get telRep() {
+    return this.shared.telRep;
+  }
+
   ngOnInit() {
     this.formGroupFinale = this.formBuilder.group({
       inputEmail: [''],
       inputFirstname: [''],
       inputMessage: [''],
-      inputTel: ['']
+      inputTel: [''],
+      nomRep: [''],
+      emailRep: [''],
+      telRep: [''],
+    });
+
+    this.route.url.subscribe(url => {
+      // Check if the current route is '/april'
+      const isAprilRoute = url.toString().includes('april');
+      if (isAprilRoute) {
+        // Hide the select and set the inputSelect value
+        this.shared.showRep = false;
+      }
     });
   }
 
@@ -49,6 +78,9 @@ export class StepFinaleComponent implements OnInit {
     this.shared.inputFirstname = this.formGroupFinale.get('inputFirstname')?.value;
     this.shared.inputMessage = this.formGroupFinale.get('inputMessage')?.value;
     this.shared.inputTel = this.formGroupFinale.get('inputTel')?.value;
+    this.shared.nomRep = this.formGroupFinale.get('nomRep')?.value;
+    this.shared.emailRep = this.formGroupFinale.get('emailRep')?.value;
+    this.shared.telRep = this.formGroupFinale.get('telRep')?.value;
   }
 
   onFileSelected(event: Event): void {

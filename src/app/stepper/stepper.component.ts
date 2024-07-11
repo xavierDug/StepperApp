@@ -109,6 +109,18 @@ export class StepperComponent implements OnInit {
     return this.shared.inputTel;
   }
 
+  get nomRep() {
+    return this.shared.nomRep;
+  }
+
+  get emailRep() {
+    return this.shared.emailRep;
+  }
+
+  get telRep() {
+    return this.shared.telRep;
+  }
+
   ngOnInit() {
   }
 
@@ -383,7 +395,11 @@ export class StepperComponent implements OnInit {
       case 9:
         return this.inputEntretien;
       case 10:
-        return this.inputEmail && this.inputFirstname && this.inputTel;
+        if(!this.shared.showRep) {
+          return this.inputEmail && this.inputFirstname && this.inputTel && this.nomRep && this.emailRep && this.telRep;
+        } else {
+          return this.inputEmail && this.inputFirstname && this.inputTel;
+        }
       default:
         return true;
     }

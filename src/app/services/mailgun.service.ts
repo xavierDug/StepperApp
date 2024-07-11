@@ -31,9 +31,9 @@ export class MailgunService {
                 <p><strong>Phone:</strong> ${this.shared.inputTel}</p>
                 <p><strong>Message:</strong> ${this.shared.inputMessage}</p>
                 <hr>
-                ${this.shared.showRep ? `<p><strong>Nom du REPRÉSENTANT:</strong> ${this.shared.nomRep}</p>` : ''}
-                ${this.shared.showRep ? `<p><strong>Courriel du REPRÉSENTANT:</strong> ${this.shared.emailRep}</p>` : ''}
-                ${this.shared.showRep ? `<p><strong>Téléphone du REPRÉSENTANT:</strong> ${this.shared.telRep}</p>` : ''}
+                ${!this.shared.showRep ? `<p><strong>Nom du REPRÉSENTANT:</strong> ${this.shared.nomRep}</p>` : ''}
+                ${!this.shared.showRep ? `<p><strong>Courriel du REPRÉSENTANT:</strong> ${this.shared.emailRep}</p>` : ''}
+                ${!this.shared.showRep ? `<p><strong>Téléphone du REPRÉSENTANT:</strong> ${this.shared.telRep}</p>` : ''}
           </div>
           <div style="padding:20px;">
             <h1>Sticker choisit:</h1>
@@ -89,7 +89,7 @@ export class MailgunService {
     const emailContent = this.prepareEmailContent();
 
     const formData = new FormData();
-    formData.append('to', 'xavierdugal2004@hotmail.com');
+    formData.append('to', 'robgemme@gmail.com');
     formData.append('subject', 'Sticker Generator');
     formData.append('body', emailContent);
 

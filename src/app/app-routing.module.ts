@@ -5,8 +5,8 @@ import { StepperComponent } from './stepper/stepper.component';
 const routes: Routes = [
   { path: '', component: StepperComponent }, // Default route
   { path: 'april', component: StepperComponent }, // Route for /april
-  { path: 'valvoline', component: StepperComponent }, // Route for /valvoline
   { path: 'castrol', component: StepperComponent }, // Route for /castrol
+  { path: 'testvalv', component: StepperComponent }, // Route for /valvoline
 ];
 
 @NgModule({

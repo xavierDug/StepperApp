@@ -66,7 +66,9 @@ export class StepFinaleComponent implements OnInit {
     this.route.url.subscribe(url => {
       // Check if the current route is '/april'
       const isAprilRoute = url.toString().includes('april');
-      if (isAprilRoute) {
+      const isValvolineRoute = url.toString().includes('valvoline');
+      const isCastrolRoute = url.toString().includes('castrol');
+      if (isAprilRoute || isValvolineRoute || isCastrolRoute) {
         // Hide the select and set the inputSelect value
         this.shared.showRep = false;
       }

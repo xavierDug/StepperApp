@@ -37,10 +37,20 @@ export class Step1Component implements OnInit {
     this.route.url.subscribe(url => {
       // Check if the current route is '/april'
       const isAprilRoute = url.toString().includes('april');
+      const isValvolineRoute = url.toString().includes('valvoline');
+      const isCastrolRoute = url.toString().includes('castrol');
       if (isAprilRoute) {
         // Hide the select and set the inputSelect value
         this.showSelect = false;
         this.shared.inputSelect = 'april-324x324';
+      } if (isValvolineRoute) {
+        // Hide the select and set the inputSelect value
+        this.showSelect = false;
+        this.shared.inputSelect = 'Valvoline';
+      } if (isCastrolRoute) {
+        // Hide the select and set the inputSelect value
+        this.showSelect = false;
+        this.shared.inputSelect = 'castrol-V2';
       }
     });
   }

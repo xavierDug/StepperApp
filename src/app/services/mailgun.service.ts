@@ -10,7 +10,11 @@ export class MailgunService {
   private apiUrl = 'https://ochgenerator.azurewebsites.net/api/email';
   showContent: boolean = false;
 
-  constructor(private http: HttpClient, private shared: SharedService, private route: ActivatedRoute) {}
+  constructor(
+    private http: HttpClient,
+    private shared: SharedService,
+    private route: ActivatedRoute
+  ) {}
 
   get stickerArray() {
     return this.shared.stickerArray;
@@ -30,58 +34,133 @@ export class MailgunService {
                 <p><strong>Email:</strong> ${this.shared.inputEmail}</p>
                 <p><strong>Phone:</strong> ${this.shared.inputTel}</p>
                 <p><strong>Message:</strong> ${this.shared.inputMessage}</p>
+                ${
+                  this.shared.isWeb === 'true'
+                    ? `<h2><strong>Choix du système:</strong> AUOTONOME</h2>`
+                    : ''
+                }
+                ${
+                  this.shared.isWeb === 'false'
+                    ? `<h2><strong>Choix du système:</strong> WEB</h2>`
+                    : ''
+                }
                 <hr>
-                ${!this.shared.showRep ? `<p><strong>Nom du REPRÉSENTANT:</strong> ${this.shared.nomRep}</p>` : ''}
-                ${!this.shared.showRep ? `<p><strong>Courriel du REPRÉSENTANT:</strong> ${this.shared.emailRep}</p>` : ''}
-                ${!this.shared.showRep ? `<p><strong>Téléphone du REPRÉSENTANT:</strong> ${this.shared.telRep}</p>` : ''}
+                ${
+                  !this.shared.showRep
+                    ? `<p><strong>Nom du REPRÉSENTANT:</strong> ${this.shared.nomRep}</p>`
+                    : ''
+                }
+                ${
+                  !this.shared.showRep
+                    ? `<p><strong>Courriel du REPRÉSENTANT:</strong> ${this.shared.emailRep}</p>`
+                    : ''
+                }
+                ${
+                  !this.shared.showRep
+                    ? `<p><strong>Téléphone du REPRÉSENTANT:</strong> ${this.shared.telRep}</p>`
+                    : ''
+                }
           </div>
           <div style="padding:20px;">
             <h1>Sticker choisit:</h1>
-            <img src="https://ochplanner3.blob.core.windows.net/sticker-generator/${this.shared.inputSelect}.png" style="height: 200px; display: block; margin: auto;">
+            <img src="https://ochplanner3.blob.core.windows.net/sticker-generator/${
+              this.shared.inputSelect
+            }.png" style="height: 200px; display: block; margin: auto;">
             <h2>Info client:</h2>
             <p><strong>Nombre de lignes:</strong> ${this.shared.nbrLines}</p>
             <p><strong>Nom du garage:</strong> ${this.shared.inputText}</p>
             <p><strong>Téléphone:</strong> ${this.shared.telText}</p>
-            ${this.shared.addressText ? `<p><strong>Adresse:</strong> ${this.shared.addressText}</p>` : ''}
+            ${
+              this.shared.addressText
+                ? `<p><strong>Adresse:</strong> ${this.shared.addressText}</p>`
+                : ''
+            }
             <hr>
             <h2>Grade d'huile et dates:</h2>
-            ${this.shared.isOil === "true" ? `<p><strong>Grade/Type d'huile:</strong> Inclus</p>` : ''}
+            ${
+              this.shared.isOil === 'true' && this.shared.isWeb === 'true'
+                ? `<p><strong>Grade/Type d'huile:</strong> Inclus</p>`
+                : ''
+            }
   `;
 
     this.stickerArray.forEach((item) => {
-      if (item.inputSelect) {
+      if (item.inputSelect && this.shared.isWeb === 'true') {
         emailContent += `
           
-            ${item.inputDateRadio === "isDateNow" ? `<p><strong>Date inscrite sur l’étiquette:</strong> DATE de L’ENTRETIEN</p>` : ''}
-            ${item.inputNextDate === "manual" ? `<p><strong>Date inscrite sur l’étiquette:</strong> Prochaine date manuel</p>` : ''}
-            ${item.inputNextDate === "auto" ? `<p><strong>Date inscrite sur l’étiquette:</strong> Prochaine date automatique au ${item.inputNbrMonths} mois</p>` : ''}
-            ${item.inputDateRadio === "isNoDate" ? `<p><strong>Date inscrite sur l’étiquette:</strong> Pas de date</p>` : ''}
+            ${
+              item.inputDateRadio === 'isDateNow'
+                ? `<p><strong>Date inscrite sur l’étiquette:</strong> DATE de L’ENTRETIEN</p>`
+                : ''
+            }
+            ${
+              item.inputNextDate === 'manual'
+                ? `<p><strong>Date inscrite sur l’étiquette:</strong> Prochaine date manuel</p>`
+                : ''
+            }
+            ${
+              item.inputNextDate === 'auto'
+                ? `<p><strong>Date inscrite sur l’étiquette:</strong> Prochaine date automatique au ${item.inputNbrMonths} mois</p>`
+                : ''
+            }
+            ${
+              item.inputDateRadio === 'isNoDate'
+                ? `<p><strong>Date inscrite sur l’étiquette:</strong> Pas de date</p>`
+                : ''
+            }
             
         `;
       }
     });
 
-    emailContent += `
+    if (this.shared.isWeb === 'true') {
+      emailContent += `
       <hr>
-            <h2>Formulaire inclus:</h2>
+            ${this.shared.isWeb === 'true' ? `<h2>Formulaire inclus:</h2>` : ''}
             ${
-              this.shared.inputAntiRouille === "true" || 
-              this.shared.inputLight === "true" || 
-              this.shared.inputRetorq === "true" || 
-              this.shared.inputCustom === "true" || 
-              this.shared.inputEntretien === "true"
-              ? 
-              `${this.shared.inputAntiRouille === "true" ? `<p><strong>Formulaire Anti-rouille:</strong> Inclus</p>` : ''}
-               ${this.shared.inputLight === "true" && this.shared.inputLightDate === "false" ? `<p><strong>Formulaire rappel d’entretien pas de date:</strong> Inclus</p>` : ''}
-               ${this.shared.inputLight === "true" && this.shared.inputLightDate === "true" ? `<p><strong>Formulaire rappel d’entretien avec date:</strong> Inclus (au ${this.shared.inputLightMonth} mois)</p>` : ''}
-               ${this.shared.inputRetorq === "true" ? `<p><strong>Formulaire de rappel de serrage des roues:</strong> Inclus</p>` : ''}
-               ${this.shared.inputCustom === "true" ? `<p><strong>Formulaire de message personnalisé:</strong> Inclus</p>` : ''}
-               ${this.shared.inputEntretien === "true" ? `<p><strong>Formulaire pour les entretiens effectués:</strong> Inclus</p>` : ''}`
-              : 'Aucun'
-          }
+              this.shared.inputAntiRouille === 'true' ||
+              this.shared.inputLight === 'true' ||
+              this.shared.inputRetorq === 'true' ||
+              this.shared.inputCustom === 'true' ||
+              this.shared.inputEntretien === 'true'
+                ? `${
+                    this.shared.inputAntiRouille === 'true'
+                      ? `<p><strong>Formulaire Anti-rouille:</strong> Inclus</p>`
+                      : ''
+                  }
+               ${
+                 this.shared.inputLight === 'true' &&
+                 this.shared.inputLightDate === 'false'
+                   ? `<p><strong>Formulaire rappel d’entretien pas de date:</strong> Inclus</p>`
+                   : ''
+               }
+               ${
+                 this.shared.inputLight === 'true' &&
+                 this.shared.inputLightDate === 'true'
+                   ? `<p><strong>Formulaire rappel d’entretien avec date:</strong> Inclus (au ${this.shared.inputLightMonth} mois)</p>`
+                   : ''
+               }
+               ${
+                 this.shared.inputRetorq === 'true'
+                   ? `<p><strong>Formulaire de rappel de serrage des roues:</strong> Inclus</p>`
+                   : ''
+               }
+               ${
+                 this.shared.inputCustom === 'true'
+                   ? `<p><strong>Formulaire de message personnalisé:</strong> Inclus</p>`
+                   : ''
+               }
+               ${
+                 this.shared.inputEntretien === 'true'
+                   ? `<p><strong>Formulaire pour les entretiens effectués:</strong> Inclus</p>`
+                   : ''
+               }`
+                : 'Aucun'
+            }
           </div>
     </div>
     `;
+    }
     return emailContent;
   }
 
@@ -89,7 +168,7 @@ export class MailgunService {
     const emailContent = this.prepareEmailContent();
 
     const formData = new FormData();
-    formData.append('to', 'robgemme@gmail.com');
+    formData.append('to', 'xavierdugal2004@hotmail.com');
     formData.append('subject', 'Sticker Generator');
     formData.append('body', emailContent);
 

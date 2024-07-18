@@ -372,7 +372,10 @@ export class StepperComponent implements OnInit {
           return this.inputText && this.telText && this.addressText; // addressText required.
         }
       case 4:
-        return this.isOil;
+        if(this.shared.isWeb == 'true') {
+          return this.isOil;
+        }
+        return true;
       case 5:
         if (this.inputDateRadio === 'isDateNext') {
           if (this.inputNextDate === 'auto') {
@@ -399,7 +402,7 @@ export class StepperComponent implements OnInit {
         return this.inputCustom;
       case 10:
         return this.inputEntretien;
-      case 11:
+      case this.steps.length || this.stepsWeb.length:
         if(!this.shared.showRep) {
           return this.inputEmail && this.inputFirstname && this.inputTel && this.nomRep && this.emailRep && this.telRep;
         } else {

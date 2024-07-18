@@ -6,6 +6,7 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class SharedService {
   stickerArray: any[] = [];
+  webStickerArray: any[] = [];
   currentSteps: number[] = [];
   currentStep = 1;
 
@@ -61,6 +62,7 @@ export class SharedService {
 
   showRep: boolean = true;
 
-  constructor() {}
+  constructor() {
+  }
   
 }

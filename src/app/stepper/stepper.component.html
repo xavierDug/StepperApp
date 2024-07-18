@@ -320,15 +320,16 @@
           </div>
         </ol>
 
+        <h2 class="text-xl font-semibold mb-4 text-gray-300">
+          Étape {{ currentStep }}
+        </h2>
+
         <div>
           <!--Steps for web-->
           <div *ngIf="isWeb == 'false'">
             <div class="" *ngFor="let step of stepsWeb; let i = index">
               <div *ngIf="currentStep === i + 1">
-                <h2 class="text-xl font-semibold mb-4 text-gray-300">
-                  Étape {{ i + 1 }} web
-                </h2>
-                <div class="grid grid-cols-2 gap-2">
+                <div [ngClass]="{ 'grid grid-cols-2 gap-2': currentStep !== 4, 'grid-cols-1': currentStep === 4 }">
                   <!-- Forms -->
 
                   <!-- Form 1 -->
@@ -358,7 +359,7 @@
 
                   <!--Sticker visualizer-->
                   <div
-                    *ngIf="currentStep !== steps.length && currentStep > 1"
+                    *ngIf="currentStep !== stepsWeb.length && currentStep > 1 && currentStep !== 4"
                     class="flex justify-end"
                   >
                     <div class="relative">
@@ -405,9 +406,6 @@
           <div *ngIf="isWeb == 'true'">
             <div class="" *ngFor="let step of steps; let i = index">
               <div *ngIf="currentStep === i + 1">
-                <h2 class="text-xl font-semibold mb-4 text-gray-300">
-                  Étape {{ i + 1 }} autonome
-                </h2>
                 <div class="grid grid-cols-2 gap-2">
                   <!-- Forms -->
 
@@ -602,11 +600,11 @@
         </div>
       </div>
 
-      <h1 *ngIf="stickerArray.length > 0" class="text-3xl mb-5 mt-5 font-bold">
+      <h1 *ngIf="stickerArray.length > 0 && isWeb == 'true'" class="text-3xl mb-5 mt-5 font-bold">
         Liste des formulaires inclus dans votre imprimante:
       </h1>
       <!--Sticker array-->
-      <div class="grid md:grid-cols-3 grid-cols-2 gap-4">
+      <div *ngIf="stickerArray.length > 0 && isWeb == 'true'" class="grid md:grid-cols-3 grid-cols-2 gap-4">
         <div
           *ngFor="let item of stickerArray; let i = index"
           class="relative flex justify-center"

@@ -1,0 +1,88 @@
+<form action="" [formGroup]="formGroupY">
+  <div>
+    <h1 class="text-3xl mb-5 font-bold">Choix du système</h1>
+    <p class="text-lg mb-5">
+      Vous avez l'option d'utiliser le système OCH Planner de 2 façons:
+    </p>
+    <ul class="justify-between grid grid-cols-2 space-x-4">
+      <li>
+        <p class="text-lg mb-5">
+          1. Le système OCH Planner Autonome. Si vous n'avez pas d'ordinateurs
+          ou d'accès internet à votre atelier, cette option est pour vous! Un
+          clavier résistant branché dans l'imprimante OCH Planner équipée d'un
+          petit écran LCD permet de faire rapidement les étiquettes de rappel
+          d'entretien. La vidéo suivante vous permet de voir le fonctionnement
+          de ce système. (lien actuel pour le systeme autonome.)
+        </p>
+      </li>
+      <li>
+        <p class="text-lg mb-5">
+          2. Le Système OCH Planner WEB. Avec ce système, l'imprimante sera
+          branchée dans un ordinateur ou partagée sur votre réseau et vous
+          utiliserez une application simple et rapide pour faire les étiquettes
+          de rappel d'entretien. La vidéo suivante vous montre les détails du
+          fonctionnement de cette option.
+          <a href="https://youtu.be/aTavv6xuoVI" class="underline font-bold"
+            >https://youtu.be/aTavv6xuoVI</a
+          >
+        </p>
+      </li>
+    </ul>
+  </div>
+  <div class="mb-5">
+    <ul class="grid w-full gap-6 md:grid-cols-2">
+      <li>
+        <input
+          type="radio"
+          [checked]="isWeb === 'true' ? true : false"
+          id="normalbranch"
+          name="normal"
+          value="true"
+          class="hidden peer"
+          (change)="updateIsWeb($event)"
+          required
+        />
+        <label
+          for="normalbranch"
+          class="flex flex-col items-center w-full h-full p-5 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer peer-checked:border-blue-800 peer-checked:border-4 peer-checked:text-blue-800 hover:text-gray-600 hover:bg-gray-100"
+        >
+          <i class="fa-solid fa-rectangle-list text-xl m-2"></i>
+          <div class="block">
+            <div class="w-full text-lg font-semibold">
+              CHOISIR MODE AUTONOME
+            </div>
+          </div>
+        </label>
+      </li>
+      <li>
+        <input
+          type="radio"
+          [checked]="isWeb === 'false' ? true : false"
+          id="webbranch"
+          name="web"
+          value="false"
+          class="hidden peer"
+          (change)="updateIsWeb($event)"
+        />
+        <label
+          for="webbranch"
+          class="flex flex-col items-center w-full h-full p-5 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer peer-checked:border-blue-800 peer-checked:border-4 peer-checked:text-blue-800 hover:text-gray-600 hover:bg-gray-100"
+        >
+          <i class="fa-solid fa-globe text-xl m-2"></i>
+          <div class="block">
+            <div class="w-full text-lg font-semibold">
+              CHOISIR APPLICATION WEB
+            </div>
+          </div>
+        </label>
+      </li>
+    </ul>
+  </div>
+  <!--<div>
+    <p class="text-xl">Si vous
+      dites oui a cette option, quand vous allez faire une étiquettes avec l’imprimante, vous
+      aurai une question ou il vous sera possible d’inscrire le grade voule sur l’étiquette. CLIQUEZ ICI
+      pour montrer sequence video qui montre comment?</p>
+      <p>[video]</p>
+  </div>-->
+</form>

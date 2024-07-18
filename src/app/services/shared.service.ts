@@ -6,7 +6,12 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class SharedService {
   stickerArray: any[] = [];
+  currentSteps: number[] = [];
   currentStep = 1;
+
+  //Y branch
+  isWeb: string = '';
+
   // this is the sticker template
   inputSelect: string = '';
   // this is the image url

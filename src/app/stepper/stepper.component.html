@@ -10,368 +10,594 @@
       <div class="w-full mx-auto mt-10">
         <!-- In your component.html -->
         <ol class="flex items-center w-full mb-10">
-          <li
-            *ngFor="let step of steps; let i = index"
-            class="flex w-full items-center text-black after:content-[''] after:w-full after:h-1 after:border-b after:border-4 after:inline-block"
-            [ngClass]="{
-              'after:border-blue-900': currentStep > i + 1,
-              'after:border-gray-200': currentStep <= i + 1,
-              'after:content-[\'\'] after:w-full after:h-1 after:border-b after:border-4 after:inline-block':
-                i !== steps.length - 1
-            }"
-          >
-            <span
-              *ngIf="currentStep === i + 1"
-              class="text-white flex items-center justify-center w-10 h-10 rounded-full lg:h-12 lg:w-12 bg-blue-900 shrink-0"
+          <!--icons for autonome-->
+          <div *ngIf="isWeb == 'true'" class="flex items-center w-full">
+            <li
+              *ngFor="let step of steps; let i = index"
+              class="flex w-full items-center text-black after:content-[''] after:w-full after:h-1 after:border-b after:border-4 after:inline-block"
+              [ngClass]="{
+                'after:border-blue-900': currentStep > i + 1,
+                'after:border-gray-200': currentStep <= i + 1,
+                'after:content-[\'\'] after:w-full after:h-1 after:border-b after:border-4 after:inline-block':
+                  i !== steps.length - 1
+              }"
             >
-              <!-- Current Step SVG -->
-              <svg
-                *ngIf="steps[i] == 1"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                class="size-6"
+              <span
+                *ngIf="currentStep === i + 1"
+                class="text-white flex items-center justify-center w-10 h-10 rounded-full lg:h-12 lg:w-12 bg-blue-900 shrink-0"
               >
-                <path
-                  fill-rule="evenodd"
-                  d="M1.5 7.125c0-1.036.84-1.875 1.875-1.875h6c1.036 0 1.875.84 1.875 1.875v3.75c0 1.036-.84 1.875-1.875 1.875h-6A1.875 1.875 0 0 1 1.5 10.875v-3.75Zm12 1.5c0-1.036.84-1.875 1.875-1.875h5.25c1.035 0 1.875.84 1.875 1.875v8.25c0 1.035-.84 1.875-1.875 1.875h-5.25a1.875 1.875 0 0 1-1.875-1.875v-8.25ZM3 16.125c0-1.036.84-1.875 1.875-1.875h5.25c1.036 0 1.875.84 1.875 1.875v2.25c0 1.035-.84 1.875-1.875 1.875h-5.25A1.875 1.875 0 0 1 3 18.375v-2.25Z"
-                  clip-rule="evenodd"
-                />
-              </svg>
-              <svg
-                *ngIf="steps[i] == 2"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                class="size-6"
+                <!-- Current Step SVG -->
+                <i *ngIf="steps[i] == 1" class="fa-solid fa-object-ungroup"></i>
+                <svg
+                  *ngIf="steps[i] == 2"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  class="size-6"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M1.5 7.125c0-1.036.84-1.875 1.875-1.875h6c1.036 0 1.875.84 1.875 1.875v3.75c0 1.036-.84 1.875-1.875 1.875h-6A1.875 1.875 0 0 1 1.5 10.875v-3.75Zm12 1.5c0-1.036.84-1.875 1.875-1.875h5.25c1.035 0 1.875.84 1.875 1.875v8.25c0 1.035-.84 1.875-1.875 1.875h-5.25a1.875 1.875 0 0 1-1.875-1.875v-8.25ZM3 16.125c0-1.036.84-1.875 1.875-1.875h5.25c1.036 0 1.875.84 1.875 1.875v2.25c0 1.035-.84 1.875-1.875 1.875h-5.25A1.875 1.875 0 0 1 3 18.375v-2.25Z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+                <svg
+                  *ngIf="steps[i] == 3"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  class="size-6"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M5.625 1.5c-1.036 0-1.875.84-1.875 1.875v17.25c0 1.035.84 1.875 1.875 1.875h12.75c1.035 0 1.875-.84 1.875-1.875V12.75A3.75 3.75 0 0 0 16.5 9h-1.875a1.875 1.875 0 0 1-1.875-1.875V5.25A3.75 3.75 0 0 0 9 1.5H5.625ZM7.5 15a.75.75 0 0 1 .75-.75h7.5a.75.75 0 0 1 0 1.5h-7.5A.75.75 0 0 1 7.5 15Zm.75 2.25a.75.75 0 0 0 0 1.5H12a.75.75 0 0 0 0-1.5H8.25Z"
+                    clip-rule="evenodd"
+                  />
+                  <path
+                    d="M12.971 1.816A5.23 5.23 0 0 1 14.25 5.25v1.875c0 .207.168.375.375.375H16.5a5.23 5.23 0 0 1 3.434 1.279 9.768 9.768 0 0 0-6.963-6.963Z"
+                  />
+                </svg>
+                <i
+                  *ngIf="steps[i] == 4"
+                  class="fa-solid fa-oil-can text-xl"
+                ></i>
+                <svg
+                  *ngIf="steps[i] == 5"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  class="size-6"
+                >
+                  <path
+                    d="M12.75 12.75a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM7.5 15.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM8.25 17.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM9.75 15.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM10.5 17.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM12 15.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM12.75 17.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM14.25 15.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM15 17.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM16.5 15.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM15 12.75a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM16.5 13.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Z"
+                  />
+                  <path
+                    fill-rule="evenodd"
+                    d="M6.75 2.25A.75.75 0 0 1 7.5 3v1.5h9V3A.75.75 0 0 1 18 3v1.5h.75a3 3 0 0 1 3 3v11.25a3 3 0 0 1-3 3H5.25a3 3 0 0 1-3-3V7.5a3 3 0 0 1 3-3H6V3a.75.75 0 0 1 .75-.75Zm13.5 9a1.5 1.5 0 0 0-1.5-1.5H5.25a1.5 1.5 0 0 0-1.5 1.5v7.5a1.5 1.5 0 0 0 1.5 1.5h13.5a1.5 1.5 0 0 0 1.5-1.5v-7.5Z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+                <i
+                  *ngIf="steps[i] == 6"
+                  class="fa-solid fa-gauge-high text-xl"
+                ></i>
+                <i
+                  *ngIf="steps[i] == 7"
+                  class="fa-solid fa-lightbulb text-xl"
+                ></i>
+                <i
+                  *ngIf="steps[i] == 8"
+                  class="fa-solid fa-truck-monster text-xl"
+                ></i>
+                <i
+                  *ngIf="steps[i] == 9"
+                  class="fa-solid fa-pen-to-square text=xl"
+                ></i>
+                <i
+                  *ngIf="steps[i] == 10"
+                  class="fa-solid fa-wrench text-xl"
+                ></i>
+                <i
+                  *ngIf="steps[i] == steps.length"
+                  class="fa-solid fa-flag-checkered text-xl"
+                ></i>
+              </span>
+              <span
+                *ngIf="currentStep > i + 1"
+                class="flex text-white items-center justify-center w-10 h-10 rounded-full lg:h-12 lg:w-12 bg-blue-900 shrink-0"
               >
-                <path
-                  fill-rule="evenodd"
-                  d="M5.625 1.5c-1.036 0-1.875.84-1.875 1.875v17.25c0 1.035.84 1.875 1.875 1.875h12.75c1.035 0 1.875-.84 1.875-1.875V12.75A3.75 3.75 0 0 0 16.5 9h-1.875a1.875 1.875 0 0 1-1.875-1.875V5.25A3.75 3.75 0 0 0 9 1.5H5.625ZM7.5 15a.75.75 0 0 1 .75-.75h7.5a.75.75 0 0 1 0 1.5h-7.5A.75.75 0 0 1 7.5 15Zm.75 2.25a.75.75 0 0 0 0 1.5H12a.75.75 0 0 0 0-1.5H8.25Z"
-                  clip-rule="evenodd"
-                />
-                <path
-                  d="M12.971 1.816A5.23 5.23 0 0 1 14.25 5.25v1.875c0 .207.168.375.375.375H16.5a5.23 5.23 0 0 1 3.434 1.279 9.768 9.768 0 0 0-6.963-6.963Z"
-                />
-              </svg>
-              <i *ngIf="steps[i] == 3" class="fa-solid fa-oil-can text-xl"></i>
-              <svg
-                *ngIf="steps[i] == 4"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                class="size-6"
+                <!-- Completed Step SVG -->
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  class="size-6"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M19.916 4.626a.75.75 0 0 1 .208 1.04l-9 13.5a.75.75 0 0 1-1.154.114l-6-6a.75.75 0 0 1 1.06-1.06l5.353 5.353 8.493-12.74a.75.75 0 0 1 1.04-.207Z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+              </span>
+              <span
+                *ngIf="currentStep < i + 1"
+                class="flex items-center justify-center w-10 h-10 rounded-full lg:h-12 lg:w-12 bg-gray-200 shrink-0"
               >
-                <path
-                  d="M12.75 12.75a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM7.5 15.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM8.25 17.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM9.75 15.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM10.5 17.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM12 15.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM12.75 17.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM14.25 15.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM15 17.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM16.5 15.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM15 12.75a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM16.5 13.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Z"
-                />
-                <path
-                  fill-rule="evenodd"
-                  d="M6.75 2.25A.75.75 0 0 1 7.5 3v1.5h9V3A.75.75 0 0 1 18 3v1.5h.75a3 3 0 0 1 3 3v11.25a3 3 0 0 1-3 3H5.25a3 3 0 0 1-3-3V7.5a3 3 0 0 1 3-3H6V3a.75.75 0 0 1 .75-.75Zm13.5 9a1.5 1.5 0 0 0-1.5-1.5H5.25a1.5 1.5 0 0 0-1.5 1.5v7.5a1.5 1.5 0 0 0 1.5 1.5h13.5a1.5 1.5 0 0 0 1.5-1.5v-7.5Z"
-                  clip-rule="evenodd"
-                />
-              </svg>
-              <i
-                *ngIf="steps[i] == 5"
-                class="fa-solid fa-gauge-high text-xl"
-              ></i>
-              <i
-                *ngIf="steps[i] == 6"
-                class="fa-solid fa-lightbulb text-xl"
-              ></i>
-              <i
-                *ngIf="steps[i] == 7"
-                class="fa-solid fa-truck-monster text-xl"
-              ></i>
-              <i
-                *ngIf="steps[i] == 8"
-                class="fa-solid fa-pen-to-square text=xl"
-              ></i>
-              <i *ngIf="steps[i] == 9" class="fa-solid fa-wrench text-xl"></i>
-              <i
-                *ngIf="steps[i] == steps.length"
-                class="fa-solid fa-flag-checkered text-xl"
-              ></i>
-            </span>
-            <span
-              *ngIf="currentStep > i + 1"
-              class="flex text-white items-center justify-center w-10 h-10 rounded-full lg:h-12 lg:w-12 bg-blue-900 shrink-0"
+                <!-- Future Step SVG (can be the same as Completed Step SVG or different) -->
+                <svg
+                  *ngIf="steps[i] == 2"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  class="size-6"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M1.5 7.125c0-1.036.84-1.875 1.875-1.875h6c1.036 0 1.875.84 1.875 1.875v3.75c0 1.036-.84 1.875-1.875 1.875h-6A1.875 1.875 0 0 1 1.5 10.875v-3.75Zm12 1.5c0-1.036.84-1.875 1.875-1.875h5.25c1.035 0 1.875.84 1.875 1.875v8.25c0 1.035-.84 1.875-1.875 1.875h-5.25a1.875 1.875 0 0 1-1.875-1.875v-8.25ZM3 16.125c0-1.036.84-1.875 1.875-1.875h5.25c1.036 0 1.875.84 1.875 1.875v2.25c0 1.035-.84 1.875-1.875 1.875h-5.25A1.875 1.875 0 0 1 3 18.375v-2.25Z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+                <svg
+                  *ngIf="steps[i] == 3"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  class="size-6"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M5.625 1.5c-1.036 0-1.875.84-1.875 1.875v17.25c0 1.035.84 1.875 1.875 1.875h12.75c1.035 0 1.875-.84 1.875-1.875V12.75A3.75 3.75 0 0 0 16.5 9h-1.875a1.875 1.875 0 0 1-1.875-1.875V5.25A3.75 3.75 0 0 0 9 1.5H5.625ZM7.5 15a.75.75 0 0 1 .75-.75h7.5a.75.75 0 0 1 0 1.5h-7.5A.75.75 0 0 1 7.5 15Zm.75 2.25a.75.75 0 0 0 0 1.5H12a.75.75 0 0 0 0-1.5H8.25Z"
+                    clip-rule="evenodd"
+                  />
+                  <path
+                    d="M12.971 1.816A5.23 5.23 0 0 1 14.25 5.25v1.875c0 .207.168.375.375.375H16.5a5.23 5.23 0 0 1 3.434 1.279 9.768 9.768 0 0 0-6.963-6.963Z"
+                  />
+                </svg>
+                <i
+                  *ngIf="steps[i] == 4"
+                  class="fa-solid fa-oil-can text-xl"
+                ></i>
+                <svg
+                  *ngIf="steps[i] == 5"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  class="size-6"
+                >
+                  <path
+                    d="M12.75 12.75a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM7.5 15.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM8.25 17.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM9.75 15.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM10.5 17.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM12 15.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM12.75 17.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM14.25 15.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM15 17.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM16.5 15.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM15 12.75a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM16.5 13.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Z"
+                  />
+                  <path
+                    fill-rule="evenodd"
+                    d="M6.75 2.25A.75.75 0 0 1 7.5 3v1.5h9V3A.75.75 0 0 1 18 3v1.5h.75a3 3 0 0 1 3 3v11.25a3 3 0 0 1-3 3H5.25a3 3 0 0 1-3-3V7.5a3 3 0 0 1 3-3H6V3a.75.75 0 0 1 .75-.75Zm13.5 9a1.5 1.5 0 0 0-1.5-1.5H5.25a1.5 1.5 0 0 0-1.5 1.5v7.5a1.5 1.5 0 0 0 1.5 1.5h13.5a1.5 1.5 0 0 0 1.5-1.5v-7.5Z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+                <i
+                  *ngIf="steps[i] == 6"
+                  class="fa-solid fa-fill-drip text-xl"
+                ></i>
+                <i
+                  *ngIf="steps[i] == 7"
+                  class="fa-solid fa-lightbulb text-xl"
+                ></i>
+                <i
+                  *ngIf="steps[i] == 8"
+                  class="fa-solid fa-truck-monster text-xl"
+                ></i>
+                <i
+                  *ngIf="steps[i] == 9"
+                  class="fa-solid fa-pen-to-square text=xl"
+                ></i>
+                <i
+                  *ngIf="steps[i] == 10"
+                  class="fa-solid fa-wrench text-xl"
+                ></i>
+                <i
+                  *ngIf="steps[i] == steps.length"
+                  class="fa-solid fa-flag-checkered text-xl"
+                ></i>
+              </span>
+            </li>
+          </div>
+
+          <!--icons for web-->
+          <div *ngIf="isWeb == 'false'" class="flex items-center w-full">
+            <li
+              *ngFor="let step of stepsWeb; let i = index"
+              class="flex w-full items-center text-black after:content-[''] after:w-full after:h-1 after:border-b after:border-4 after:inline-block"
+              [ngClass]="{
+                'after:border-blue-900': currentStep > i + 1,
+                'after:border-gray-200': currentStep <= i + 1,
+                'after:content-[\'\'] after:w-full after:h-1 after:border-b after:border-4 after:inline-block':
+                  i !== stepsWeb.length - 1
+              }"
             >
-              <!-- Completed Step SVG -->
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                class="size-6"
+              <span
+                *ngIf="currentStep === i + 1"
+                class="text-white flex items-center justify-center w-10 h-10 rounded-full lg:h-12 lg:w-12 bg-blue-900 shrink-0"
               >
-                <path
-                  fill-rule="evenodd"
-                  d="M19.916 4.626a.75.75 0 0 1 .208 1.04l-9 13.5a.75.75 0 0 1-1.154.114l-6-6a.75.75 0 0 1 1.06-1.06l5.353 5.353 8.493-12.74a.75.75 0 0 1 1.04-.207Z"
-                  clip-rule="evenodd"
-                />
-              </svg>
-            </span>
-            <span
-              *ngIf="currentStep < i + 1"
-              class="flex items-center justify-center w-10 h-10 rounded-full lg:h-12 lg:w-12 bg-gray-200 shrink-0"
-            >
-              <!-- Future Step SVG (can be the same as Completed Step SVG or different) -->
-              <svg
-                *ngIf="steps[i] == 1"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                class="size-6"
+                <!-- Current Step SVG -->
+                <i
+                  *ngIf="stepsWeb[i] == 1"
+                  class="fa-solid fa-object-ungroup"
+                ></i>
+                <svg
+                  *ngIf="stepsWeb[i] == 2"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  class="size-6"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M1.5 7.125c0-1.036.84-1.875 1.875-1.875h6c1.036 0 1.875.84 1.875 1.875v3.75c0 1.036-.84 1.875-1.875 1.875h-6A1.875 1.875 0 0 1 1.5 10.875v-3.75Zm12 1.5c0-1.036.84-1.875 1.875-1.875h5.25c1.035 0 1.875.84 1.875 1.875v8.25c0 1.035-.84 1.875-1.875 1.875h-5.25a1.875 1.875 0 0 1-1.875-1.875v-8.25ZM3 16.125c0-1.036.84-1.875 1.875-1.875h5.25c1.036 0 1.875.84 1.875 1.875v2.25c0 1.035-.84 1.875-1.875 1.875h-5.25A1.875 1.875 0 0 1 3 18.375v-2.25Z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+                <svg
+                  *ngIf="stepsWeb[i] == 3"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  class="size-6"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M5.625 1.5c-1.036 0-1.875.84-1.875 1.875v17.25c0 1.035.84 1.875 1.875 1.875h12.75c1.035 0 1.875-.84 1.875-1.875V12.75A3.75 3.75 0 0 0 16.5 9h-1.875a1.875 1.875 0 0 1-1.875-1.875V5.25A3.75 3.75 0 0 0 9 1.5H5.625ZM7.5 15a.75.75 0 0 1 .75-.75h7.5a.75.75 0 0 1 0 1.5h-7.5A.75.75 0 0 1 7.5 15Zm.75 2.25a.75.75 0 0 0 0 1.5H12a.75.75 0 0 0 0-1.5H8.25Z"
+                    clip-rule="evenodd"
+                  />
+                  <path
+                    d="M12.971 1.816A5.23 5.23 0 0 1 14.25 5.25v1.875c0 .207.168.375.375.375H16.5a5.23 5.23 0 0 1 3.434 1.279 9.768 9.768 0 0 0-6.963-6.963Z"
+                  />
+                </svg>
+                <i *ngIf="stepsWeb[i] == 4" class="fa-solid fa-eye text-xl"></i>
+                <i
+                  *ngIf="stepsWeb[i] == stepsWeb.length"
+                  class="fa-solid fa-flag-checkered text-xl"
+                ></i>
+              </span>
+              <span
+                *ngIf="currentStep > i + 1"
+                class="flex text-white items-center justify-center w-10 h-10 rounded-full lg:h-12 lg:w-12 bg-blue-900 shrink-0"
               >
-                <path
-                  fill-rule="evenodd"
-                  d="M1.5 7.125c0-1.036.84-1.875 1.875-1.875h6c1.036 0 1.875.84 1.875 1.875v3.75c0 1.036-.84 1.875-1.875 1.875h-6A1.875 1.875 0 0 1 1.5 10.875v-3.75Zm12 1.5c0-1.036.84-1.875 1.875-1.875h5.25c1.035 0 1.875.84 1.875 1.875v8.25c0 1.035-.84 1.875-1.875 1.875h-5.25a1.875 1.875 0 0 1-1.875-1.875v-8.25ZM3 16.125c0-1.036.84-1.875 1.875-1.875h5.25c1.036 0 1.875.84 1.875 1.875v2.25c0 1.035-.84 1.875-1.875 1.875h-5.25A1.875 1.875 0 0 1 3 18.375v-2.25Z"
-                  clip-rule="evenodd"
-                />
-              </svg>
-              <svg
-                *ngIf="steps[i] == 2"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                class="size-6"
+                <!-- Completed Step SVG -->
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  class="size-6"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M19.916 4.626a.75.75 0 0 1 .208 1.04l-9 13.5a.75.75 0 0 1-1.154.114l-6-6a.75.75 0 0 1 1.06-1.06l5.353 5.353 8.493-12.74a.75.75 0 0 1 1.04-.207Z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+              </span>
+              <span
+                *ngIf="currentStep < i + 1"
+                class="flex items-center justify-center w-10 h-10 rounded-full lg:h-12 lg:w-12 bg-gray-200 shrink-0"
               >
-                <path
-                  fill-rule="evenodd"
-                  d="M5.625 1.5c-1.036 0-1.875.84-1.875 1.875v17.25c0 1.035.84 1.875 1.875 1.875h12.75c1.035 0 1.875-.84 1.875-1.875V12.75A3.75 3.75 0 0 0 16.5 9h-1.875a1.875 1.875 0 0 1-1.875-1.875V5.25A3.75 3.75 0 0 0 9 1.5H5.625ZM7.5 15a.75.75 0 0 1 .75-.75h7.5a.75.75 0 0 1 0 1.5h-7.5A.75.75 0 0 1 7.5 15Zm.75 2.25a.75.75 0 0 0 0 1.5H12a.75.75 0 0 0 0-1.5H8.25Z"
-                  clip-rule="evenodd"
-                />
-                <path
-                  d="M12.971 1.816A5.23 5.23 0 0 1 14.25 5.25v1.875c0 .207.168.375.375.375H16.5a5.23 5.23 0 0 1 3.434 1.279 9.768 9.768 0 0 0-6.963-6.963Z"
-                />
-              </svg>
-              <i *ngIf="steps[i] == 3" class="fa-solid fa-oil-can text-xl"></i>
-              <svg
-                *ngIf="steps[i] == 4"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                class="size-6"
-              >
-                <path
-                  d="M12.75 12.75a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM7.5 15.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM8.25 17.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM9.75 15.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM10.5 17.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM12 15.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM12.75 17.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM14.25 15.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM15 17.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM16.5 15.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM15 12.75a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM16.5 13.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Z"
-                />
-                <path
-                  fill-rule="evenodd"
-                  d="M6.75 2.25A.75.75 0 0 1 7.5 3v1.5h9V3A.75.75 0 0 1 18 3v1.5h.75a3 3 0 0 1 3 3v11.25a3 3 0 0 1-3 3H5.25a3 3 0 0 1-3-3V7.5a3 3 0 0 1 3-3H6V3a.75.75 0 0 1 .75-.75Zm13.5 9a1.5 1.5 0 0 0-1.5-1.5H5.25a1.5 1.5 0 0 0-1.5 1.5v7.5a1.5 1.5 0 0 0 1.5 1.5h13.5a1.5 1.5 0 0 0 1.5-1.5v-7.5Z"
-                  clip-rule="evenodd"
-                />
-              </svg>
-              <i
-                *ngIf="steps[i] == 5"
-                class="fa-solid fa-fill-drip text-xl"
-              ></i>
-              <i
-                *ngIf="steps[i] == 6"
-                class="fa-solid fa-lightbulb text-xl"
-              ></i>
-              <i
-                *ngIf="steps[i] == 7"
-                class="fa-solid fa-truck-monster text-xl"
-              ></i>
-              <i
-                *ngIf="steps[i] == 8"
-                class="fa-solid fa-pen-to-square text=xl"
-              ></i>
-              <i *ngIf="steps[i] == 9" class="fa-solid fa-wrench text-xl"></i>
-              <i
-                *ngIf="steps[i] == steps.length"
-                class="fa-solid fa-flag-checkered text-xl"
-              ></i>
-            </span>
-          </li>
+                <!-- Future Step SVG (can be the same as Completed Step SVG or different) -->
+                <svg
+                  *ngIf="stepsWeb[i] == 2"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  class="size-6"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M1.5 7.125c0-1.036.84-1.875 1.875-1.875h6c1.036 0 1.875.84 1.875 1.875v3.75c0 1.036-.84 1.875-1.875 1.875h-6A1.875 1.875 0 0 1 1.5 10.875v-3.75Zm12 1.5c0-1.036.84-1.875 1.875-1.875h5.25c1.035 0 1.875.84 1.875 1.875v8.25c0 1.035-.84 1.875-1.875 1.875h-5.25a1.875 1.875 0 0 1-1.875-1.875v-8.25ZM3 16.125c0-1.036.84-1.875 1.875-1.875h5.25c1.036 0 1.875.84 1.875 1.875v2.25c0 1.035-.84 1.875-1.875 1.875h-5.25A1.875 1.875 0 0 1 3 18.375v-2.25Z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+                <svg
+                  *ngIf="stepsWeb[i] == 3"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  class="size-6"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M5.625 1.5c-1.036 0-1.875.84-1.875 1.875v17.25c0 1.035.84 1.875 1.875 1.875h12.75c1.035 0 1.875-.84 1.875-1.875V12.75A3.75 3.75 0 0 0 16.5 9h-1.875a1.875 1.875 0 0 1-1.875-1.875V5.25A3.75 3.75 0 0 0 9 1.5H5.625ZM7.5 15a.75.75 0 0 1 .75-.75h7.5a.75.75 0 0 1 0 1.5h-7.5A.75.75 0 0 1 7.5 15Zm.75 2.25a.75.75 0 0 0 0 1.5H12a.75.75 0 0 0 0-1.5H8.25Z"
+                    clip-rule="evenodd"
+                  />
+                  <path
+                    d="M12.971 1.816A5.23 5.23 0 0 1 14.25 5.25v1.875c0 .207.168.375.375.375H16.5a5.23 5.23 0 0 1 3.434 1.279 9.768 9.768 0 0 0-6.963-6.963Z"
+                  />
+                </svg>
+                <i *ngIf="stepsWeb[i] == 4" class="fa-solid fa-eye text-xl"></i>
+                <i
+                  *ngIf="stepsWeb[i] == stepsWeb.length"
+                  class="fa-solid fa-flag-checkered text-xl"
+                ></i>
+              </span>
+            </li>
+          </div>
         </ol>
 
-        <div class="" *ngFor="let step of steps; let i = index">
-          <div *ngIf="currentStep === i + 1">
-            <h2 class="text-xl font-semibold mb-4 text-gray-300">
-              Étape {{ i + 1 }}
-            </h2>
-            <div class="grid grid-cols-2 gap-2">
-              <!-- Forms -->
-              <!-- Form 1 -->
-              <div *ngIf="currentStep == 1">
-                <app-step1></app-step1>
-              </div>
-              <!-- Form 2 -->
-              <div *ngIf="currentStep == 2">
-                <app-step2></app-step2>
-              </div>
-              <!-- Form 3 -->
-              <div *ngIf="currentStep == 3">
-                <app-step3></app-step3>
-              </div>
-              <!-- Form 4 -->
-              <div *ngIf="currentStep == 4">
-                <app-step4></app-step4>
-              </div>
-              <!-- Form 5 -->
-              <div *ngIf="currentStep == 5">
-                <app-step5></app-step5>
-              </div>
-              <!-- Form 6 -->
-              <div *ngIf="currentStep == 6">
-                <app-step6></app-step6>
-              </div>
-              <!-- Form 7 -->
-              <div *ngIf="currentStep == 7">
-                <app-step7></app-step7>
-              </div>
-              <!-- Form 8 -->
-              <div *ngIf="currentStep == 8">
-                <app-step8></app-step8>
-              </div>
-              <!-- Form 9 -->
-              <div *ngIf="currentStep == 9">
-                <app-step9></app-step9>
-              </div>
-              <!-- Form finale -->
-              <div *ngIf="currentStep == steps.length">
-                <app-stepFinale></app-stepFinale>
-              </div>
+        <div>
+          <!--Steps for web-->
+          <div *ngIf="isWeb == 'false'">
+            <div class="" *ngFor="let step of stepsWeb; let i = index">
+              <div *ngIf="currentStep === i + 1">
+                <h2 class="text-xl font-semibold mb-4 text-gray-300">
+                  Étape {{ i + 1 }} web
+                </h2>
+                <div class="grid grid-cols-2 gap-2">
+                  <!-- Forms -->
 
-              <div *ngIf="currentStep === steps.length">
-                <img
-                  src="/assets/images/end_illustration.png"
-                  alt=""
-                  class="mx-auto max-h-[730px]"
-                />
-              </div>
+                  <!-- Form 1 -->
+                  <div *ngIf="currentStep == 2">
+                    <app-step1></app-step1>
+                  </div>
+                  <!-- Form 2 -->
+                  <div *ngIf="currentStep == 3">
+                    <app-step2></app-step2>
+                  </div>
+                  <!-- Form 3 -->
+                  <div *ngIf="currentStep == 4">
+                    <app-stepWebVisual></app-stepWebVisual>
+                  </div>
+                  <!-- Form finale -->
+                  <div *ngIf="currentStep == stepsWeb.length">
+                    <app-stepFinale></app-stepFinale>
+                  </div>
 
-              <!--Sticker visualizer-->
-              <div
-                *ngIf="currentStep !== steps.length"
-                class="flex justify-end"
-              >
-                <div class="relative">
-                  <img
-                    *ngIf="inputSelect"
-                    class="h-96 rounded-[30px]"
-                    src="https://ochplanner3.blob.core.windows.net/sticker-generator/{{ inputSelect }}.png"
-                    alt="test"
-                  />
+                  <div *ngIf="currentStep === stepsWeb.length">
+                    <img
+                      src="/assets/images/end_illustration.png"
+                      alt=""
+                      class="mx-auto max-h-[730px]"
+                    />
+                  </div>
+
+                  <!--Sticker visualizer-->
                   <div
-                    [ngClass]="{ 'top-[30px]': inputSelect === 'White' }"
-                    class="font-bold absolute top-[110px] left-1/2 -translate-x-1/2 text-black text-center whitespace-nowrap"
+                    *ngIf="currentStep !== steps.length && currentStep > 1"
+                    class="flex justify-end"
                   >
-                    <div class="max-w-56">
-                      <p
+                    <div class="relative">
+                      <img
                         *ngIf="inputSelect"
-                        class="overflow-hidden"
-                        [ngStyle]="{
-                          'font-size': calculateFontSize(inputText) + 'px'
-                        }"
+                        class="h-96 rounded-[30px]"
+                        src="https://ochplanner3.blob.core.windows.net/sticker-generator/{{
+                          inputSelect
+                        }}.png"
+                        alt="test"
+                      />
+                      <div
+                        [ngClass]="{ 'top-[30px]': inputSelect === 'White' }"
+                        class="font-bold absolute top-[110px] left-1/2 -translate-x-1/2 text-black text-center whitespace-nowrap"
                       >
-                        {{ inputText }}
-                      </p>
-                      <p
-                        *ngIf="inputSelect && nbrLines === 'lines-3'"
-                        class="font-normal text-sm"
-                      >
-                        {{ addressText }}
-                      </p>
-                      <p *ngIf="inputSelect" class="font-bold text-[24px]">
-                        {{ telText }}
-                      </p>
+                        <div class="max-w-56">
+                          <p
+                            *ngIf="inputSelect"
+                            class="overflow-hidden"
+                            [ngStyle]="{
+                              'font-size': calculateFontSize(inputText) + 'px'
+                            }"
+                          >
+                            {{ inputText }}
+                          </p>
+                          <p
+                            *ngIf="inputSelect && nbrLines === 'lines-3'"
+                            class="font-normal text-sm"
+                          >
+                            {{ addressText }}
+                          </p>
+                          <p *ngIf="inputSelect" class="font-bold text-[24px]">
+                            {{ telText }}
+                          </p>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                  <img
-                    class="max-w-52 mx-auto absolute top-[65px] left-[46%] -translate-x-1/2"
-                    *ngIf="isOil === 'true' && inputSelect && currentStep < 5"
-                    src="/assets/images/GRADE_HUILE.png"
-                    alt="nxtDateOil"
-                  />
-                  <img
-                    class="max-w-52 mx-auto absolute top-[65px] left-[46%] -translate-x-1/2"
-                    *ngIf="inputDateRadio === 'isDateNow' && inputSelect"
-                    src="/assets/images/DATE_DE_L'ENTRETIEN.png"
-                    alt="nxtDateOil"
-                  />
-                  <img
-                    class="max-w-52 mx-auto absolute top-[65px] left-[46%] -translate-x-1/2"
-                    *ngIf="inputNextDate === 'manual' && inputSelect"
-                    src="/assets/images/PROCHAINE_DATE_MANUELLE.png"
-                    alt="nxtDateOil"
-                  />
-                  <img
-                    class="max-w-52 mx-auto absolute top-[65px] left-[46%] -translate-x-1/2"
-                    *ngIf="inputNextDate === 'auto' && inputSelect"
-                    src="/assets/images/PROCHAINE_DATE_AUTO.png"
-                    alt="nxtDateOil"
-                  />
-                  <img
-                    class="max-w-52 mx-auto absolute top-[65px] left-[46%] -translate-x-1/2"
-                    *ngIf="inputDateRadio === 'isNoDate' && inputSelect"
-                    src="/assets/images/JUSTE_PROCHAIN_KM.png"
-                    alt="nxtDateOil"
-                  />
-                  <img
-                    class="mx-auto absolute top-0 left-1/2 -translate-x-1/2"
-                    *ngIf="inputSelect && currentStep === 5"
-                    src="/assets/images/ANTIROUILLE.png"
-                    alt="nxtDateOil"
-                  />
-                  <img
-                    class="mx-auto h-[21rem] absolute top-[60px] left-1/2 -translate-x-1/2"
-                    *ngIf="inputSelect && currentStep === 6"
-                    src="/assets/images/TEMPLATE_SANS_KM.png"
-                    alt="nxtDateOil"
-                  />
-                  <img
-                    class="mx-auto h-80 absolute top-[74px] left-1/2 -translate-x-1/2"
-                    *ngIf="inputSelect && currentStep === 7"
-                    src="/assets/images/RETORQ.png"
-                    alt="nxtDateOil"
-                  />
-                  <img
-                    class="mx-auto h-80 absolute top-[61px] left-1/2 -translate-x-1/2"
-                    *ngIf="inputSelect && currentStep === 8"
-                    src="/assets/images/TEMPLATE_MESSAGE_CLIENT.png"
-                    alt="nxtDateOil"
-                  />
-                  <img
-                    class="mx-auto h-80 absolute top-[45px] left-1/2 -translate-x-1/2"
-                    *ngIf="inputSelect && currentStep === 9"
-                    src="/assets/images/TEMPLATE_ENTRETIEN_EFFECTUE.png"
-                    alt="nxtDateOil"
-                  />
                 </div>
               </div>
             </div>
+          </div>
+          <!--Steps for autonome-->
+          <div *ngIf="isWeb == 'true'">
+            <div class="" *ngFor="let step of steps; let i = index">
+              <div *ngIf="currentStep === i + 1">
+                <h2 class="text-xl font-semibold mb-4 text-gray-300">
+                  Étape {{ i + 1 }} autonome
+                </h2>
+                <div class="grid grid-cols-2 gap-2">
+                  <!-- Forms -->
 
-            <!-- Navigation Buttons -->
-            <div class="flex justify-between mt-12">
-              <div *ngIf="currentStep === 1"></div>
-              <button
-                *ngIf="currentStep > 1"
-                class="px-6 py-2 text-white font-bold bg-gray-400 hover:bg-gray-500 rounded"
-                (click)="prevStep()"
-              >
-                <i class="fa-solid fa-arrow-left text-lg"></i>
-                Précédent
-              </button>
-              <button
-                *ngIf="currentStep < steps.length"
-                (click)="nextStep()"
-                class="px-6 py-2 text-white font-bold bg-blue-900 hover:bg-blue-950 rounded"
-              >
-                Suivant
-                <i class="fa-solid fa-arrow-right text-lg"></i>
-              </button>
-              <button
-                *ngIf="currentStep === steps.length"
-                class="px-6 py-2 text-white font-bold bg-green-900 hover:bg-green-950 rounded"
-                (click)="submitForm()"
-              >
-                Soumettre
-                <i class="fa-solid fa-check text-lg"></i>
-              </button>
+                  <!-- Form 1 -->
+                  <div *ngIf="currentStep == 2">
+                    <app-step1></app-step1>
+                  </div>
+                  <!-- Form 2 -->
+                  <div *ngIf="currentStep == 3">
+                    <app-step2></app-step2>
+                  </div>
+                  <!-- Form 3 -->
+                  <div *ngIf="currentStep == 4">
+                    <app-step3></app-step3>
+                  </div>
+                  <!-- Form 4 -->
+                  <div *ngIf="currentStep == 5">
+                    <app-step4></app-step4>
+                  </div>
+                  <!-- Form 5 -->
+                  <div *ngIf="currentStep == 6">
+                    <app-step5></app-step5>
+                  </div>
+                  <!-- Form 6 -->
+                  <div *ngIf="currentStep == 7">
+                    <app-step6></app-step6>
+                  </div>
+                  <!-- Form 7 -->
+                  <div *ngIf="currentStep == 8">
+                    <app-step7></app-step7>
+                  </div>
+                  <!-- Form 8 -->
+                  <div *ngIf="currentStep == 9">
+                    <app-step8></app-step8>
+                  </div>
+                  <!-- Form 9 -->
+                  <div *ngIf="currentStep == 10">
+                    <app-step9></app-step9>
+                  </div>
+                  <!-- Form finale -->
+                  <div *ngIf="currentStep == steps.length">
+                    <app-stepFinale></app-stepFinale>
+                  </div>
+
+                  <div *ngIf="currentStep === steps.length">
+                    <img
+                      src="/assets/images/end_illustration.png"
+                      alt=""
+                      class="mx-auto max-h-[730px]"
+                    />
+                  </div>
+
+                  <!--Sticker visualizer-->
+                  <div
+                    *ngIf="currentStep !== steps.length && currentStep > 1"
+                    class="flex justify-end"
+                  >
+                    <div class="relative">
+                      <img
+                        *ngIf="inputSelect"
+                        class="h-96 rounded-[30px]"
+                        src="https://ochplanner3.blob.core.windows.net/sticker-generator/{{
+                          inputSelect
+                        }}.png"
+                        alt="test"
+                      />
+                      <div
+                        [ngClass]="{ 'top-[30px]': inputSelect === 'White' }"
+                        class="font-bold absolute top-[110px] left-1/2 -translate-x-1/2 text-black text-center whitespace-nowrap"
+                      >
+                        <div class="max-w-56">
+                          <p
+                            *ngIf="inputSelect"
+                            class="overflow-hidden"
+                            [ngStyle]="{
+                              'font-size': calculateFontSize(inputText) + 'px'
+                            }"
+                          >
+                            {{ inputText }}
+                          </p>
+                          <p
+                            *ngIf="inputSelect && nbrLines === 'lines-3'"
+                            class="font-normal text-sm"
+                          >
+                            {{ addressText }}
+                          </p>
+                          <p *ngIf="inputSelect" class="font-bold text-[24px]">
+                            {{ telText }}
+                          </p>
+                        </div>
+                      </div>
+                      <img
+                        class="max-w-52 mx-auto absolute top-[65px] left-[46%] -translate-x-1/2"
+                        *ngIf="
+                          isOil === 'true' && inputSelect && currentStep < 6
+                        "
+                        src="/assets/images/GRADE_HUILE.png"
+                        alt="nxtDateOil"
+                      />
+                      <img
+                        class="max-w-52 mx-auto absolute top-[65px] left-[46%] -translate-x-1/2"
+                        *ngIf="inputDateRadio === 'isDateNow' && inputSelect"
+                        src="/assets/images/DATE_DE_L'ENTRETIEN.png"
+                        alt="nxtDateOil"
+                      />
+                      <img
+                        class="max-w-52 mx-auto absolute top-[65px] left-[46%] -translate-x-1/2"
+                        *ngIf="inputNextDate === 'manual' && inputSelect"
+                        src="/assets/images/PROCHAINE_DATE_MANUELLE.png"
+                        alt="nxtDateOil"
+                      />
+                      <img
+                        class="max-w-52 mx-auto absolute top-[65px] left-[46%] -translate-x-1/2"
+                        *ngIf="inputNextDate === 'auto' && inputSelect"
+                        src="/assets/images/PROCHAINE_DATE_AUTO.png"
+                        alt="nxtDateOil"
+                      />
+                      <img
+                        class="max-w-52 mx-auto absolute top-[65px] left-[46%] -translate-x-1/2"
+                        *ngIf="inputDateRadio === 'isNoDate' && inputSelect"
+                        src="/assets/images/JUSTE_PROCHAIN_KM.png"
+                        alt="nxtDateOil"
+                      />
+                      <img
+                        class="mx-auto absolute top-0 left-1/2 -translate-x-1/2"
+                        *ngIf="inputSelect && currentStep === 6"
+                        src="/assets/images/ANTIROUILLE.png"
+                        alt="nxtDateOil"
+                      />
+                      <img
+                        class="mx-auto h-[21rem] absolute top-[60px] left-1/2 -translate-x-1/2"
+                        *ngIf="inputSelect && currentStep === 7"
+                        src="/assets/images/TEMPLATE_SANS_KM.png"
+                        alt="nxtDateOil"
+                      />
+                      <img
+                        class="mx-auto h-80 absolute top-[74px] left-1/2 -translate-x-1/2"
+                        *ngIf="inputSelect && currentStep === 8"
+                        src="/assets/images/RETORQ.png"
+                        alt="nxtDateOil"
+                      />
+                      <img
+                        class="mx-auto h-80 absolute top-[61px] left-1/2 -translate-x-1/2"
+                        *ngIf="inputSelect && currentStep === 9"
+                        src="/assets/images/TEMPLATE_MESSAGE_CLIENT.png"
+                        alt="nxtDateOil"
+                      />
+                      <img
+                        class="mx-auto h-80 absolute top-[45px] left-1/2 -translate-x-1/2"
+                        *ngIf="inputSelect && currentStep === 10"
+                        src="/assets/images/TEMPLATE_ENTRETIEN_EFFECTUE.png"
+                        alt="nxtDateOil"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
+          </div>
+          <!--Y step form-->
+          <div *ngIf="currentStep === 1">
+            <app-ystep></app-ystep>
+          </div>
+          <!-- Navigation Buttons -->
+          <div class="flex justify-between mt-12">
+            <div *ngIf="currentStep === 1"></div>
+            <button
+              *ngIf="currentStep > 1"
+              class="px-6 py-2 text-white font-bold bg-gray-400 hover:bg-gray-500 rounded"
+              (click)="prevStep()"
+            >
+              <i class="fa-solid fa-arrow-left text-lg"></i>
+              Précédent
+            </button>
+            <button
+              *ngIf="currentStep < steps.length"
+              (click)="nextStep()"
+              class="px-6 py-2 text-white font-bold bg-blue-900 hover:bg-blue-950 rounded"
+            >
+              Suivant
+              <i class="fa-solid fa-arrow-right text-lg"></i>
+            </button>
+            <button
+              *ngIf="currentStep === steps.length"
+              class="px-6 py-2 text-white font-bold bg-green-900 hover:bg-green-950 rounded"
+              (click)="submitForm()"
+            >
+              Soumettre
+              <i class="fa-solid fa-check text-lg"></i>
+            </button>
           </div>
         </div>
       </div>
@@ -389,7 +615,9 @@
             <img
               *ngIf="item.inputSelect"
               class="h-96 rounded-[30px] mx-auto"
-              src="https://ochplanner3.blob.core.windows.net/sticker-generator/{{ item.inputSelect }}.png"
+              src="https://ochplanner3.blob.core.windows.net/sticker-generator/{{
+                item.inputSelect
+              }}.png"
               alt="test"
             />
             <!-- X Button -->
@@ -533,7 +761,9 @@
                 d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
               />
             </svg>
-            <h3 class="mb-5 text-start text-lg font-normal text-gray-500 lowercase">
+            <h3
+              class="mb-5 text-start text-lg font-normal text-gray-500 lowercase"
+            >
               Vous pouvez avoir plusieurs formulaires dans l’imprimante et
               passer d’un à l'autre rapidement. Voulez-vous seulement un
               formulaire de changement d’huile avec le format de date choisi ou
@@ -546,7 +776,8 @@
               class="text-white mb-2 bg-blue-900 hover:bg-blue-950 focus:ring-4 focus:outline-none focus:ring-blue-700 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center"
               (click)="stayOnStep()"
             >
-            Je désire ajouter un autre formulaire de changement d’huile avec un format de date 
+              Je désire ajouter un autre formulaire de changement d’huile avec
+              un format de date
             </button>
             <button
               data-modal-hide="popup-modal"
@@ -554,7 +785,8 @@
               class="py-2.5 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100"
               (click)="proceedFromModal()"
             >
-            Je désire avoir seulement le formulaire de changement d’huile avec le format de date choisi
+              Je désire avoir seulement le formulaire de changement d’huile avec
+              le format de date choisi
             </button>
           </div>
         </div>

@@ -10,12 +10,17 @@ import { MailgunService } from '../services/mailgun.service';
 })
 export class StepperComponent implements OnInit {
   // In your component.ts
-  steps = new Array(10).fill(null).map((_, index) => index + 1);
+  steps = new Array(11).fill(null).map((_, index) => index + 1);
+  stepsWeb = new Array(5).fill(null).map((_, index) => index + 1);
 
   timeoutId: any = null;
   timeoutIdWarning: any = null;
 
   constructor(private formBuilder: FormBuilder, private shared: SharedService, private mailgun: MailgunService) {}
+
+  get isWeb() {
+    return this.shared.isWeb;
+  }
 
   get stickerArray() {
     return this.shared.stickerArray;
@@ -163,7 +168,7 @@ export class StepperComponent implements OnInit {
       addressText: this.addressText,
       inputAntiRouille: this.inputAntiRouille,
     };
-    if (this.currentStep === 5 && this.inputAntiRouille === 'true') {
+    if (this.currentStep === 6 && this.inputAntiRouille === 'true') {
       const isAlreadyInArray = this.shared.stickerArray.some(sticker => sticker.inputAntiRouille === 'true');
       if (isAlreadyInArray) {
       this.toggleWarningToast();
@@ -186,7 +191,7 @@ export class StepperComponent implements OnInit {
       inputLightDate: this.inputLightDate,
       inputLightMonth: this.inputLightMonth,
     };
-    if (this.currentStep === 6 && this.inputLight === 'true') {
+    if (this.currentStep === 7 && this.inputLight === 'true') {
       const isAlreadyInArray = this.shared.stickerArray.some(sticker => sticker.inputLight === 'true' //&& sticker.inputLightDate === this.inputLightDate && sticker.inputLightMonth === this.inputLightMonth
       );
       if (isAlreadyInArray) {
@@ -208,7 +213,7 @@ export class StepperComponent implements OnInit {
       addressText: this.addressText,
       inputRetorq: this.inputRetorq
     };
-    if (this.currentStep === 7 && this.inputRetorq === 'true') {
+    if (this.currentStep === 8 && this.inputRetorq === 'true') {
       const isAlreadyInArray = this.shared.stickerArray.some(sticker => sticker.inputRetorq === 'true' 
       );
       if (isAlreadyInArray) {
@@ -230,7 +235,7 @@ export class StepperComponent implements OnInit {
       addressText: this.addressText,
       inputCustom: this.inputCustom
     };
-    if (this.currentStep === 8 && this.inputCustom === 'true') {
+    if (this.currentStep === 9 && this.inputCustom === 'true') {
       const isAlreadyInArray = this.shared.stickerArray.some(sticker => sticker.inputCustom === 'true'
       );
       if (isAlreadyInArray) {
@@ -252,7 +257,7 @@ export class StepperComponent implements OnInit {
       addressText: this.addressText,
       inputEntretien: this.inputEntretien
     };
-    if (this.currentStep === 9 && this.inputEntretien === 'true') {
+    if (this.currentStep === 10 && this.inputEntretien === 'true') {
       const isAlreadyInArray = this.shared.stickerArray.some(sticker => sticker.inputEntretien === 'true'
       );
       if (isAlreadyInArray) {
@@ -358,17 +363,17 @@ export class StepperComponent implements OnInit {
   
   checkRequiredInputs() {
     switch (this.currentStep) {
-      case 1:
-        return this.inputSelect;
       case 2:
+        return this.inputSelect;
+      case 3:
         if (this.nbrLines === 'lines-2') {
           return this.inputText && this.telText; // addressText not required.
         } else {
           return this.inputText && this.telText && this.addressText; // addressText required.
         }
-      case 3:
-        return this.isOil;
       case 4:
+        return this.isOil;
+      case 5:
         if (this.inputDateRadio === 'isDateNext') {
           if (this.inputNextDate === 'auto') {
             return this.inputNextDate && this.inputNbrMonths;
@@ -377,9 +382,9 @@ export class StepperComponent implements OnInit {
         } else {
           return true;
         }
-      case 5:
-        return this.inputAntiRouille;
       case 6:
+        return this.inputAntiRouille;
+      case 7:
         if (this.inputLight === 'true') {
           if (this.inputLightDate === 'true') {
             return this.inputLightDate && this.inputLightMonth;
@@ -388,13 +393,13 @@ export class StepperComponent implements OnInit {
         } else {
           return this.inputLight;
         }
-      case 7:
-        return this.inputRetorq;
       case 8:
-        return this.inputCustom;
+        return this.inputRetorq;
       case 9:
-        return this.inputEntretien;
+        return this.inputCustom;
       case 10:
+        return this.inputEntretien;
+      case 11:
         if(!this.shared.showRep) {
           return this.inputEmail && this.inputFirstname && this.inputTel && this.nomRep && this.emailRep && this.telRep;
         } else {
@@ -542,7 +547,7 @@ export class StepperComponent implements OnInit {
   shouldOpenModal(): boolean {
     // For example, open the modal only on a specific step
     if (
-      this.currentStep === 4 &&
+      this.currentStep === 5 &&
       !this.inputDateRadio &&
       !this.inputNextDate &&
       !this.inputNbrMonths
@@ -574,7 +579,7 @@ export class StepperComponent implements OnInit {
       }
     }
     // If none of the conditions to restrict adding more inputs are met, allow opening the modal
-    return this.currentStep === 4;
+    return this.currentStep === 5;
   }
   
   // Function to be called by the modal's "Stay on this step" button

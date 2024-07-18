@@ -17,10 +17,12 @@ import { Step8Component } from './step8/step8.component';
 import { Step9Component } from './step9/step9.component';
 import { StepFinaleComponent } from './stepFinale/stepFinale.component';
 import { HttpClientModule } from '@angular/common/http';
+import { YstepComponent } from './ystep/ystep.component';
+import { StepWebVisualComponent } from './stepWebVisual/stepWebVisual.component';
 
 
 @NgModule({
-  declarations: [												
+  declarations: [														
     AppComponent,
       StepperComponent,
       Step1Component,
@@ -33,6 +35,8 @@ import { HttpClientModule } from '@angular/common/http';
       Step8Component,
       Step9Component,
       StepFinaleComponent,
+      YstepComponent,
+      StepWebVisualComponent
    ],
   imports: [
     BrowserModule,

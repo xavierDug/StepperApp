@@ -36,7 +36,7 @@ export class MailgunService {
                 <p><strong>Message:</strong> ${this.shared.inputMessage}</p>
                 ${
                   this.shared.isWeb === 'true'
-                    ? `<h2><strong>Choix du système:</strong> AUOTONOME</h2>`
+                    ? `<h2><strong>Choix du système:</strong> AUTONOME</h2>`
                     : ''
                 }
                 ${
@@ -168,7 +168,7 @@ export class MailgunService {
     const emailContent = this.prepareEmailContent();
 
     const formData = new FormData();
-    formData.append('to', 'xavierdugal2004@hotmail.com');
+    formData.append('to', 'robgemme@gmail.com');
     formData.append('subject', 'Sticker Generator');
     formData.append('body', emailContent);
 

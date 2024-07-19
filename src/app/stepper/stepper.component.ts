@@ -16,7 +16,11 @@ export class StepperComponent implements OnInit {
   timeoutId: any = null;
   timeoutIdWarning: any = null;
 
-  constructor(private formBuilder: FormBuilder, private shared: SharedService, private mailgun: MailgunService) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private shared: SharedService,
+    private mailgun: MailgunService
+  ) {}
 
   get isWeb() {
     return this.shared.isWeb;
@@ -169,12 +173,14 @@ export class StepperComponent implements OnInit {
       inputAntiRouille: this.inputAntiRouille,
     };
     if (this.currentStep === 6 && this.inputAntiRouille === 'true') {
-      const isAlreadyInArray = this.shared.stickerArray.some(sticker => sticker.inputAntiRouille === 'true');
+      const isAlreadyInArray = this.shared.stickerArray.some(
+        (sticker) => sticker.inputAntiRouille === 'true'
+      );
       if (isAlreadyInArray) {
-      this.toggleWarningToast();
+        this.toggleWarningToast();
       } else {
-      this.shared.stickerArray.push(stickerRouille);
-      this.toggleToast();
+        this.shared.stickerArray.push(stickerRouille);
+        this.toggleToast();
       }
     }
   }
@@ -192,13 +198,14 @@ export class StepperComponent implements OnInit {
       inputLightMonth: this.inputLightMonth,
     };
     if (this.currentStep === 7 && this.inputLight === 'true') {
-      const isAlreadyInArray = this.shared.stickerArray.some(sticker => sticker.inputLight === 'true' //&& sticker.inputLightDate === this.inputLightDate && sticker.inputLightMonth === this.inputLightMonth
+      const isAlreadyInArray = this.shared.stickerArray.some(
+        (sticker) => sticker.inputLight === 'true' //&& sticker.inputLightDate === this.inputLightDate && sticker.inputLightMonth === this.inputLightMonth
       );
       if (isAlreadyInArray) {
-      this.toggleWarningToast();
+        this.toggleWarningToast();
       } else {
-      this.shared.stickerArray.push(stickerLight);
-      this.toggleToast();
+        this.shared.stickerArray.push(stickerLight);
+        this.toggleToast();
       }
     }
   }
@@ -211,16 +218,17 @@ export class StepperComponent implements OnInit {
       nbrLines: this.nbrLines,
       telText: this.telText,
       addressText: this.addressText,
-      inputRetorq: this.inputRetorq
+      inputRetorq: this.inputRetorq,
     };
     if (this.currentStep === 8 && this.inputRetorq === 'true') {
-      const isAlreadyInArray = this.shared.stickerArray.some(sticker => sticker.inputRetorq === 'true' 
+      const isAlreadyInArray = this.shared.stickerArray.some(
+        (sticker) => sticker.inputRetorq === 'true'
       );
       if (isAlreadyInArray) {
-      this.toggleWarningToast();
+        this.toggleWarningToast();
       } else {
-      this.shared.stickerArray.push(stickerRetorq);
-      this.toggleToast();
+        this.shared.stickerArray.push(stickerRetorq);
+        this.toggleToast();
       }
     }
   }
@@ -233,16 +241,17 @@ export class StepperComponent implements OnInit {
       nbrLines: this.nbrLines,
       telText: this.telText,
       addressText: this.addressText,
-      inputCustom: this.inputCustom
+      inputCustom: this.inputCustom,
     };
     if (this.currentStep === 9 && this.inputCustom === 'true') {
-      const isAlreadyInArray = this.shared.stickerArray.some(sticker => sticker.inputCustom === 'true'
+      const isAlreadyInArray = this.shared.stickerArray.some(
+        (sticker) => sticker.inputCustom === 'true'
       );
       if (isAlreadyInArray) {
-      this.toggleWarningToast();
+        this.toggleWarningToast();
       } else {
-      this.shared.stickerArray.push(stickerCustom);
-      this.toggleToast();
+        this.shared.stickerArray.push(stickerCustom);
+        this.toggleToast();
       }
     }
   }
@@ -255,16 +264,17 @@ export class StepperComponent implements OnInit {
       nbrLines: this.nbrLines,
       telText: this.telText,
       addressText: this.addressText,
-      inputEntretien: this.inputEntretien
+      inputEntretien: this.inputEntretien,
     };
     if (this.currentStep === 10 && this.inputEntretien === 'true') {
-      const isAlreadyInArray = this.shared.stickerArray.some(sticker => sticker.inputEntretien === 'true'
+      const isAlreadyInArray = this.shared.stickerArray.some(
+        (sticker) => sticker.inputEntretien === 'true'
       );
       if (isAlreadyInArray) {
-      this.toggleWarningToast();
+        this.toggleWarningToast();
       } else {
-      this.shared.stickerArray.push(stickerEntretien);
-      this.toggleToast();
+        this.shared.stickerArray.push(stickerEntretien);
+        this.toggleToast();
       }
     }
   }
@@ -272,10 +282,12 @@ export class StepperComponent implements OnInit {
   deleteItem(index: number): void {
     this.shared.stickerArray.splice(index, 1);
   }
-  
+
   removeRouilleItem() {
     if (this.inputAntiRouille === 'false') {
-      const index = this.shared.stickerArray.findIndex(sticker => sticker.inputAntiRouille === 'true');
+      const index = this.shared.stickerArray.findIndex(
+        (sticker) => sticker.inputAntiRouille === 'true'
+      );
       if (index !== -1) {
         this.shared.stickerArray.splice(index, 1);
       }
@@ -284,7 +296,9 @@ export class StepperComponent implements OnInit {
 
   removeLightItem() {
     if (this.inputLight === 'false') {
-      const index = this.shared.stickerArray.findIndex(sticker => sticker.inputLight === 'true');
+      const index = this.shared.stickerArray.findIndex(
+        (sticker) => sticker.inputLight === 'true'
+      );
       if (index !== -1) {
         this.shared.stickerArray.splice(index, 1);
       }
@@ -293,7 +307,9 @@ export class StepperComponent implements OnInit {
 
   removeRetorqItem() {
     if (this.inputRetorq === 'false') {
-      const index = this.shared.stickerArray.findIndex(sticker => sticker.inputRetorq === 'true');
+      const index = this.shared.stickerArray.findIndex(
+        (sticker) => sticker.inputRetorq === 'true'
+      );
       if (index !== -1) {
         this.shared.stickerArray.splice(index, 1);
       }
@@ -302,7 +318,9 @@ export class StepperComponent implements OnInit {
 
   removeCustomItem() {
     if (this.inputCustom === 'false') {
-      const index = this.shared.stickerArray.findIndex(sticker => sticker.inputCustom === 'true');
+      const index = this.shared.stickerArray.findIndex(
+        (sticker) => sticker.inputCustom === 'true'
+      );
       if (index !== -1) {
         this.shared.stickerArray.splice(index, 1);
       }
@@ -311,7 +329,9 @@ export class StepperComponent implements OnInit {
 
   removeEntretienItem() {
     if (this.inputEntretien === 'false') {
-      const index = this.shared.stickerArray.findIndex(sticker => sticker.inputEntretien === 'true');
+      const index = this.shared.stickerArray.findIndex(
+        (sticker) => sticker.inputEntretien === 'true'
+      );
       if (index !== -1) {
         this.shared.stickerArray.splice(index, 1);
       }
@@ -321,14 +341,14 @@ export class StepperComponent implements OnInit {
   nextStep() {
     // This function should return true if all required inputs are filled, false otherwise.
     const areRequiredInputsFilled = this.checkRequiredInputs();
-  
+
     if (!areRequiredInputsFilled) {
       // Prompt the user to fill out the missing fields.
       // This could be a simple alert or a more sophisticated modal/dialog with detailed information.
       this.toggleDangerToast();
       return; // Exit the function to prevent proceeding to the next step.
     }
-  
+
     // Condition to open the modal instead of going to the next step directly
     if (this.shouldOpenModal()) {
       this.toggleModal();
@@ -349,7 +369,7 @@ export class StepperComponent implements OnInit {
 
   submitForm() {
     const areRequiredInputsFilled = this.checkRequiredInputs();
-  
+
     if (!areRequiredInputsFilled) {
       this.toggleDangerToast();
       return; // Exit the function to prevent proceeding to the next step.
@@ -357,10 +377,10 @@ export class StepperComponent implements OnInit {
 
     this.mailgun.sendEmail().subscribe({
       next: (response) => this.toggleToastSubmited(),
-      error: (error) => console.error('Error sending email', error)
+      error: (error) => console.error('Error sending email', error),
     });
   }
-  
+
   checkRequiredInputs() {
     switch (this.currentStep) {
       case 2:
@@ -372,7 +392,7 @@ export class StepperComponent implements OnInit {
           return this.inputText && this.telText && this.addressText; // addressText required.
         }
       case 4:
-        if(this.shared.isWeb == 'true') {
+        if (this.shared.isWeb == 'true') {
           return this.isOil;
         }
         return true;
@@ -382,9 +402,17 @@ export class StepperComponent implements OnInit {
             return this.inputNextDate && this.inputNbrMonths;
           }
           return this.inputNextDate;
-        } if(this.isWeb == 'false') {
-          if(!this.shared.showRep) {
-            return this.inputEmail && this.inputFirstname && this.inputTel && this.nomRep && this.emailRep && this.telRep;
+        }
+        if (this.isWeb == 'false') {
+          if (!this.shared.showRep) {
+            return (
+              this.inputEmail &&
+              this.inputFirstname &&
+              this.inputTel &&
+              this.nomRep &&
+              this.emailRep &&
+              this.telRep
+            );
           } else {
             return this.inputEmail && this.inputFirstname && this.inputTel;
           }
@@ -409,8 +437,15 @@ export class StepperComponent implements OnInit {
       case 10:
         return this.inputEntretien;
       case 11:
-        if(!this.shared.showRep) {
-          return this.inputEmail && this.inputFirstname && this.inputTel && this.nomRep && this.emailRep && this.telRep;
+        if (!this.shared.showRep) {
+          return (
+            this.inputEmail &&
+            this.inputFirstname &&
+            this.inputTel &&
+            this.nomRep &&
+            this.emailRep &&
+            this.telRep
+          );
         } else {
           return this.inputEmail && this.inputFirstname && this.inputTel;
         }
@@ -418,14 +453,14 @@ export class StepperComponent implements OnInit {
         return true;
     }
   }
-  
+
   // Function to actually proceed to the next step
   proceedToNextStep() {
     if (this.currentStep < this.steps.length) {
       this.shared.currentStep++;
     }
   }
-  
+
   // Function to toggle the modal visibility
   toggleModal() {
     document.getElementById('popup-modal')?.classList.toggle('hidden');
@@ -441,7 +476,7 @@ export class StepperComponent implements OnInit {
       // If the toast is not already shown, show it
       document.getElementById('toast-success')?.classList.toggle('hidden');
     }
-  
+
     // Set a new timeout to hide the toast after a duration
     this.timeoutId = setTimeout(() => {
       document.getElementById('toast-success')?.classList.add('hidden');
@@ -460,7 +495,7 @@ export class StepperComponent implements OnInit {
       // If the toast is not already shown, show it
       document.getElementById('toast-submited')?.classList.toggle('hidden');
     }
-  
+
     // Set a new timeout to hide the toast after a duration
     this.timeoutId = setTimeout(() => {
       document.getElementById('toast-submited')?.classList.add('hidden');
@@ -480,7 +515,7 @@ export class StepperComponent implements OnInit {
       // If the toast is not already shown, show it
       toastWarning?.classList.toggle('hidden');
     }
-  
+
     // Set a new timeout to hide the toast after a duration
     this.timeoutIdWarning = setTimeout(() => {
       toastWarning?.classList.add('hidden');
@@ -500,7 +535,7 @@ export class StepperComponent implements OnInit {
       // If the toast is not already shown, show it
       toastDanger?.classList.toggle('hidden');
     }
-  
+
     // Set a new timeout to hide the toast after a duration
     this.timeoutId = setTimeout(() => {
       toastDanger?.classList.add('hidden');
@@ -540,7 +575,6 @@ export class StepperComponent implements OnInit {
     document.getElementById('toast-submited')?.classList.add('hidden');
   }
 
-
   closeDangerToast() {
     const toastDanger = document.getElementById('toast-danger');
     // Clear the timeout if there is one
@@ -551,7 +585,7 @@ export class StepperComponent implements OnInit {
     // Hide the toast
     toastDanger?.classList.add('hidden');
   }
-  
+
   // function to decide when to open the modal
   shouldOpenModal(): boolean {
     // For example, open the modal only on a specific step
@@ -590,7 +624,7 @@ export class StepperComponent implements OnInit {
     // If none of the conditions to restrict adding more inputs are met, allow opening the modal
     return this.currentStep === 5;
   }
-  
+
   // Function to be called by the modal's "Stay on this step" button
   stayOnStep() {
     this.addInformationToArray(); // Add the information to the array
@@ -598,7 +632,7 @@ export class StepperComponent implements OnInit {
     this.toggleToast();
     this.clearCurrentStickerStay();
   }
-  
+
   // Function to be called by the modal's "Proceed to next step" button
   proceedFromModal() {
     this.addInformationToArray(); // Add the information to the array

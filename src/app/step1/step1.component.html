@@ -1,18 +1,20 @@
 <form class="" [formGroup]="formGroup1">
   <div class="mb-5">
-    <h1 *ngIf="showSelect" class="text-3xl mb-5 font-bold">Choix du modèle d'étiquettes</h1>
-    <h1 *ngIf="!showSelect" class="text-3xl mb-5 font-bold">Modèle d'étiquettes</h1>
+    <h1 *ngIf="showSelect" class="text-3xl mb-5 font-bold">
+      Choix du modèle d'étiquettes
+    </h1>
+    <h1 *ngIf="!showSelect" class="text-3xl mb-5 font-bold">
+      Modèle d'étiquettes
+    </h1>
     <p class="mb-2">
-      Bienvenue dans notre générateur d’étiquettes pour le système Autonome de OCH Planner. Ces quelques questions vont nous permettre de créer les différents modèles d’étiquettes qui seront incluses dans l’imprimante. Il vous sera possible de passer d’un modèle à l’autre très facilement. Tout au long de ce formulaire, vous pourrez voir la liste des épreuves dans le bas de votre écran. Nous vous enverrons par courriel , avant l’expédition, une photo des épreuves incluses.
+      Bienvenue dans notre générateur d’étiquettes pour le système Autonome de
+      OCH Planner. Ces quelques questions vont nous permettre de créer les
+      différents modèles d’étiquettes qui seront incluses dans l’imprimante. Il
+      vous sera possible de passer d’un modèle à l’autre très facilement. Tout
+      au long de ce formulaire, vous pourrez voir la liste des épreuves dans le
+      bas de votre écran. Nous vous enverrons par courriel , avant l’expédition,
+      une photo des épreuves incluses.
     </p>
-    <p>
-      Prenez le temps de visionner la courte vidéo suivante pour voir comment le système fonctionne.
-    </p>
-  </div>
-  <div class="mb-5">
-    <a href="https://youtu.be/FoA4hiwV5qc" target="_blank">
-      <img src="/assets/images/Image1.png" alt="" />
-    </a>
   </div>
   <div class="mb-5" *ngIf="showSelect">
     <label for="countries" class="block mb-2 text-sm font-medium"

@@ -32,6 +32,7 @@ export class YstepComponent implements OnInit {
     // Now you can safely access the value property
     if (target && target.value) {
       this.shared.isWeb = target.value;
+      this.shared.currentStep++;
     }
   }
 }

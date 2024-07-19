@@ -382,6 +382,12 @@ export class StepperComponent implements OnInit {
             return this.inputNextDate && this.inputNbrMonths;
           }
           return this.inputNextDate;
+        } if(this.isWeb == 'false') {
+          if(!this.shared.showRep) {
+            return this.inputEmail && this.inputFirstname && this.inputTel && this.nomRep && this.emailRep && this.telRep;
+          } else {
+            return this.inputEmail && this.inputFirstname && this.inputTel;
+          }
         } else {
           return true;
         }
@@ -402,7 +408,7 @@ export class StepperComponent implements OnInit {
         return this.inputCustom;
       case 10:
         return this.inputEntretien;
-      case this.steps.length || this.stepsWeb.length:
+      case 11:
         if(!this.shared.showRep) {
           return this.inputEmail && this.inputFirstname && this.inputTel && this.nomRep && this.emailRep && this.telRep;
         } else {

@@ -76,7 +76,11 @@ export class MailgunService {
                 : ''
             }
             <hr>
-            <h2>Grade d'huile et dates:</h2>
+            ${
+              this.shared.isWeb === 'true'
+                ? `<h2>Grade d'huile et dates:</h2>`
+                : ''
+            }
             ${
               this.shared.isOil === 'true' && this.shared.isWeb === 'true'
                 ? `<p><strong>Grade/Type d'huile:</strong> Inclus</p>`

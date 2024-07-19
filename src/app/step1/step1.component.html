@@ -6,7 +6,7 @@
     <h1 *ngIf="!showSelect" class="text-3xl mb-5 font-bold">
       Modèle d'étiquettes
     </h1>
-    <p class="mb-2">
+    <p *ngIf="isWeb == 'true'" class="mb-2">
       Bienvenue dans notre générateur d’étiquettes pour le système Autonome de
       OCH Planner. Ces quelques questions vont nous permettre de créer les
       différents modèles d’étiquettes qui seront incluses dans l’imprimante. Il

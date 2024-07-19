@@ -29,6 +29,10 @@ export class Step1Component implements OnInit {
     return this.shared.selectedImageUrl;
   }
 
+  get isWeb() {
+    return this.shared.isWeb;
+  }
+
   ngOnInit() {
     this.formGroup1 = this.formBuilder.group({
       inputSelect: [this.shared.inputSelect || ''],

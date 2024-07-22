@@ -22,7 +22,7 @@
       <div class="inline-block relative">
         <img
           *ngIf="this.shared.inputSelect"
-          class="h-96 rounded-[30px] mx-auto"
+          class="h-80 rounded-[30px] mx-auto"
           src="https://ochplanner3.blob.core.windows.net/sticker-generator/{{
             this.shared.inputSelect
           }}.png"
@@ -30,10 +30,10 @@
         />
       </div>
       <div
-        [ngClass]="{ 'top-[30px]': this.shared.inputSelect === 'White' }"
-        class="font-bold absolute top-[110px] left-1/2 -translate-x-1/2 text-black text-center whitespace-nowrap"
+        [ngClass]="{ 'top-[20px]': this.shared.inputSelect === 'White' }"
+        class="font-bold absolute top-[90px] left-1/2 -translate-x-1/2 text-black text-center whitespace-nowrap"
       >
-        <div class="max-w-56">
+        <div class="max-w-48">
           <p
             *ngIf="this.shared.inputSelect"
             class="overflow-hidden"
@@ -45,29 +45,29 @@
             *ngIf="
               this.shared.inputSelect && this.shared.nbrLines === 'lines-3'
             "
-            class="font-normal text-sm"
+            class="font-normal text-xs"
           >
             {{ this.shared.addressText }}
           </p>
-          <p *ngIf="this.shared.inputSelect" class="font-bold text-[24px]">
+          <p *ngIf="this.shared.inputSelect" class="font-bold text-[18px]">
             {{ this.shared.telText }}
           </p>
         </div>
       </div>
       <img
-        class="max-w-52 mx-auto absolute top-[65px] left-[46%] -translate-x-1/2"
+        class="max-w-[170px] mx-auto absolute top-[55px] left-[46%] -translate-x-1/2"
         *ngIf="this.shared.inputSelect && i === 0"
         src="/assets/images/Date_1.png"
         alt="nxtDateOil"
       />
       <img
-        class="max-w-52 mx-auto absolute top-[65px] left-[46%] -translate-x-1/2"
+        class="max-w-[170px] mx-auto absolute top-[55px] left-[46%] -translate-x-1/2"
         *ngIf="this.shared.inputSelect && i === 1"
         src="/assets/images/Date_2.png"
         alt="nxtDateOil"
       />
       <img
-        class="max-w-52 mx-auto absolute top-[65px] left-[46%] -translate-x-1/2"
+        class="max-w-[170px] mx-auto absolute top-[55px] left-[46%] -translate-x-1/2"
         *ngIf="this.shared.inputSelect && i === 2"
         src="/assets/images/Date_3.png"
         alt="nxtDateOil"
@@ -83,14 +83,14 @@
       *ngFor="let _ of [].constructor(4); let i = index"
       class="relative flex justify-center flex-col"
     >
-      <p *ngIf="i == 0" class="text-xl text-gray-100 mb-3 text-center font-semibold">ENTRETIENS EFFECTUÉS</p>
-      <p *ngIf="i == 1" class="text-xl text-gray-100 mb-3 text-center font-semibold">PROCHAIN RDV</p>
-      <p *ngIf="i == 2" class="text-xl text-gray-100 mb-3 text-center font-semibold">RECOMMANDATIONS</p>
-      <p *ngIf="i == 3" class="text-xl text-gray-100 mb-3 text-center font-semibold">TAG DE CLÉS</p>
+      <p *ngIf="i == 0" class="text-lg text-gray-100 mb-3 text-center font-semibold">ENTRETIENS EFFECTUÉS</p>
+      <p *ngIf="i == 1" class="text-lg text-gray-100 mb-3 text-center font-semibold">PROCHAIN RDV</p>
+      <p *ngIf="i == 2" class="text-lg text-gray-100 mb-3 text-center font-semibold">RECOMMANDATIONS</p>
+      <p *ngIf="i == 3" class="text-lg text-gray-100 mb-3 text-center font-semibold">TAG DE CLÉS</p>
       <div class="inline-block relative">
         <img
           *ngIf="this.shared.inputSelect"
-          class="h-96 rounded-[30px] mx-auto"
+          class="h-80 rounded-[30px] mx-auto"
           src="https://ochplanner3.blob.core.windows.net/sticker-generator/{{
             this.shared.inputSelect
           }}.png"
@@ -98,10 +98,10 @@
         />
       </div>
       <div
-        [ngClass]="{ 'top-[75px]': this.shared.inputSelect === 'White' }"
-        class="font-bold absolute top-[150px] left-1/2 -translate-x-1/2 text-black text-center whitespace-nowrap"
+        [ngClass]="{ 'top-[70px]': this.shared.inputSelect === 'White' }"
+        class="font-bold absolute top-[130px] left-1/2 -translate-x-1/2 text-black text-center whitespace-nowrap"
       >
-        <div class="max-w-56">
+        <div class="max-w-48">
           <p
             *ngIf="this.shared.inputSelect"
             class="overflow-hidden"
@@ -113,35 +113,35 @@
             *ngIf="
               this.shared.inputSelect && this.shared.nbrLines === 'lines-3'
             "
-            class="font-normal text-sm"
+            class="font-normal text-xs"
           >
             {{ this.shared.addressText }}
           </p>
-          <p *ngIf="this.shared.inputSelect" class="font-bold text-[24px]">
+          <p *ngIf="this.shared.inputSelect" class="font-bold text-[18px]">
             {{ this.shared.telText }}
           </p>
         </div>
       </div>
       <img
-        class="max-w-52 mx-auto absolute top-[100px] left-[46%] -translate-x-1/2"
+        class="max-w-[180px] mx-auto absolute top-[85px] left-[46%] -translate-x-1/2"
         *ngIf="this.shared.inputSelect && i === 0"
         src="/assets/images/ENTRETIEN_EFFECTUE.png"
         alt="nxtDateOil"
       />
       <img
-        class="max-w-52 mx-auto absolute top-[100px] left-[46%] -translate-x-1/2"
+        class="max-w-[180px] mx-auto absolute top-[85px] left-[46%] -translate-x-1/2"
         *ngIf="this.shared.inputSelect && i === 1"
         src="/assets/images/PROCHAIN_RDV.png"
         alt="nxtDateOil"
       />
       <img
-        class="max-w-52 mx-auto absolute top-[100px] left-[46%] -translate-x-1/2"
+        class="max-w-[180px] mx-auto absolute top-[85px] left-[46%] -translate-x-1/2"
         *ngIf="this.shared.inputSelect && i === 2"
         src="/assets/images/RECOMMANDATION.png"
         alt="nxtDateOil"
       />
       <img
-        class="max-w-52 mx-auto absolute top-[100px] left-[46%] -translate-x-1/2"
+        class="max-w-[180px] mx-auto absolute top-[85px] left-[46%] -translate-x-1/2"
         *ngIf="this.shared.inputSelect && i === 3"
         src="/assets/images/TAG_DE_CLE.png"
         alt="nxtDateOil"

@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppComponent implements OnInit {
   title = 'StepperApp';
-  static lang: 'fr' | 'en' = 'en'; // default
+  static lang: 'fr' | 'en' = 'fr'; // default
 
   ngOnInit(): void {
     const params = new URLSearchParams(window.location.search);

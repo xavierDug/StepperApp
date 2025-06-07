@@ -1,9 +1,8 @@
 <form action="" [formGroup]="formGroup3">
   <div>
-    <h1 class="text-3xl mb-5 font-bold">Grade/type d'huile</h1>
+    <h1 class="text-3xl mb-5 font-bold">{{ t.title }}</h1>
     <p class="text-lg mb-5">
-      Voulez-vous inscrire dans le haut de l'étiquette le grade/type d'huile utilisé? Si vous choisissez cette option, lors de la confection d’une étiquette de changement d’huile, l’imprimante vous posera la question suivante : GRADE D’HUILE? Il vous sera possible d’inscrire le grade ou le type d’huile utilisé pour le changement d’huile de votre client. Les textes générés dans l’image de droite sont des exemples.
-    </p>
+      {{ t.intro }}    </p>
   </div>
   <div class="mb-5">
     <ul class="grid w-full gap-6 md:grid-cols-2">
@@ -23,9 +22,9 @@
           class="inline-flex items-center justify-between w-full h-full p-5 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer peer-checked:border-blue-800 peer-checked:border-4 peer-checked:text-blue-800 hover:text-gray-600 hover:bg-gray-100"
         >
           <div class="block">
-            <div class="w-full text-lg font-semibold">Oui</div>
+            <div class="w-full text-lg font-semibold">{{ t.yesLabel }}</div>
             <div class="w-full">
-              Je souhaite inscrire le type/grade d'huile
+              {{ t.yesDescription }}
             </div>
           </div>
           <i
@@ -48,9 +47,9 @@
           class="inline-flex items-center justify-between w-full p-5 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer peer-checked:border-blue-800 peer-checked:border-4 peer-checked:text-blue-800 hover:text-gray-600 hover:bg-gray-100"
         >
           <div class="block">
-            <div class="w-full text-lg font-semibold">Non</div>
+            <div class="w-full text-lg font-semibold">{{ t.noLabel }}</div>
             <div class="w-full">
-              Je ne souhaite pas inscrire le type/grade d'huile
+              {{ t.noDescription }}
             </div>
           </div>
           <i class="fa-solid fa-ban text-red-600 text-xl"></i>

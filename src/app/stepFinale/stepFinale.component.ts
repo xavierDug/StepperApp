@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { SharedService } from '../services/shared.service';
 import { MailgunService } from '../services/mailgun.service';
 import { ActivatedRoute } from '@angular/router';
+import { AppComponent } from '../app.component';
 
 @Component({
   selector: 'app-stepFinale',
@@ -11,6 +12,63 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class StepFinaleComponent implements OnInit {
   formGroupFinale!: FormGroup;
+
+  currentLang: 'fr' | 'en' = 'fr';
+
+  translations: any = {
+    fr: {
+      finale: {
+        title: "Comment vous rejoindre?",
+        intro: "Si vous avez des besoins particuliers ou demandes spéciales, veuillez nous en faire part:",
+        placeholderMessage: "Veuillez nous en faire part ici",
+        emailLabel: "Courriel de l'atelier",
+        telLabel: "No de téléphone",
+        nameLabel: "Nom de la personne à contacter",
+        emailPlaceholder: "exemple@gmail.com",
+        namePlaceholder: "Prénom Nom",
+        repName: "Nom du REPRÉSENTANT",
+        repEmail: "Courriel du REPRÉSENTANT",
+        repTel: "Téléphone du REPRÉSENTANT",
+        logoLabel: "Logo (optionnel)",
+        dropText: "Cliquez pour soumettre votre logo ou faites un glisser-déposer",
+        uploadedText: "Logo envoyé avec succès",
+        formatNote: "SVG, PNG, JPG",
+        removeTooltip: "Retirer le logo.",
+        footer: `Avec les informations que vous nous avez transmises, nous allons créer les
+        épreuves pour étiquettes demandées et vous retourner une photo pour
+        approbation par courriel. Un de nos représentants vous contactera dans 24 à
+        48 heures. Vérifier occasionnellement votre boîte courriel et aussi votre
+        boîte pourriel.`,
+        required: "(Requis)"
+      }
+    },
+    en: {
+      finale: {
+        title: "How can we reach you?",
+        intro: "If you have specific needs or special requests, please let us know:",
+        placeholderMessage: "Please let us know here",
+        emailLabel: "Workshop email",
+        telLabel: "Phone number",
+        nameLabel: "Contact person's name",
+        emailPlaceholder: "example@gmail.com",
+        namePlaceholder: "First Last",
+        repName: "REPRESENTATIVE'S name",
+        repEmail: "REPRESENTATIVE'S email",
+        repTel: "REPRESENTATIVE'S phone",
+        logoLabel: "Logo (optional)",
+        dropText: "Click to upload your logo or drag and drop",
+        uploadedText: "Logo uploaded successfully",
+        formatNote: "SVG, PNG, JPG",
+        removeTooltip: "Remove logo.",
+        footer: `With the information you provided, we will create the requested label mockups and send you a photo for approval via email. One of our representatives will contact you within 24 to 48 hours. Please check your inbox and spam folder periodically.`,
+        required: "(Required)"
+      }
+    }
+  };
+
+  get t() {
+    return this.translations[this.currentLang];
+  }
 
   showTooltipVisible: boolean = false;
 
@@ -53,6 +111,8 @@ export class StepFinaleComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.currentLang = AppComponent.lang;
+    
     this.formGroupFinale = this.formBuilder.group({
       inputEmail: [''],
       inputFirstname: [''],

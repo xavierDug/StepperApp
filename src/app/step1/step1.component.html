@@ -1,25 +1,20 @@
 <form class="" [formGroup]="formGroup1">
   <div class="mb-5">
     <h1 *ngIf="showSelect" class="text-3xl mb-5 font-bold">
-      Choix du modèle d'étiquettes
+      {{ t.titleWithSelect }}
     </h1>
     <h1 *ngIf="!showSelect" class="text-3xl mb-5 font-bold">
-      Modèle d'étiquettes
+      {{ t.titleWithoutSelect }}
     </h1>
-    <p *ngIf="isWeb == 'true'" class="mb-2">
-      Bienvenue dans notre générateur d’étiquettes pour le système Autonome de
-      OCH Planner. Ces quelques questions vont nous permettre de créer les
-      différents modèles d’étiquettes qui seront incluses dans l’imprimante. Il
-      vous sera possible de passer d’un modèle à l’autre très facilement. Tout
-      au long de ce formulaire, vous pourrez voir la liste des épreuves dans le
-      bas de votre écran. Nous vous enverrons par courriel , avant l’expédition,
-      une photo des épreuves incluses.
+
+    <p *ngIf="isWeb === 'true'" class="mb-2">
+      {{ t.introText }}
     </p>
   </div>
   <div class="mb-5" *ngIf="showSelect">
-    <label for="countries" class="block mb-2 text-sm font-medium"
-      >Choisir une option</label
-    >
+    <label for="countries" class="block mb-2 text-sm font-medium">
+      {{ t.selectLabel }}
+    </label>
     <select
       id="countries"
       class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
@@ -27,9 +22,9 @@
       (change)="updateSelectTemplate()"
       required
     >
-      <option disabled value="">Choisissez un modèle d'étiquettes</option>
-      <option value="White">Blanc</option>
-      <option value="generique">Generique</option>
+      <option disabled value="">{{ t.selectPlaceholder }}</option>
+      <option value="White">{{ t.white }}</option>
+      <option value="generique">{{ t.generic }}</option>
       <option disabled>────────────────────</option>
       <option value="april-324x324">April</option>
       <option value="autocare">Autocare</option>

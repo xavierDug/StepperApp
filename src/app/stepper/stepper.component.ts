@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { SharedService } from '../services/shared.service';
 import { MailgunService } from '../services/mailgun.service';
+import { AppComponent } from '../app.component';
 
 @Component({
   selector: 'app-stepper',
@@ -16,11 +17,60 @@ export class StepperComponent implements OnInit {
   timeoutId: any = null;
   timeoutIdWarning: any = null;
 
+  currentLang: 'fr' | 'en' = 'fr';
+
+  translations: any = {
+    fr: {
+      // ... existing "finale" section
+      document: {
+        document: "Document",
+        step: "Étape",
+        previous: "Précédent",
+        next: "Suivant",
+        submit: "Soumettre",
+        formList: "Liste des formulaires inclus dans votre imprimante:",
+        formChoiceIntro: `Vous pouvez avoir plusieurs formulaires dans l’imprimante et
+          passer d’un à l'autre rapidement. Voulez-vous seulement un
+          formulaire de changement d’huile avec le format de date choisi ou
+          désirez-vous ajouter un autre formulaire pour un format de date
+          différent?`,
+        addAnotherForm: "Je désire ajouter un autre formulaire de changement d’huile avec un format de date",
+        onlyOneForm: "Je désire avoir seulement le formulaire de changement d’huile avec le format de date choisi",
+        formAdded: "Formulaire ajouté avec succès.",
+        formsSubmitted: "Formulaires soumis avec succès.",
+        formAlreadyExists: "Ce formulaire fait déjà partie de votre collection.",
+        pleaseFillAllRequired: "S'il-vous-plaît remplissez tous les champs requis."
+      }
+    },
+    en: {
+      // ... existing "finale" section
+      document: {
+        document: "Document",
+        step: "Step",
+        previous: "Previous",
+        next: "Next",
+        submit: "Submit",
+        formList: "List of forms included in your printer:",
+        formChoiceIntro: `You can have multiple forms in the printer and switch between them quickly. Do you only want one oil change form with the chosen date format or would you like to add another form for a different date format?`,
+        addAnotherForm: "I want to add another oil change form with a different date format",
+        onlyOneForm: "I only want the oil change form with the selected date format",
+        formAdded: "Form added successfully.",
+        formsSubmitted: "Forms submitted successfully.",
+        formAlreadyExists: "This form is already part of your collection.",
+        pleaseFillAllRequired: "Please fill in all required fields."
+      }
+    }
+  };
+
+  get t() {
+    return this.translations[this.currentLang];
+  }
+
   constructor(
     private formBuilder: FormBuilder,
     private shared: SharedService,
     private mailgun: MailgunService
-  ) {}
+  ) { }
 
   get isWeb() {
     return this.shared.isWeb;
@@ -131,6 +181,7 @@ export class StepperComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.currentLang = AppComponent.lang;
   }
 
   calculateFontSize(text: string): number {

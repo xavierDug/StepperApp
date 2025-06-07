@@ -1,6 +1,6 @@
 <form class="" [formGroup]="formGroup2">
   <div>
-    <h1 class="text-3xl mb-5 font-bold">Personnalisation de votre étiquette</h1>
+    <h1 class="text-3xl mb-5 font-bold">{{ t.title }}</h1>
   </div>
   <!--Check box lines-->
   <div class="mb-5">
@@ -22,9 +22,9 @@
         >
           <div class="block">
             <div class="w-full text-lg font-semibold">
-              2 lignes
+              {{ t.line2Label }}
             </div>
-            <div class="w-full">Nom et téléphone seulement</div>
+            <div class="w-full">{{ t.line2Desc }}</div>
           </div>
           <i class="fa-solid fa-grip-lines text-xl"></i>
         </label>
@@ -45,9 +45,9 @@
         >
           <div class="block">
             <div class="w-full text-lg font-semibold">
-              3 lignes
+              {{ t.line3Label }}
             </div>
-            <div class="w-full">Nom, adresse et téléphone</div>
+            <div class="w-full">{{ t.line3Desc }}</div>
           </div>
           <i class="fa-solid fa-bars text-xl"></i>
         </label>
@@ -56,7 +56,7 @@
   </div>
   <div class="mb-5" *ngIf="nbrLines">
     <label for="name" class="block mb-2 text-sm font-medium"
-      >Nom</label
+      >{{ t.nameLabel }}</label
     >
     <input
       type="text"
@@ -71,7 +71,7 @@
   <!-- Conditionally displayed text input -->
   <div class="mb-5" *ngIf="nbrLines === 'lines-3'">
     <label for="adi" class="block mb-2 text-sm font-medium"
-      >Adresse</label
+      >{{ t.addressLabel }}</label
     >
     <input
       type="text"
@@ -84,7 +84,7 @@
   </div>
   <div class="mb-5" *ngIf="nbrLines">
     <label for="tel" class="block mb-2 text-sm font-medium"
-      >Téléphone</label
+      >{{ t.phoneLabel }}</label
     >
     <input
       type="text"
@@ -95,5 +95,5 @@
       (input)="updateText()"
     />
   </div>
-  <p>Il vous sera possible à la fin de ce formulaire d’inclure le logo de votre entreprise qui pourra être ajouté dans le haut de votre étiquette.</p>
+  <p>{{ t.logoNote }}</p>
 </form>

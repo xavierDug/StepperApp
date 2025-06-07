@@ -1,6 +1,6 @@
 <form action="" [formGroup]="formGroup7">
   <div>
-    <h1 class="text-3xl mb-5 font-bold">Formulaire de rappel de serrage des roues</h1>
+    <h1 class="text-3xl mb-5 font-bold">{{ t.title }}</h1>
   </div>
   <!--Check box date-->
   <div class="mb-5">
@@ -21,9 +21,9 @@
           class="inline-flex items-center justify-between w-full h-full p-5 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer peer-checked:border-blue-800 peer-checked:border-4 peer-checked:text-blue-800 hover:text-gray-600 hover:bg-gray-100"
         >
           <div class="block">
-            <div class="w-full text-lg font-semibold">Oui</div>
+            <div class="w-full text-lg font-semibold">{{ t.options.yes }}</div>
             <div class="w-full">
-              Je souhaite ajouter un formulaire de rappel de serrage de roues.
+              {{ t.options.addForm }}
             </div>
           </div>
           <i class="fa-solid fa-circle-check text-xl text-green-600 peer-checked:text-blue-600"></i>
@@ -44,9 +44,9 @@
           class="inline-flex items-center justify-between w-full h-full p-5 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer peer-checked:border-blue-800 peer-checked:border-4 peer-checked:text-blue-800 hover:text-gray-600 hover:bg-gray-100"
         >
           <div class="block">
-            <div class="w-full text-lg font-semibold">Non</div>
+            <div class="w-full text-lg font-semibold">{{ t.options.no }}</div>
             <div class="w-full">
-              Je ne souhaite pas ajouter un formulaire de rappel de serrage de roues.
+              {{ t.options.noForm }}
             </div>
           </div>
           <i class="fa-solid fa-ban text-red-600 text-xl peer-checked:text-blue-600"></i>

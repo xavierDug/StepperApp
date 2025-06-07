@@ -1,21 +1,19 @@
 <form action="" [formGroup]="formGroupFinale">
   <div>
-    <h1 class="text-3xl mb-5 font-bold">Comment vous rejoindre?</h1>
+    <h1 class="text-3xl mb-5 font-bold">{{ t.finale.title }}</h1>
     <p class="text-xl mb-5">
-      Si vous avez des besoins particuliers ou demandes spéciales, veuillez nous
-      en faire part:
+      {{ t.finale.intro }}
     </p>
   </div>
   <div class="mb-5">
     <textarea
       class="w-full p-5 text-black bg-white border border-gray-200 rounded-lg"
       formControlName="inputMessage"
-      placeholder="Veuillez nous en faire part ici"
     ></textarea>
   </div>
   <div class="mb-5">
     <label for="inputEmailId" class="block mb-2 text-sm font-medium"
-      >Courriel de l'atelier <span class="text-red-500">(Requis)</span></label
+      >{{ t.finale.emailLabel }} <span class="text-red-500">{{ t.finale.required }}</span></label
     >
     <input
       type="text"
@@ -29,7 +27,7 @@
   </div>
   <div class="mb-5">
     <label for="inputTelId" class="block mb-2 text-sm font-medium"
-      >No de téléphone <span class="text-red-500">(Requis)</span></label
+      >{{ t.finale.telLabel }} <span class="text-red-500">{{ t.finale.required }}</span></label
     >
     <input
       type="text"
@@ -42,8 +40,8 @@
   </div>
   <div class="mb-5">
     <label for="inputFirstnameId" class="block mb-2 text-sm font-medium"
-      >Nom de la personne à contacter
-      <span class="text-red-500">(Requis)</span></label
+      >{{ t.finale.nameLabel }}
+      <span class="text-red-500">{{ t.finale.required }}</span></label
     >
     <input
       type="text"
@@ -59,7 +57,7 @@
   <div *ngIf="!showRep">
     <div class="mb-5">
       <label for="nomRepId" class="block mb-2 text-sm font-medium"
-        >Nom du REPRÉSENTANT <span class="text-red-500">(Requis)</span></label
+        >{{ t.finale.repName }} <span class="text-red-500">{{ t.finale.required }}</span></label
       >
       <input
         type="text"
@@ -73,8 +71,8 @@
     </div>
     <div class="mb-5">
       <label for="emailRepId" class="block mb-2 text-sm font-medium"
-        >Courriel du REPRÉSENTANT
-        <span class="text-red-500">(Requis)</span></label
+        >{{ t.finale.repEmail }}
+        <span class="text-red-500">{{ t.finale.required }}</span></label
       >
       <input
         type="text"
@@ -88,8 +86,8 @@
     </div>
     <div class="mb-5">
       <label for="telRepId" class="block mb-2 text-sm font-medium"
-        >Téléphone du REPRÉSENTANT
-        <span class="text-red-500">(Requis)</span></label
+        >{{ t.finale.repTel }}
+        <span class="text-red-500">{{ t.finale.required }}</span></label
       >
       <input
         type="text"
@@ -103,7 +101,7 @@
   </div>
   <div>
     <div>
-      <p class="text-sm font-bold mb-2">Logo (optionnel)</p>
+      <p class="text-sm font-bold mb-2">{{ t.finale.logoLabel }}</p>
     </div>
     <div class="relative flex items-center justify-center w-full">
       <!--Remove image button-->
@@ -123,7 +121,7 @@
         class="absolute bottom-[95%] right-0 z-10 inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm tooltip"
         [ngStyle]="{ opacity: showTooltipVisible ? '1' : '0' }"
       >
-        Retirer le logo.
+      {{ t.finale.removeTooltip }}
       </div>
       <label
         for="dropzone-file"
@@ -151,17 +149,16 @@
             class="mb-4 fa-solid fa-circle-check text-green-600 text-3xl"
           ></i>
           <p *ngIf="!selectedImageUrl" class="mb-2 text-sm text-gray-500">
-            <span class="font-semibold">Cliquez pour soumettre votre logo</span>
-            ou faites un glisser-déposer
+            <span class="font-semibold">{{ t.finale.dropText }}</span>
           </p>
           <p
             *ngIf="selectedImageUrl"
             class="mb-2 text-sm text-gray-500 font-semibold"
           >
-            Logo uploaded successfully
+          {{ t.finale.uploadedText }}
           </p>
           <p *ngIf="!selectedImageUrl" class="text-xs text-gray-500">
-            SVG, PNG, JPG
+            {{ t.finale.formatNote }}
           </p>
         </div>
         <input
@@ -175,10 +172,6 @@
     </div>
   </div>
   <p class="mt-5">
-    Avec les informations que vous nous avez transmises, nous allons créer les
-    épreuves pour étiquettes demandées et vous retourner une photo pour
-    approbation par courriel. Un de nos représentants vous contactera dans 24 à
-    48 heures. Vérifier occasionnellement votre boîte courriel et aussi votre
-    boîte pourriel.
+    {{ t.finale.footer }}
   </p>
 </form>

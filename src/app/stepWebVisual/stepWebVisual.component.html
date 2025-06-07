@@ -1,17 +1,11 @@
 <div class="mb-10">
-  <h1 class="text-3xl mb-5 font-bold">Templates</h1>
+  <h1 class="text-3xl mb-5 font-bold">{{ t.templatesTitle }}</h1>
   <p class="text-lg mb-5">
-    Grâce au système OCH Planner WEB, vous pouvez sélectionner avant chaque
-    impression le format de date utilisé, l'utilisation d'un grade d'huile ou
-    non et des messages personnalisés. Tous les formats suivants de
-    recommandations, d'entretiens effectués, d'étiquettes d'identification de
-    clé ou de rappels de rendez-vous sont inclus dans l'application et il vous
-    est possible d'en ajouter selon vos besoins. Le technicien qui fera votre
-    installation originale vous montrera comment utiliser l'application.
+    {{ t.templatesDescription }}
   </p>
 </div>
 
-<p class="text-2xl mb-10 text-center font-bold">Plusieurs formats de date sont inclus dans l'application</p>
+<p class="text-2xl mb-10 text-center font-bold">{{ t.dateFormatsIncluded }}</p>
 <!--Sticker array dates-->
 <div *ngIf="isWeb == 'false'" class="flex justify-center mx-auto mb-10">
   <div class="grid md:grid-cols-3 grid-cols-2 gap-4 justify-center mx-auto">
@@ -75,7 +69,7 @@
     </div>
   </div>
 </div>
-<p class="text-2xl mb-10 text-center font-bold">Et plusieurs différents modèles sont aussi inclus. Vous pouvez créer les vôtres</p>
+<p class="text-2xl mb-10 text-center font-bold">{{ t.customModelsIntro }}</p>
 <!--Sticker array autres-->
 <div *ngIf="isWeb == 'false'" class="flex justify-center mx-auto">
   <div class="grid md:grid-cols-4 grid-cols-3 gap-4 justify-center mx-auto">
@@ -83,10 +77,10 @@
       *ngFor="let _ of [].constructor(4); let i = index"
       class="relative flex justify-center flex-col"
     >
-      <p *ngIf="i == 0" class="text-lg text-gray-100 mb-3 text-center font-semibold">ENTRETIENS EFFECTUÉS</p>
-      <p *ngIf="i == 1" class="text-lg text-gray-100 mb-3 text-center font-semibold">PROCHAIN RDV</p>
-      <p *ngIf="i == 2" class="text-lg text-gray-100 mb-3 text-center font-semibold">RECOMMANDATIONS</p>
-      <p *ngIf="i == 3" class="text-lg text-gray-100 mb-3 text-center font-semibold">TAG DE CLÉS</p>
+      <p *ngIf="i == 0" class="text-lg text-gray-100 mb-3 text-center font-semibold">{{ t.stickerTypes[0] }}</p>
+      <p *ngIf="i == 1" class="text-lg text-gray-100 mb-3 text-center font-semibold">{{ t.stickerTypes[1] }}</p>
+      <p *ngIf="i == 2" class="text-lg text-gray-100 mb-3 text-center font-semibold">{{ t.stickerTypes[2] }}</p>
+      <p *ngIf="i == 3" class="text-lg text-gray-100 mb-3 text-center font-semibold">{{ t.stickerTypes[3] }}</p>
       <div class="inline-block relative">
         <img
           *ngIf="this.shared.inputSelect"

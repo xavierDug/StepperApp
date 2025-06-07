@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>{{ t.document.document }}</title>
   </head>
   <body class="text-white">
     <div class="container mx-auto pb-10">
@@ -321,7 +321,7 @@
         </ol>
 
         <h2 class="text-xl font-semibold mb-4 text-gray-300">
-          Étape {{ currentStep }}
+          {{ t.document.step }} {{ currentStep }}
         </h2>
 
         <div>
@@ -578,14 +578,14 @@
               (click)="prevStep()"
             >
               <i class="fa-solid fa-arrow-left text-lg"></i>
-              Précédent
+              {{ t.document.previous }}
             </button>
             <button
               *ngIf="currentStep < steps.length && isWeb == 'true' && currentStep !== 1"
               (click)="nextStep()"
               class="px-6 py-2 text-white font-bold bg-blue-900 hover:bg-blue-950 rounded"
             >
-              Suivant
+            {{ t.document.next }}
               <i class="fa-solid fa-arrow-right text-lg"></i>
             </button>
             <button
@@ -593,7 +593,7 @@
               (click)="nextStep()"
               class="px-6 py-2 text-white font-bold bg-blue-900 hover:bg-blue-950 rounded"
             >
-              Suivant
+            {{ t.document.next }}
               <i class="fa-solid fa-arrow-right text-lg"></i>
             </button>
             <button
@@ -601,7 +601,7 @@
               class="px-6 py-2 text-white font-bold bg-green-900 hover:bg-green-950 rounded"
               (click)="submitForm()"
             >
-              Soumettre
+            {{ t.document.submit }}
               <i class="fa-solid fa-check text-lg"></i>
             </button>
             <button
@@ -609,7 +609,7 @@
               class="px-6 py-2 text-white font-bold bg-green-900 hover:bg-green-950 rounded"
               (click)="submitForm()"
             >
-              Soumettre
+            {{ t.document.submit }}
               <i class="fa-solid fa-check text-lg"></i>
             </button>
           </div>
@@ -617,7 +617,7 @@
       </div>
 
       <h1 *ngIf="stickerArray.length > 0 && isWeb == 'true'" class="text-3xl mb-5 mt-5 font-bold">
-        Liste des formulaires inclus dans votre imprimante:
+        {{ t.document.formList }}
       </h1>
       <!--Sticker array-->
       <div *ngIf="stickerArray.length > 0 && isWeb == 'true'" class="grid md:grid-cols-3 grid-cols-2 gap-4">
@@ -778,11 +778,7 @@
             <h3
               class="mb-5 text-start text-lg font-normal text-gray-500 lowercase"
             >
-              Vous pouvez avoir plusieurs formulaires dans l’imprimante et
-              passer d’un à l'autre rapidement. Voulez-vous seulement un
-              formulaire de changement d’huile avec le format de date choisi ou
-              désirez-vous ajouter un autre formulaire pour un format de date
-              différent?
+            {{ t.document.formChoiceIntro }}
             </h3>
             <button
               data-modal-hide="popup-modal"
@@ -790,8 +786,7 @@
               class="text-white mb-2 bg-blue-900 hover:bg-blue-950 focus:ring-4 focus:outline-none focus:ring-blue-700 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center"
               (click)="stayOnStep()"
             >
-              Je désire ajouter un autre formulaire de changement d’huile avec
-              un format de date
+            {{ t.document.addAnotherForm }}
             </button>
             <button
               data-modal-hide="popup-modal"
@@ -799,8 +794,7 @@
               class="py-2.5 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100"
               (click)="proceedFromModal()"
             >
-              Je désire avoir seulement le formulaire de changement d’huile avec
-              le format de date choisi
+            {{ t.document.onlyOneForm }}
             </button>
           </div>
         </div>
@@ -833,7 +827,7 @@
           <span class="sr-only">Check icon</span>
         </div>
         <div class="ms-3 text-sm font-normal">
-          Formulaire ajouté avec succès.
+          {{ t.document.formAdded }}
         </div>
         <button
           type="button"
@@ -887,7 +881,7 @@
           <span class="sr-only">Check icon</span>
         </div>
         <div class="ms-3 text-sm font-normal">
-          Formulaires soumis avec succès.
+          {{ t.document.formsSubmitted }}
         </div>
         <button
           type="button"
@@ -941,7 +935,7 @@
           <span class="sr-only">Warning icon</span>
         </div>
         <div class="ms-3 text-sm font-normal">
-          Ce formulaire fait deja parti de votre collection.
+          {{ t.document.formAlreadyExists }}
         </div>
         <button
           type="button"
@@ -995,7 +989,7 @@
           <span class="sr-only">Missing inputs</span>
         </div>
         <div class="ms-3 text-sm font-normal">
-          S'il-vous-plaît remplissez tous les champs requis.
+          {{ t.document.pleaseFillAllRequired }}
         </div>
         <button
           type="button"

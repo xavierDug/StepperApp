@@ -1,18 +1,13 @@
 <form action="" [formGroup]="formGroupY">
   <div>
-    <h1 class="text-3xl mb-5 font-bold">Choix du système</h1>
+    <h1 class="text-3xl mb-5 font-bold">{{ t.systemChoiceTitle }}</h1>
     <p class="text-lg mb-5">
-      Vous avez l'option d'utiliser le système OCH Planner de 2 façons:
+      {{ t.systemChoiceIntro }}
     </p>
     <ul class="justify-between grid grid-cols-2 space-x-4">
       <li>
         <p class="text-lg mb-5">
-          1. Le système OCH Planner Autonome. Si vous n'avez pas d'ordinateurs
-          ou d'accès internet à votre atelier, cette option est pour vous! Un
-          clavier résistant branché dans l'imprimante OCH Planner équipée d'un
-          petit écran LCD permet de faire rapidement les étiquettes de rappel
-          d'entretien. La vidéo suivante vous permet de voir le fonctionnement
-          de ce système.
+          {{ t.option1Text }}
         </p>
         <div class="mb-5">
           <a href="https://youtu.be/FoA4hiwV5qc" target="_blank">
@@ -22,11 +17,7 @@
       </li>
       <li>
         <p class="text-lg mb-5">
-          2. Le Système OCH Planner WEB. Avec ce système, l'imprimante sera
-          branchée dans un ordinateur ou partagée sur votre réseau et vous
-          utiliserez une application simple et rapide pour faire les étiquettes
-          de rappel d'entretien. La vidéo suivante vous montre les détails du
-          fonctionnement de cette option.
+          {{ t.option2Text }}
         </p>
         <div class="mb-5">
           <a href="https://youtu.be/aTavv6xuoVI" target="_blank">
@@ -56,7 +47,7 @@
           <i class="fa-solid fa-rectangle-list text-xl m-2"></i>
           <div class="block">
             <div class="w-full text-lg font-semibold">
-              CHOISIR MODE AUTONOME
+              {{ t.chooseStandalone }}
             </div>
           </div>
         </label>
@@ -78,7 +69,7 @@
           <i class="fa-solid fa-globe text-xl m-2"></i>
           <div class="block">
             <div class="w-full text-lg font-semibold">
-              CHOISIR APPLICATION WEB
+              {{ t.chooseWeb }}
             </div>
           </div>
         </label>

@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { SharedService } from '../services/shared.service';
 import { MailgunService } from '../services/mailgun.service';
 import { AppComponent } from '../app.component';
+import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-stepper',
@@ -18,6 +19,8 @@ export class StepperComponent implements OnInit {
   timeoutIdWarning: any = null;
 
   currentLang: 'fr' | 'en' = 'fr';
+  formSubmitted = false;
+  submitDisabled = false;
 
   translations: any = {
     fr: {
@@ -69,7 +72,8 @@ export class StepperComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private shared: SharedService,
-    private mailgun: MailgunService
+    private mailgun: MailgunService,
+    private cdr: ChangeDetectorRef
   ) { }
 
   get isWeb() {
@@ -425,6 +429,10 @@ export class StepperComponent implements OnInit {
       this.toggleDangerToast();
       return; // Exit the function to prevent proceeding to the next step.
     }
+
+    this.formSubmitted = true;
+    this.cdr.detectChanges();
+    console.log('Form submitted:', this.shared.stickerArray);
 
     this.mailgun.sendEmail().subscribe({
       next: (response) => this.toggleToastSubmited(),

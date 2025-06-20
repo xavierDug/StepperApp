@@ -346,7 +346,7 @@
                   </div>
                   <!-- Form finale -->
                   <div *ngIf="currentStep == stepsWeb.length">
-                    <app-stepFinale></app-stepFinale>
+                    <app-stepFinale [formSubmitted]="formSubmitted"></app-stepFinale>
                   </div>
 
                   <div *ngIf="currentStep === stepsWeb.length">
@@ -447,7 +447,7 @@
                   </div>
                   <!-- Form finale -->
                   <div *ngIf="currentStep == steps.length">
-                    <app-stepFinale></app-stepFinale>
+                    <app-stepFinale [formSubmitted]="formSubmitted"></app-stepFinale>
                   </div>
 
                   <div *ngIf="currentStep === steps.length">
@@ -597,7 +597,7 @@
               <i class="fa-solid fa-arrow-right text-lg"></i>
             </button>
             <button
-              *ngIf="currentStep === steps.length && isWeb == 'true'"
+              *ngIf="currentStep === steps.length && isWeb == 'true' && formSubmitted === false"
               class="px-6 py-2 text-white font-bold bg-green-900 hover:bg-green-950 rounded"
               (click)="submitForm()"
             >
@@ -605,7 +605,7 @@
               <i class="fa-solid fa-check text-lg"></i>
             </button>
             <button
-              *ngIf="currentStep === stepsWeb.length && isWeb == 'false'"
+              *ngIf="currentStep === stepsWeb.length && isWeb == 'false' && formSubmitted === false"
               class="px-6 py-2 text-white font-bold bg-green-900 hover:bg-green-950 rounded"
               (click)="submitForm()"
             >

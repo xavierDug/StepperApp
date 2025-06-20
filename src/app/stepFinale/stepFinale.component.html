@@ -1,177 +1,189 @@
-<form action="" [formGroup]="formGroupFinale">
-  <div>
-    <h1 class="text-3xl mb-5 font-bold">{{ t.finale.title }}</h1>
-    <p class="text-xl mb-5">
-      {{ t.finale.intro }}
-    </p>
-  </div>
-  <div class="mb-5">
-    <textarea
-      class="w-full p-5 text-black bg-white border border-gray-200 rounded-lg"
-      formControlName="inputMessage"
-    ></textarea>
-  </div>
-  <div class="mb-5">
-    <label for="inputEmailId" class="block mb-2 text-sm font-medium"
-      >{{ t.finale.emailLabel }} <span class="text-red-500">{{ t.finale.required }}</span></label
-    >
-    <input
-      type="text"
-      id="inputEmailId"
-      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-      required
-      formControlName="inputEmail"
-      (input)="updateFinaleForm()"
-      placeholder="exemple@gmail.com"
-    />
-  </div>
-  <div class="mb-5">
-    <label for="inputTelId" class="block mb-2 text-sm font-medium"
-      >{{ t.finale.telLabel }} <span class="text-red-500">{{ t.finale.required }}</span></label
-    >
-    <input
-      type="text"
-      id="inputTelId"
-      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-      required
-      formControlName="inputTel"
-      (input)="updateFinaleForm()"
-    />
-  </div>
-  <div class="mb-5">
-    <label for="inputFirstnameId" class="block mb-2 text-sm font-medium"
-      >{{ t.finale.nameLabel }}
-      <span class="text-red-500">{{ t.finale.required }}</span></label
-    >
-    <input
-      type="text"
-      id="inputFirstnameId"
-      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-      required
-      formControlName="inputFirstname"
-      (input)="updateFinaleForm()"
-      placeholder="Prénom Nom"
-    />
-  </div>
-  <!--Representant if only sticker slected-->
-  <div *ngIf="!showRep">
-    <div class="mb-5">
-      <label for="nomRepId" class="block mb-2 text-sm font-medium"
-        >{{ t.finale.repName }} <span class="text-red-500">{{ t.finale.required }}</span></label
-      >
-      <input
-        type="text"
-        id="nomRepId"
-        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-        required
-        formControlName="nomRep"
-        (input)="updateFinaleForm()"
-        placeholder="Prénom Nom"
-      />
+<div *ngIf="!formSubmitted; else submittedMessage">
+  <form action="" [formGroup]="formGroupFinale">
+    <div>
+      <h1 class="text-3xl mb-5 font-bold">{{ t.finale.title }}</h1>
+      <p class="text-xl mb-5">
+        {{ t.finale.intro }}
+      </p>
     </div>
     <div class="mb-5">
-      <label for="emailRepId" class="block mb-2 text-sm font-medium"
-        >{{ t.finale.repEmail }}
-        <span class="text-red-500">{{ t.finale.required }}</span></label
+      <textarea
+        class="w-full p-5 text-black bg-white border border-gray-200 rounded-lg"
+        formControlName="inputMessage"
+      ></textarea>
+    </div>
+    <div class="mb-5">
+      <label for="inputEmailId" class="block mb-2 text-sm font-medium"
+        >{{ t.finale.emailLabel }} <span class="text-red-500">{{ t.finale.required }}</span></label
       >
       <input
         type="text"
-        id="emailRepId"
+        id="inputEmailId"
         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
         required
-        formControlName="emailRep"
+        formControlName="inputEmail"
         (input)="updateFinaleForm()"
         placeholder="exemple@gmail.com"
       />
     </div>
     <div class="mb-5">
-      <label for="telRepId" class="block mb-2 text-sm font-medium"
-        >{{ t.finale.repTel }}
+      <label for="inputTelId" class="block mb-2 text-sm font-medium"
+        >{{ t.finale.telLabel }} <span class="text-red-500">{{ t.finale.required }}</span></label
+      >
+      <input
+        type="text"
+        id="inputTelId"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+        required
+        formControlName="inputTel"
+        (input)="updateFinaleForm()"
+      />
+    </div>
+    <div class="mb-5">
+      <label for="inputFirstnameId" class="block mb-2 text-sm font-medium"
+        >{{ t.finale.nameLabel }}
         <span class="text-red-500">{{ t.finale.required }}</span></label
       >
       <input
         type="text"
-        id="telRepId"
+        id="inputFirstnameId"
         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
         required
-        formControlName="telRep"
+        formControlName="inputFirstname"
         (input)="updateFinaleForm()"
+        placeholder="Prénom Nom"
       />
     </div>
-  </div>
-  <div>
-    <div>
-      <p class="text-sm font-bold mb-2">{{ t.finale.logoLabel }}</p>
-    </div>
-    <div class="relative flex items-center justify-center w-full">
-      <!--Remove image button-->
-      <button
-        *ngIf="selectedImageUrl"
-        class="absolute top-0 right-2 p-1 m-2 bg-transparent rounded-full"
-        (click)="removeImage()"
-        (mouseenter)="showTooltip()"
-        (mouseleave)="hideTooltip()"
-      >
-        <i class="fa-solid fa-xmark text-red-600 text-2xl"></i>
-      </button>
-      <div
-        *ngIf="selectedImageUrl"
-        id="tooltip-default"
-        role="tooltip"
-        class="absolute bottom-[95%] right-0 z-10 inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm tooltip"
-        [ngStyle]="{ opacity: showTooltipVisible ? '1' : '0' }"
-      >
-      {{ t.finale.removeTooltip }}
-      </div>
-      <label
-        for="dropzone-file"
-        class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 hover:bg-gray-100"
-      >
-        <div class="flex flex-col items-center justify-center pt-5 pb-6">
-          <svg
-            *ngIf="!selectedImageUrl"
-            class="w-8 h-8 mb-4 text-gray-500"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 20 16"
-          >
-            <path
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
-            />
-          </svg>
-          <i
-            *ngIf="selectedImageUrl"
-            class="mb-4 fa-solid fa-circle-check text-green-600 text-3xl"
-          ></i>
-          <p *ngIf="!selectedImageUrl" class="mb-2 text-sm text-gray-500">
-            <span class="font-semibold">{{ t.finale.dropText }}</span>
-          </p>
-          <p
-            *ngIf="selectedImageUrl"
-            class="mb-2 text-sm text-gray-500 font-semibold"
-          >
-          {{ t.finale.uploadedText }}
-          </p>
-          <p *ngIf="!selectedImageUrl" class="text-xs text-gray-500">
-            {{ t.finale.formatNote }}
-          </p>
-        </div>
+    <!--Representant if only sticker slected-->
+    <div *ngIf="!showRep">
+      <div class="mb-5">
+        <label for="nomRepId" class="block mb-2 text-sm font-medium"
+          >{{ t.finale.repName }} <span class="text-red-500">{{ t.finale.required }}</span></label
+        >
         <input
-          id="dropzone-file"
-          type="file"
-          class="hidden"
-          accept="image/*"
-          (change)="onFileSelected($event)"
+          type="text"
+          id="nomRepId"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+          required
+          formControlName="nomRep"
+          (input)="updateFinaleForm()"
+          placeholder="Prénom Nom"
         />
-      </label>
+      </div>
+      <div class="mb-5">
+        <label for="emailRepId" class="block mb-2 text-sm font-medium"
+          >{{ t.finale.repEmail }}
+          <span class="text-red-500">{{ t.finale.required }}</span></label
+        >
+        <input
+          type="text"
+          id="emailRepId"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+          required
+          formControlName="emailRep"
+          (input)="updateFinaleForm()"
+          placeholder="exemple@gmail.com"
+        />
+      </div>
+      <div class="mb-5">
+        <label for="telRepId" class="block mb-2 text-sm font-medium"
+          >{{ t.finale.repTel }}
+          <span class="text-red-500">{{ t.finale.required }}</span></label
+        >
+        <input
+          type="text"
+          id="telRepId"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+          required
+          formControlName="telRep"
+          (input)="updateFinaleForm()"
+        />
+      </div>
     </div>
+    <div>
+      <div>
+        <p class="text-sm font-bold mb-2">{{ t.finale.logoLabel }}</p>
+      </div>
+      <div class="relative flex items-center justify-center w-full">
+        <!--Remove image button-->
+        <button
+          *ngIf="selectedImageUrl"
+          class="absolute top-0 right-2 p-1 m-2 bg-transparent rounded-full"
+          (click)="removeImage()"
+          (mouseenter)="showTooltip()"
+          (mouseleave)="hideTooltip()"
+        >
+          <i class="fa-solid fa-xmark text-red-600 text-2xl"></i>
+        </button>
+        <div
+          *ngIf="selectedImageUrl"
+          id="tooltip-default"
+          role="tooltip"
+          class="absolute bottom-[95%] right-0 z-10 inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm tooltip"
+          [ngStyle]="{ opacity: showTooltipVisible ? '1' : '0' }"
+        >
+        {{ t.finale.removeTooltip }}
+        </div>
+        <label
+          for="dropzone-file"
+          class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 hover:bg-gray-100"
+        >
+          <div class="flex flex-col items-center justify-center pt-5 pb-6">
+            <svg
+              *ngIf="!selectedImageUrl"
+              class="w-8 h-8 mb-4 text-gray-500"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 20 16"
+            >
+              <path
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
+              />
+            </svg>
+            <i
+              *ngIf="selectedImageUrl"
+              class="mb-4 fa-solid fa-circle-check text-green-600 text-3xl"
+            ></i>
+            <p *ngIf="!selectedImageUrl" class="mb-2 text-sm text-gray-500">
+              <span class="font-semibold">{{ t.finale.dropText }}</span>
+            </p>
+            <p
+              *ngIf="selectedImageUrl"
+              class="mb-2 text-sm text-gray-500 font-semibold"
+            >
+            {{ t.finale.uploadedText }}
+            </p>
+            <p *ngIf="!selectedImageUrl" class="text-xs text-gray-500">
+              {{ t.finale.formatNote }}
+            </p>
+          </div>
+          <input
+            id="dropzone-file"
+            type="file"
+            class="hidden"
+            accept="image/*"
+            (change)="onFileSelected($event)"
+          />
+        </label>
+      </div>
+    </div>
+    <p class="mt-5">
+      {{ t.finale.footer }}
+    </p>
+  </form>
+  
+</div>
+
+<ng-template #submittedMessage>
+  <div class="p-8 bg-green-100 text-center rounded shadow">
+    <h2 class="text-2xl font-bold text-green-800 mb-4">{{ t.finale.thankYou }}</h2>
+    <p class="text-lg text-green-700">
+      {{ t.finale.sumbmissionSuccess }}
+    </p>
   </div>
-  <p class="mt-5">
-    {{ t.finale.footer }}
-  </p>
-</form>
+</ng-template>

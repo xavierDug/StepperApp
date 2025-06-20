@@ -4,6 +4,7 @@ import { SharedService } from '../services/shared.service';
 import { MailgunService } from '../services/mailgun.service';
 import { ActivatedRoute } from '@angular/router';
 import { AppComponent } from '../app.component';
+import { Input } from '@angular/core';
 
 @Component({
   selector: 'app-stepFinale',
@@ -12,6 +13,8 @@ import { AppComponent } from '../app.component';
 })
 export class StepFinaleComponent implements OnInit {
   formGroupFinale!: FormGroup;
+
+  @Input() formSubmitted: boolean = false;
 
   currentLang: 'fr' | 'en' = 'fr';
 
@@ -39,7 +42,9 @@ export class StepFinaleComponent implements OnInit {
         approbation par courriel. Un de nos représentants vous contactera dans 24 à
         48 heures. Vérifier occasionnellement votre boîte courriel et aussi votre
         boîte pourriel.`,
-        required: "(Requis)"
+        required: "(Requis)",
+        thankYou: "Merci!",
+        sumbmissionSuccess: "Votre soumission a été effectuée avec succès!",
       }
     },
     en: {
@@ -61,7 +66,9 @@ export class StepFinaleComponent implements OnInit {
         formatNote: "SVG, PNG, JPG",
         removeTooltip: "Remove logo.",
         footer: `With the information you provided, we will create the requested label mockups and send you a photo for approval via email. One of our representatives will contact you within 24 to 48 hours. Please check your inbox and spam folder periodically.`,
-        required: "(Required)"
+        required: "(Required)",
+        thankYou: "Thank you!",
+        sumbmissionSuccess: "Your submission was successful!",
       }
     }
   };
